@@ -1,0 +1,2 @@
+-- Superseded by 006_fix_family_ownership.sql
+-- Do not run this file. It previously referenced a non-existent families.created_by column.

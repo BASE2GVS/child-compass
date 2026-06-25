@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# pilot runtime data (analytics, feedback, logs — no PII in analytics)
+/data/*.jsonl
+/data/pilot-config.json

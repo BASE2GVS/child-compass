@@ -1,0 +1,57 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { getFamilyContext, getProfile, getReportsData } from "@/lib/data/queries";
+import { resolveActiveChild } from "@/lib/utils/child-selection";
+import { generateReportContent } from "@/lib/services/report-generator";
+import ReportLayout from "@/components/reports/ReportLayout";
+import PrintButton from "@/components/reports/PrintButton";
+import { PageHeader, PageShell, ds } from "@/components/design-system";
+
+export const dynamic = "force-dynamic";
+
+export default async function TeacherGuidePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ child?: string }>;
+}) {
+  const params = await searchParams;
+  const profile = await getProfile();
+  if (!profile?.onboarding_completed) redirect("/onboarding");
+
+  const { children } = await getFamilyContext();
+  const child = await resolveActiveChild(children, params);
+  if (!child) redirect("/onboarding");
+
+  const data = await getReportsData(child.id);
+  if (!data) redirect("/onboarding");
+
+  const content = generateReportContent(
+    "teacher_guide",
+    data.child,
+    data.profile,
+    data.checkins,
+    data.debriefs,
+    data.patterns,
+  );
+
+  return (
+    <PageShell>
+      <PageHeader
+        eyebrow="Education"
+        title="Teacher Guide™"
+        description={`Print-ready classroom strategies for ${child.nickname || child.first_name}'s teachers.`}
+        familyChildren={children}
+        activeChildId={child.id}
+        actions={
+          <div className="flex flex-wrap items-center gap-3 print:hidden">
+            <PrintButton />
+            <Link href={`/reports/view/teacher_guide?child=${child.id}`} className={ds.btnSecondary}>
+              Full view
+            </Link>
+          </div>
+        }
+      />
+      <ReportLayout content={content} reportType="teacher_guide" />
+    </PageShell>
+  );
+}

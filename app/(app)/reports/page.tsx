@@ -1,0 +1,36 @@
+import { redirect } from "next/navigation";
+import { getFamilyContext, getProfile } from "@/lib/data/queries";
+import { resolveActiveChild } from "@/lib/utils/child-selection";
+import ReportsHub from "@/components/reports/ReportsHub";
+import { PageHeader, PageShell } from "@/components/design-system";
+
+export const dynamic = "force-dynamic";
+
+export default async function ReportsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ child?: string }>;
+}) {
+  const params = await searchParams;
+  const profile = await getProfile();
+  if (!profile?.onboarding_completed) redirect("/onboarding");
+
+  const { children } = await getFamilyContext();
+  if (children.length === 0) redirect("/onboarding");
+
+  const child = await resolveActiveChild(children, params);
+  if (!child) redirect("/onboarding");
+
+  return (
+    <PageShell>
+      <PageHeader
+        eyebrow="Documents"
+        title="Reports"
+        description="Professional report centre — preview, generate, print, and share with schools and therapists."
+        familyChildren={children}
+        activeChildId={child.id}
+      />
+      <ReportsHub childId={child.id} childName={child.nickname || child.first_name} />
+    </PageShell>
+  );
+}

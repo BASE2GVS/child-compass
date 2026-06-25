@@ -1,0 +1,15 @@
+{
+  "app.name": "Child Compass",
+  "dashboard.greeting": "Good morning",
+  "checkin.title": "Morning Check-In",
+  "debrief.title": "Parent Debrief",
+  "school.hub.title": "School Hub",
+  "therapy.hub.title": "Therapist Hub",
+  "health.hub.title": "Health Hub",
+  "reports.title": "Reports",
+  "intelligence.heading": "Today's Intelligence",
+  "family.intelligence.note": "Each child's insights are kept separate.",
+  "longitudinal.comparison": "Compared only with this child's own history.",
+  "offline.available": "Essential information available offline.",
+  "commercial.pilot_plan": "Pilot plan — full access during early programme"
+}

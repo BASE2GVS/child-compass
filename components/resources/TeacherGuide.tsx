@@ -1,0 +1,1 @@
+export default function TeacherGuide(){return <div>Teacher Guide</div>}

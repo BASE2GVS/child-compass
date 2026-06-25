@@ -1,0 +1,30 @@
+export const aiCopy = {
+  intelligenceHeading: "Here's what Child Compass noticed today",
+  intelligenceSub: "Gentle signals from your family's journey — tap \"Why?\" to understand each one.",
+  briefingIntro: "Here's your calm snapshot for today.",
+  reportCreating: "We're preparing your child's report…",
+  reportReady: "Your report is ready to view.",
+  checkinSaved: "Today's check-in is saved. You're doing beautifully.",
+  debriefThinking: "Child Compass is reflecting on what you shared…",
+  coachThinking: "Child Compass is thinking about your question…",
+  uploadSuccess: "Document saved securely to your family library.",
+  saveSuccess: "Saved — your changes are safe with Child Compass.",
+  supportReceived: "Thank you — we've received your message and will respond soon.",
+} as const;
+
+export const actionCopy = {
+  saveCheckin: "Save today's check-in",
+  createReport: "Create your child's report",
+  previewReport: "Preview report",
+  freshReport: "Create a fresh copy",
+  exportPdf: "Print or save as PDF",
+  addChild: "Add your child",
+  inviteCaregiver: "Invite a caregiver",
+  saveProfile: "Save my profile",
+  saveFamily: "Save family details",
+  saveObservation: "Save this note",
+  getGuidance: "Get calm guidance",
+  sendMessage: "Send your message",
+  continue: "Continue",
+  goBack: "Go back",
+} as const;
