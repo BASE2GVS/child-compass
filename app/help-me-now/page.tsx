@@ -17,10 +17,10 @@ export default function HelpMeNowPage() {
         </p>
         <ul className="mt-8 space-y-3 text-sm text-[#475569]">
           <li className="flex gap-2">
-            <span className="text-[#14B8A6]">✓</span> Parent Debrief™ for after difficult moments
+            <span className="text-[#14B8A6]">✓</span> Reflect on difficult moments with Child Compass
           </li>
           <li className="flex gap-2">
-            <span className="text-[#14B8A6]">✓</span> Ask Child Compass™ on your dashboard
+            <span className="text-[#14B8A6]">✓</span> Ask Child Compass™ from Today whenever you need
           </li>
           <li className="flex gap-2">
             <span className="text-[#14B8A6]">✓</span> Guidance drawn from your family&apos;s own data
@@ -28,7 +28,7 @@ export default function HelpMeNowPage() {
         </ul>
         <div className="mt-10 flex flex-wrap gap-3">
           <Link
-            href="/login?redirect=/debrief"
+            href="/login?redirect=/coach"
             className="rounded-2xl bg-[#14B8A6] px-6 py-3.5 text-sm font-semibold text-white hover:bg-[#0D9488]"
           >
             Sign in for guidance

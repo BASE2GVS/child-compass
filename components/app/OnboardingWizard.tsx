@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { completeOnboarding } from "@/lib/actions/auth";
+import { WELCOME_ONE_LINER } from "@/lib/first-time/copy";
 import AppCard from "@/components/app/AppCard";
 import { createClient } from "@/lib/supabase/client";
 
@@ -19,6 +20,7 @@ export default function OnboardingWizard() {
   const [photoPreview, setPhotoPreview] = useState<string>("");
   const [done, setDone] = useState(false);
   const [createdChildName, setCreatedChildName] = useState("");
+  const [createdChildId, setCreatedChildId] = useState("");
 
   const [familyName, setFamilyName] = useState("");
   const [country, setCountry] = useState("");
@@ -39,8 +41,7 @@ export default function OnboardingWizard() {
   const [inviteEmail, setInviteEmail] = useState("");
   const [step, setStep] = useState(0);
 
-  const inputClass =
-    "w-full rounded-2xl border border-slate-200 bg-[#FAF8F4] px-4 py-3 text-sm outline-none focus:border-[#14B8A6] focus:ring-2 focus:ring-[#14B8A6]/20";
+  const inputClass = "cc-fw-input w-full text-sm";
 
   const completionPct = useMemo(() => Math.round((step / (STEPS.length - 1)) * 100), [step]);
 
@@ -163,6 +164,7 @@ export default function OnboardingWizard() {
     }
     localStorage.removeItem(AUTOSAVE_KEY);
     setCreatedChildName(firstName);
+    if (result.childId) setCreatedChildId(result.childId);
     setDone(true);
     setLoading(false);
   }
@@ -180,20 +182,24 @@ export default function OnboardingWizard() {
       <div className="mx-auto max-w-2xl">
         <AppCard padding="lg">
           <div className="text-center">
-            <p className="text-5xl">🎉</p>
-            <h2 className="mt-4 text-2xl font-bold text-[#0F172A]">Welcome to Child Compass!</h2>
-            <p className="mt-3 text-slate-600">
-              You&apos;ve taken the first step toward understanding your child even better.
-            </p>
-            <p className="mt-2 text-sm text-slate-500">
-              {createdChildName} is now set up and ready.
+            <h2 className="font-display text-2xl font-semibold text-[var(--cc-ink)]">
+              You&apos;re ready, {createdChildName || "friend"}
+            </h2>
+            <p className="mt-3 text-[var(--cc-ink-muted)]">
+              Let&apos;s take your first gentle step together.
             </p>
             <button
               type="button"
-              onClick={() => router.push("/dashboard")}
-              className="mt-8 rounded-2xl bg-[#14B8A6] px-10 py-3.5 text-sm font-semibold text-white hover:bg-[#0D9488]"
+              onClick={() =>
+                router.push(
+                  createdChildId
+                    ? `/check-in?child=${createdChildId}&first=1`
+                    : "/today",
+                )
+              }
+              className="mt-8 rounded-full bg-[var(--cc-teal)] px-10 py-3.5 text-base font-semibold text-white hover:bg-[var(--cc-teal-deep)]"
             >
-              Go To My Dashboard
+              Let&apos;s begin
             </button>
           </div>
         </AppCard>
@@ -204,55 +210,46 @@ export default function OnboardingWizard() {
   return (
     <div className="mx-auto max-w-2xl">
       <div className="mb-3 flex items-center justify-between">
-        <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+        <p className="text-xs font-semibold uppercase tracking-wider text-[var(--cc-ink-faint)]">
           Step {step + 1} of {STEPS.length}
         </p>
-        <p className="text-xs font-semibold text-[#14B8A6]">{completionPct}% complete</p>
+        <p className="text-xs font-semibold text-[var(--cc-teal)]">{completionPct}% complete</p>
       </div>
       <div className="mb-2 h-2 w-full rounded-full bg-slate-200">
-        <div className="h-2 rounded-full bg-[#14B8A6] transition-all" style={{ width: `${completionPct}%` }} />
+        <div className="h-2 rounded-full bg-[var(--cc-teal)] transition-all" style={{ width: `${completionPct}%` }} />
       </div>
       <div className="mb-8 flex items-center justify-between gap-2">
         {STEPS.map((s, i) => (
           <div
             key={s}
             className={`rounded-full px-3 py-1 text-[11px] font-semibold transition-all ${
-              i <= step ? "bg-[#14B8A6]/15 text-[#14B8A6]" : "bg-slate-100 text-slate-400"
+              i <= step ? "bg-[var(--cc-teal)]/15 text-[var(--cc-teal)]" : "bg-[var(--cc-cream-200)] text-[var(--cc-ink-faint)]"
             }`}
           >
             {s}
           </div>
         ))}
       </div>
-      <p className="mb-3 text-right text-xs text-slate-400">Progress autosaves automatically</p>
+      <p className="mb-3 text-right text-xs text-[var(--cc-ink-faint)]">Progress autosaves automatically</p>
 
       <AppCard padding="lg">
         {step === 0 && (
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-[#0F172A]">Welcome to Child Compass™</h1>
-            <p className="mt-4 text-slate-600 leading-relaxed">
-              You&apos;re not alone. In the next few minutes you&apos;ll set up your family profile and unlock your
-              <strong className="font-semibold text-[#0F172A]"> 14-day free trial</strong> — full access to daily
-              check-ins, Parent Debrief™, and AI guidance built on your child&apos;s real patterns.
-            </p>
-            <ul className="mt-6 space-y-2 text-left text-sm text-slate-600">
-              <li>✓ Calm, premium experience designed for overwhelmed parents</li>
-              <li>✓ Your data stays private — isolated to your family only</li>
-              <li>✓ Not a diagnosis tool — support alongside professional care</li>
-            </ul>
+            <h1 className="font-display text-3xl font-semibold text-[var(--cc-ink)]">Welcome</h1>
+            <p className="mt-5 text-lg leading-relaxed text-[var(--cc-ink-muted)]">{WELCOME_ONE_LINER}</p>
             <button
               type="button"
               onClick={next}
-              className="mt-8 rounded-2xl bg-[#14B8A6] px-8 py-3.5 text-sm font-semibold text-white hover:bg-[#0D9488]"
+              className="mt-10 rounded-full bg-[var(--cc-teal)] px-10 py-3.5 text-base font-semibold text-white hover:bg-[var(--cc-teal-deep)]"
             >
-              Let&apos;s Begin
+              Let&apos;s begin
             </button>
           </div>
         )}
 
         {step === 1 && (
           <div className="space-y-5">
-            <h2 className="text-xl font-bold text-[#0F172A]">Create your family</h2>
+            <h2 className="text-xl font-bold text-[var(--cc-ink)]">Create your family</h2>
             <div>
               <label htmlFor="onboarding-family-name" className="mb-1.5 block text-sm font-medium">Family name</label>
               <input id="onboarding-family-name" className={inputClass} value={familyName} onChange={(e) => setFamilyName(e.target.value)} placeholder="The Smith Family" required />
@@ -266,10 +263,10 @@ export default function OnboardingWizard() {
               <input id="onboarding-timezone" className={inputClass} value={timezone} onChange={(e) => setTimezone(e.target.value)} />
             </div>
             <div className="flex gap-3">
-              <button type="button" onClick={prev} className="flex-1 rounded-2xl border border-slate-200 py-3.5 text-sm font-semibold text-slate-600">
+              <button type="button" onClick={prev} className="flex-1 rounded-2xl border border-[var(--cc-border)] py-3.5 text-sm font-semibold text-[var(--cc-ink-muted)]">
                 Previous
               </button>
-              <button type="button" onClick={next} disabled={!familyName} className="flex-1 rounded-2xl bg-[#14B8A6] py-3.5 text-sm font-semibold text-white disabled:opacity-50">
+              <button type="button" onClick={next} disabled={!familyName} className="flex-1 rounded-2xl bg-[var(--cc-teal)] py-3.5 text-sm font-semibold text-white disabled:opacity-50">
                 Next
               </button>
             </div>
@@ -278,7 +275,7 @@ export default function OnboardingWizard() {
 
         {step === 2 && (
           <div className="space-y-4">
-            <h2 className="text-xl font-bold text-[#0F172A]">Add your first child</h2>
+            <h2 className="text-xl font-bold text-[var(--cc-ink)]">Add your first child</h2>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Photo (optional)</label>
               <input
@@ -352,10 +349,10 @@ export default function OnboardingWizard() {
               <input className={inputClass} value={knownTriggers} onChange={(e) => setKnownTriggers(e.target.value)} placeholder="Crowded spaces, rushed transitions" />
             </div>
             <div className="flex gap-3">
-              <button type="button" onClick={prev} className="flex-1 rounded-2xl border border-slate-200 py-3.5 text-sm font-semibold text-slate-600">
+              <button type="button" onClick={prev} className="flex-1 rounded-2xl border border-[var(--cc-border)] py-3.5 text-sm font-semibold text-[var(--cc-ink-muted)]">
                 Previous
               </button>
-              <button type="button" onClick={next} disabled={!firstName} className="flex-1 rounded-2xl bg-[#14B8A6] py-3.5 text-sm font-semibold text-white disabled:opacity-50">
+              <button type="button" onClick={next} disabled={!firstName} className="flex-1 rounded-2xl bg-[var(--cc-teal)] py-3.5 text-sm font-semibold text-white disabled:opacity-50">
                 Next
               </button>
             </div>
@@ -364,17 +361,17 @@ export default function OnboardingWizard() {
 
         {step === 3 && (
           <div className="space-y-5">
-            <h2 className="text-xl font-bold text-[#0F172A]">Invite another parent or caregiver</h2>
-            <p className="text-sm text-slate-600">Optional — you can always do this later in Settings.</p>
+            <h2 className="text-xl font-bold text-[var(--cc-ink)]">Invite another parent or caregiver</h2>
+            <p className="text-sm text-[var(--cc-ink-muted)]">Optional — you can always do this later in Settings.</p>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Email address</label>
               <input type="email" className={inputClass} value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="partner@example.com" />
             </div>
             <div className="flex gap-3">
-              <button type="button" onClick={next} className="flex-1 rounded-2xl border border-slate-200 py-3.5 text-sm font-semibold text-slate-600">
+              <button type="button" onClick={next} className="flex-1 rounded-2xl border border-[var(--cc-border)] py-3.5 text-sm font-semibold text-[var(--cc-ink-muted)]">
                 Skip
               </button>
-              <button type="button" onClick={next} className="flex-1 rounded-2xl bg-[#14B8A6] py-3.5 text-sm font-semibold text-white">
+              <button type="button" onClick={next} className="flex-1 rounded-2xl bg-[var(--cc-teal)] py-3.5 text-sm font-semibold text-white">
                 Next
               </button>
             </div>
@@ -383,20 +380,20 @@ export default function OnboardingWizard() {
 
         {step === 4 && (
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-[#0F172A]">You&apos;re all set</h2>
-            <p className="mt-3 text-slate-600">
+            <h2 className="text-2xl font-bold text-[var(--cc-ink)]">You&apos;re all set</h2>
+            <p className="mt-3 text-[var(--cc-ink-muted)]">
               {firstName}&apos;s profile is ready. Child Compass will learn their unique patterns over time.
             </p>
             {error && <p className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
             <div className="mt-8 flex gap-3">
-              <button type="button" onClick={prev} className="flex-1 rounded-2xl border border-slate-200 py-3.5 text-sm font-semibold text-slate-600">
+              <button type="button" onClick={prev} className="flex-1 rounded-2xl border border-[var(--cc-border)] py-3.5 text-sm font-semibold text-[var(--cc-ink-muted)]">
                 Previous
               </button>
               <button
                 type="button"
                 onClick={handleFinish}
                 disabled={loading}
-                className="flex-1 rounded-2xl bg-[#14B8A6] py-3.5 text-sm font-semibold text-white hover:bg-[#0D9488] disabled:opacity-60"
+                className="flex-1 rounded-2xl bg-[var(--cc-teal)] py-3.5 text-sm font-semibold text-white hover:bg-[var(--cc-teal-deep)] disabled:opacity-60"
               >
                 {loading ? "Setting up…" : "Finish Setup"}
               </button>

@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export default async function OnboardingPage() {
   const profile = await getProfile();
-  if (profile?.onboarding_completed) redirect("/dashboard");
+  if (profile?.onboarding_completed) redirect("/today");
 
   return (
     <div>

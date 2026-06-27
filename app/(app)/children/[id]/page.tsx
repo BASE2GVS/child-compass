@@ -114,8 +114,8 @@ export default async function ChildProfilePage({
               <Link href={`/check-in?child=${id}`} className={ds.btnPrimary}>
                 Check-In
               </Link>
-              <Link href={`/debrief?child=${id}`} className={ds.btnSecondary}>
-                Debrief
+              <Link href={`/coach?child=${id}&reflect=1`} className={ds.btnSecondary}>
+                Reflect
               </Link>
               <Link href={`/children/${id}?edit=true`} className={ds.btnSecondary}>
                 Edit

@@ -2,6 +2,9 @@ import type { ReactNode } from "react";
 import ChildSwitcher from "@/components/app/ChildSwitcher";
 import type { Child } from "@/lib/types/database";
 import { ds, space } from "./tokens";
+import { typeScale } from "./tokens/typography";
+import { layoutSpace } from "./tokens/spacing";
+import { motion } from "./tokens/motion";
 
 export function PageHeader({
   eyebrow,
@@ -19,10 +22,10 @@ export function PageHeader({
   actions?: ReactNode;
 }) {
   return (
-    <header className={`flex flex-wrap items-start justify-between gap-6 ${ds.fadeIn}`}>
+    <header className={`flex flex-wrap items-start justify-between gap-6 ${motion.fadeUp}`}>
       <div className="max-w-3xl">
         {eyebrow && <p className={ds.eyebrow}>{eyebrow}</p>}
-        <h1 className={`${eyebrow ? "mt-2" : ""} ${ds.heading}`}>{title}</h1>
+        <h1 className={`${eyebrow ? "mt-3" : ""} ${typeScale.title}`}>{title}</h1>
         {description && <p className={ds.subtext}>{description}</p>}
       </div>
       <div className="flex flex-wrap items-center gap-3">
@@ -50,8 +53,8 @@ export function SectionHeader({
     <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
       <div>
         {eyebrow && <p className={ds.eyebrow}>{eyebrow}</p>}
-        <h2 className={`${eyebrow ? "mt-2" : ""} text-2xl font-bold text-[#0F172A]`}>{title}</h2>
-        {description && <p className="mt-2 text-sm leading-relaxed text-[#64748B]">{description}</p>}
+        <h2 className={`${eyebrow ? "mt-2" : ""} ${typeScale.heading}`}>{title}</h2>
+        {description && <p className={`mt-2 ${typeScale.caption}`}>{description}</p>}
       </div>
       {action}
     </div>
@@ -68,10 +71,10 @@ export function FormSection({
   children: ReactNode;
 }) {
   return (
-    <section className={space.card}>
+    <section className={layoutSpace.card}>
       <div>
-        <h3 className="text-lg font-bold text-[#0F172A]">{title}</h3>
-        {description && <p className="mt-1.5 text-sm leading-relaxed text-[#64748B]">{description}</p>}
+        <h3 className={typeScale.cardTitle}>{title}</h3>
+        {description && <p className={`mt-1.5 ${typeScale.caption}`}>{description}</p>}
       </div>
       {children}
     </section>
@@ -79,5 +82,15 @@ export function FormSection({
 }
 
 export function PageShell({ children }: { children: ReactNode }) {
-  return <div className={`${space.page} pb-8 ${ds.fadeIn}`}>{children}</div>;
+  return <div className={`${space.page} pb-8 ${motion.fadeIn}`}>{children}</div>;
+}
+
+export function ContentSection({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <section className={`${layoutSpace.section} ${className}`}>{children}</section>;
 }

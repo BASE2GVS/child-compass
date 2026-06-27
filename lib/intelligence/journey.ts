@@ -25,7 +25,7 @@ export function getFamilyJourneyPhase(
       title: "Week 1 — Getting to know your child",
       message:
         "You're building the foundation. Daily check-ins and profile details help Child Compass understand what makes your family unique.",
-      focus: "Complete check-ins and add strengths, triggers, and calming strategies.",
+      focus: "Check in when you're ready and add strengths, triggers, and calming strategies.",
     },
     2: {
       week: 2,
@@ -34,7 +34,7 @@ export function getFamilyJourneyPhase(
         checkinCount >= 5
           ? "Child Compass is beginning to notice rhythms in sleep, mood, and school."
           : "A few more check-ins will help Child Compass spot your first meaningful patterns.",
-      focus: "Try Parent Debrief™ after challenging moments to deepen understanding.",
+      focus: "After a hard moment, talk it through with Child Compass to deepen understanding.",
     },
     3: {
       week: 3,
@@ -43,14 +43,14 @@ export function getFamilyJourneyPhase(
         patternCount > 0
           ? "Recommendations now draw on your family's own history — not generic advice."
           : "Keep checking in — personalised guidance strengthens with each entry.",
-      focus: "Review patterns on the dashboard and share Teacher Guide™ if helpful.",
+      focus: "Look at Today for patterns and share a Teacher Guide™ if helpful.",
     },
     4: {
       week: 4,
       title: "Week 4 — Your first monthly picture",
       message:
         "You're ready for a fuller monthly review — celebrating progress and planning gently for next month.",
-      focus: "Create your Monthly Progress™ report and set one gentle family goal.",
+      focus: "Share your Monthly Progress™ summary and set one gentle family goal.",
     },
   };
 

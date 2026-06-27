@@ -14,14 +14,14 @@ import { readProductAnalytics, summariseAnalytics } from "@/lib/pilot/product-an
 import { resetDemoChildren, seedDemoChildren } from "@/lib/pilot/demo-seed";
 
 async function requirePilotAdmin() {
-  if (!isPilotAdminEnabled()) redirect("/dashboard");
+  if (!isPilotAdminEnabled()) redirect("/today");
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) redirect("/login");
   const allowed = await isPilotAdminUser(user.email);
-  if (!allowed) redirect("/dashboard");
+  if (!allowed) redirect("/today");
   return { supabase, user };
 }
 
@@ -99,12 +99,12 @@ export async function exportDiagnosticsJson(): Promise<string> {
 }
 
 export async function guardPilotSettingsPage(): Promise<void> {
-  if (!isPilotAdminEnabled()) redirect("/dashboard");
+  if (!isPilotAdminEnabled()) redirect("/today");
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) redirect("/login");
   const allowed = await isPilotAdminUser(user.email);
-  if (!allowed) redirect("/dashboard");
+  if (!allowed) redirect("/today");
 }

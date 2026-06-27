@@ -13,6 +13,7 @@ import {
   memoryReferenceForContext,
 } from "@/lib/intelligence/memory";
 import { buildFamilyKnowledgeGraph } from "@/lib/knowledge-graph/builder";
+import { buildFamilyInsights } from "@/lib/companion/family-insights";
 import { retrieveKnowledge } from "@/lib/knowledge/engine";
 
 export type ChildContextData = ChildContext;
@@ -47,7 +48,7 @@ export function assembleChildContext(
   });
   const knowledgeGuidance = knowledgeArticles.map((a) => `${a.title}: ${a.guidance[0]}`);
 
-  return {
+  const baseContext: ChildContext = {
     child: {
       id: child.id,
       first_name: child.first_name,
@@ -73,6 +74,12 @@ export function assembleChildContext(
       likely_trigger: d.likely_trigger,
       created_at: d.created_at,
     })),
+    recentTimeline: timeline.slice(0, 12).map((e) => ({
+      date: e.event_date,
+      title: e.title,
+      description: e.description,
+      event_type: e.event_type,
+    })),
     patterns: patterns.map((p) => ({
       title: p.title,
       description: p.description,
@@ -82,6 +89,23 @@ export function assembleChildContext(
     memoryReferences,
     knowledgeGuidance,
     graphInsights,
+  };
+
+  const insightItems = buildFamilyInsights(baseContext);
+  const checkinDates = checkins.map((c) => c.checkin_date).sort();
+  const dataSpanDays =
+    checkinDates.length >= 2
+      ? Math.floor(
+          (new Date(checkinDates[checkinDates.length - 1]).getTime() -
+            new Date(checkinDates[0]).getTime()) /
+            86400000,
+        )
+      : 0;
+
+  return {
+    ...baseContext,
+    familyInsights: insightItems.map((i) => i.text),
+    dataSpanDays,
   };
 }
 
@@ -97,8 +121,24 @@ export function memoryForMessage(context: ChildContext, parentMessage: string): 
         } as ChildProfile)
       : null,
     checkins: context.recentCheckins,
-    debriefs: [],
-    timeline: [],
+    debriefs: context.recentDebriefs.map((d, i) => ({
+      id: `ctx-${i}`,
+      parent_message: d.parent_message,
+      likely_trigger: d.likely_trigger,
+      created_at: d.created_at,
+      suggested_response: null,
+      tomorrow_plan: null,
+    })) as ParentDebrief[],
+    timeline: context.recentTimeline.map((e, i) => ({
+      id: `tl-${i}`,
+      child_id: context.child.id,
+      user_id: "",
+      event_type: e.event_type,
+      title: e.title,
+      description: e.description,
+      event_date: e.date,
+      metadata: {},
+    })) as TimelineEvent[],
     patterns: context.patterns as PatternFinding[],
   });
   return memoryReferenceForContext(memories, parentMessage);

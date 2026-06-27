@@ -31,7 +31,7 @@ export default function ParentProfileForm({ profile }: { profile: Profile }) {
             <p className="text-sm text-[#64748B]">{profile.relationship_to_child || "Family member"}</p>
           </div>
           <div className="ml-auto">
-            <ProgressRing label="Profile complete" value={profile.full_name ? 85 : 45} size={80} />
+            <ProgressRing label="Getting to know you" value={profile.full_name ? 85 : 45} size={80} />
           </div>
         </div>
       </GlassCard>
@@ -79,14 +79,14 @@ export default function ParentProfileForm({ profile }: { profile: Profile }) {
       </PremiumCard>
 
       <PremiumCard padding="lg">
-        <FormSection title="Notification preferences">
+        <FormSection title="Gentle nudges">
           <div className="space-y-3">
             {[
-              { name: "notifyCheckin", label: "Daily check-in reminder", checked: prefs?.daily_checkin },
-              { name: "notifyWeekly", label: "Weekly summary", checked: prefs?.weekly_summary },
-              { name: "notifyInsight", label: "New AI insight", checked: prefs?.new_insight },
+              { name: "notifyCheckin", label: "Check-in invitation", checked: prefs?.daily_checkin },
+              { name: "notifyWeekly", label: "Weekly reflection", checked: prefs?.weekly_summary },
+              { name: "notifyInsight", label: "Something new I noticed", checked: prefs?.new_insight },
               { name: "notifyAppointments", label: "Upcoming appointments", checked: prefs?.appointments },
-              { name: "notifySchool", label: "School reminder", checked: prefs?.school_reminder },
+              { name: "notifySchool", label: "School day heads-up", checked: prefs?.school_reminder },
             ].map((item) => (
               <label key={item.name} className="flex items-center justify-between rounded-xl bg-[#FAF8F4] px-4 py-3 text-sm">
                 <span className="text-[#0F172A]">{item.label}</span>

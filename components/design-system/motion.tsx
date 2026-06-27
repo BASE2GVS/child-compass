@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { motion, stagger } from "./tokens/motion";
 
 export function AnimatedSection({
   children,
@@ -12,10 +13,45 @@ export function AnimatedSection({
   className?: string;
 }) {
   return (
-    <div
-      className={`animate-fade-in ${className}`}
-      style={{ animationDelay: `${delay}ms` }}
-    >
+    <div className={`${motion.fadeUp} ${className}`} style={{ animationDelay: `${delay}ms` }}>
+      {children}
+    </div>
+  );
+}
+
+export function Breathe({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={`${motion.breathe} motion-reduce:animate-none ${className}`}>{children}</div>
+  );
+}
+
+export function StaggerChildren({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className={`${className}`}>{children}</div>;
+}
+
+export function StaggerItem({
+  index,
+  children,
+  className = "",
+}: {
+  index: number;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={`${motion.fadeIn} opacity-0 ${className}`} style={stagger(index)}>
       {children}
     </div>
   );

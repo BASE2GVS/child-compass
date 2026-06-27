@@ -58,8 +58,8 @@ export default async function ReportPreviewPage({
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4 print:hidden">
-        <Link href={`/reports${qs}`} className="text-sm font-semibold text-[#14B8A6] hover:underline">
-          ← Back to reports
+        <Link href={`/documents-hub${qs}`} className="text-sm font-semibold text-[var(--cc-teal)] hover:underline">
+          ← Back to library
         </Link>
         <PrintButton />
       </div>

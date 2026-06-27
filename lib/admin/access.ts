@@ -11,7 +11,7 @@ export async function guardAdminPage(): Promise<void> {
   const { createClient } = await import("@/lib/supabase/server");
   const { isPilotAdminEnabled, isPilotAdminUser } = await import("@/lib/pilot/config");
 
-  if (!isPilotAdminEnabled()) redirect("/dashboard");
+  if (!isPilotAdminEnabled()) redirect("/today");
 
   const supabase = await createClient();
   const {
@@ -20,5 +20,5 @@ export async function guardAdminPage(): Promise<void> {
   const email = user?.email;
   if (!email) redirect("/login");
   const allowed = await isPilotAdminUser(email);
-  if (!allowed) redirect("/dashboard");
+  if (!allowed) redirect("/today");
 }

@@ -3,12 +3,13 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { parseListInput } from "@/lib/utils/format";
-import { helpEngine } from "@/lib/ai/help-engine";
 import { formatCoachResponse } from "@/lib/intelligence/coach-format";
 import { assembleChildContext, memoryForMessage } from "@/lib/ai/child-context";
 import { getCheckins, getDebriefs, getPatterns } from "@/lib/data/queries";
-import { trackProductEvent } from "@/lib/pilot/product-analytics";
 import { logAIForChild } from "@/lib/pilot/ai-logger";
+import { trackProductEvent } from "@/lib/pilot/product-analytics";
+import { isReflectionMode } from "@/lib/ai/coach-mode";
+import type { ParentMood } from "@/lib/companion/parent-checkin";
 
 async function requireAuth() {
   const supabase = await createClient();
@@ -19,7 +20,13 @@ async function requireAuth() {
   return { supabase, user };
 }
 
-export async function sendCoachMessage(payload: { childId: string; sessionId: string; message: string }) {
+export async function sendCoachMessage(payload: {
+  childId: string;
+  sessionId: string;
+  message: string;
+  preferReflection?: boolean;
+  parentMood?: ParentMood | null;
+}) {
   const { supabase, user } = await requireAuth();
   const text = payload.message.trim();
   if (!text) return { error: "Message is required" };
@@ -28,18 +35,7 @@ export async function sendCoachMessage(payload: { childId: string; sessionId: st
   const limited = await rateLimitUserAction(user.id, "coach");
   if (limited.error) return { error: limited.error };
 
-  await supabase.from("coach_messages").insert({
-    session_id: payload.sessionId,
-    role: "parent",
-    content: text,
-  });
-
   const { data: child } = await supabase.from("children").select("*").eq("id", payload.childId).single();
-  const { data: profile } = await supabase
-    .from("child_profiles")
-    .select("*")
-    .eq("child_id", payload.childId)
-    .maybeSingle();
   if (!child) return { error: "Child not found" };
 
   const { loadFamilySubscription, subscriptionUsage } = await import("@/lib/commercial/gate");
@@ -47,6 +43,29 @@ export async function sendCoachMessage(payload: { childId: string; sessionId: st
   const snapshot = await loadFamilySubscription(child.family_id);
   const usageGate = subscriptionUsage(snapshot, "coachMessagesPerDay");
   if (!usageGate.allowed) return { error: usageGate.message };
+
+  const { data: priorMessages } = await supabase
+    .from("coach_messages")
+    .select("id, role, content, created_at")
+    .eq("session_id", payload.sessionId)
+    .order("created_at", { ascending: true });
+
+  const conversationHistory = (priorMessages || []).map((m) => ({
+    role: m.role as "parent" | "assistant",
+    content: m.content,
+  }));
+
+  const coachMessagesWithDates = (priorMessages || []).map((m) => ({
+    role: m.role as string,
+    content: m.content,
+    created_at: m.created_at,
+  }));
+
+  const { data: profile } = await supabase
+    .from("child_profiles")
+    .select("*")
+    .eq("child_id", payload.childId)
+    .maybeSingle();
 
   const [checkins, debriefs, patterns] = await Promise.all([
     getCheckins(payload.childId, 14),
@@ -61,8 +80,7 @@ export async function sendCoachMessage(payload: { childId: string; sessionId: st
     .order("event_date", { ascending: false })
     .limit(30);
 
-  const response = await helpEngine(
-    text,
+  const context = assembleChildContext(
     child,
     profile,
     checkins,
@@ -71,40 +89,124 @@ export async function sendCoachMessage(payload: { childId: string; sessionId: st
     timeline || [],
   );
 
-  const context = assembleChildContext(child, profile, checkins, debriefs, patterns, timeline || []);
-  const memoryRef = memoryForMessage(context, text);
-  const formatted = formatCoachResponse(response, memoryRef, text);
-
-  await supabase.from("coach_messages").insert({
-    session_id: payload.sessionId,
-    role: "assistant",
-    content: formatted,
-    metadata: {
-      confidence: response.confidence_level,
-      generated_by: "coach",
-    },
-  });
-
-  await incrementUsage(child.family_id, "coach_today");
-  await logAIForChild("coach", payload.childId, response.likely_trigger, response.confidence_level);
-  if (child.family_id) {
-    await trackProductEvent({
-      event: "coach_message_sent",
-      feature: "ask_child_compass",
-      familyId: child.family_id,
+  try {
+    const { generateCoachResponse } = await import("@/lib/ai/coach-engine");
+    const { response, trace, mode, enrichment } = await generateCoachResponse(text, context, conversationHistory, {
+      preferReflection: payload.preferReflection,
+      parentMood: payload.parentMood ?? null,
+      coachMessages: coachMessagesWithDates,
     });
+    const memoryRef = memoryForMessage(context, text);
+    const formatted = formatCoachResponse(
+      response,
+      context,
+      memoryRef,
+      text,
+      conversationHistory,
+      mode,
+      enrichment,
+    );
+
+    const pipeline = {
+      ...trace,
+      responseFormatted: Boolean(formatted),
+      persisted: false,
+    };
+
+    if (process.env.NODE_ENV === "development") {
+      console.info("[coach-pipeline]", JSON.stringify({ ...pipeline, mode }, null, 2));
+    }
+
+    if (isReflectionMode(mode)) {
+      await supabase.from("parent_debriefs").insert({
+        child_id: payload.childId,
+        user_id: user.id,
+        parent_message: text,
+        likely_trigger: response.likely_trigger,
+        behaviour_explanation: response.behaviour_explanation,
+        emotional_interpretation: response.emotional_interpretation,
+        suggested_response: response.suggested_response,
+        things_not_to_say: response.things_not_to_say,
+        tomorrow_plan: response.tomorrow_plan,
+        long_term_recommendation: response.long_term_recommendation,
+        confidence_level: response.confidence_level,
+        follow_up_questions: response.follow_up_questions,
+      });
+
+      await supabase.from("timeline_events").insert({
+        child_id: payload.childId,
+        user_id: user.id,
+        event_type: "debrief",
+        title: "Reflection with Child Compass",
+        description: response.likely_trigger,
+        event_date: new Date().toISOString(),
+      });
+
+      if (child.family_id) {
+        await trackProductEvent({
+          event: "debrief_completed",
+          feature: "ask_child_compass_reflection",
+          familyId: child.family_id,
+        });
+      }
+    }
+
+    const { data: parentRow } = await supabase
+      .from("coach_messages")
+      .insert({
+        session_id: payload.sessionId,
+        role: "parent",
+        content: text,
+      })
+      .select("id")
+      .single();
+
+    const { data: assistantRow } = await supabase
+      .from("coach_messages")
+      .insert({
+        session_id: payload.sessionId,
+        role: "assistant",
+        content: formatted,
+        metadata: {
+          confidence: response.confidence_level,
+          generated_by: "coach",
+          pipeline: { ...pipeline, persisted: true },
+        },
+      })
+      .select("id")
+      .single();
+
+    await incrementUsage(child.family_id, "coach_today");
+    await logAIForChild("coach", payload.childId, response.likely_trigger, response.confidence_level);
+
+    if (child.family_id) {
+      await trackProductEvent({
+        event: "coach_message_sent",
+        feature: "ask_child_compass",
+        familyId: child.family_id,
+      });
+    }
+
+    await supabase.from("timeline_events").insert({
+      child_id: payload.childId,
+      user_id: user.id,
+      event_type: "ai_insight",
+      title: "Ask Child Compass session",
+      description: response.likely_trigger,
+      event_date: new Date().toISOString(),
+    });
+
+    return {
+      success: true,
+      assistantMessage: formatted,
+      parentMessageId: parentRow?.id,
+      assistantMessageId: assistantRow?.id,
+      pipeline: { ...pipeline, persisted: true },
+    };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Coach response failed";
+    return { error: `Child Compass couldn't complete that response. ${message}` };
   }
-
-  await supabase.from("timeline_events").insert({
-    child_id: payload.childId,
-    user_id: user.id,
-    event_type: "ai_insight",
-    title: "AI Child Coach session updated",
-    description: response.likely_trigger,
-    event_date: new Date().toISOString(),
-  });
-
-  return { success: true };
 }
 
 export async function addGoal(formData: FormData) {

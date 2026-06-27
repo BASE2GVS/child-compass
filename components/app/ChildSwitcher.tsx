@@ -36,16 +36,13 @@ export default function ChildSwitcher({
             key={child.id}
             type="button"
             disabled={pending}
+            aria-pressed={active}
             onClick={() => handleChange(child.id)}
-            className={`flex items-center gap-2 rounded-2xl px-4 py-2 text-sm font-medium transition-all ${
-              active
-                ? "bg-[#14B8A6] text-white shadow-sm"
-                : "bg-white text-slate-600 border border-slate-200 hover:border-[#14B8A6]/40"
-            }`}
+            className={`cc-fw-chip ${active ? "cc-fw-chip-active" : "cc-fw-chip-inactive"}`}
           >
             <span
               className={`flex h-7 w-7 items-center justify-center rounded-xl text-xs font-bold ${
-                active ? "bg-white/20 text-white" : "bg-[#14B8A6]/10 text-[#14B8A6]"
+                active ? "bg-white/20 text-white" : "bg-[var(--cc-teal-wash)] text-[var(--cc-teal-deep)]"
               }`}
             >
               {child.first_name.charAt(0)}

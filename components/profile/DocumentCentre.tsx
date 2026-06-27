@@ -152,8 +152,6 @@ export default function DocumentCentre({
           why="Secure document storage helps you share context with schools, therapists, and your support team."
           actionLabel="Upload your first document"
           actionHref={childId ? `/documents?child=${childId}` : "/documents"}
-          secondaryActionLabel="View reports"
-          secondaryActionHref={childId ? `/reports?child=${childId}` : "/reports"}
         />
       ) : filtered.length === 0 ? (
         <GlassCard className="py-12 text-center text-sm text-[#64748B]">No documents match your search.</GlassCard>

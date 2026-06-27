@@ -34,7 +34,7 @@ export default function SettingsForms({
   return (
     <div className="space-y-8">
       <PremiumCard padding="lg">
-        <FormSection title="Family" description="Your family name, country, and timezone.">
+        <FormSection title="Family" description="The name and place that anchors your family's compass.">
           <form action={updateFamilySettings} className="space-y-4">
             <input type="hidden" name="familyId" value={family.id} />
             <div className="grid gap-4 sm:grid-cols-2">
@@ -57,7 +57,7 @@ export default function SettingsForms({
       </PremiumCard>
 
       <PremiumCard padding="lg">
-        <SectionHeader title="Caregivers" description="Connected parents and family members." />
+        <SectionHeader title="Caregivers" description="The people who walk this journey with you." />
         <ul className="mb-6 space-y-2">
           {members.map((m) => (
             <li key={m.id} className={`flex items-center justify-between rounded-2xl bg-[#FAF8F4] px-5 py-3 ${ds.hoverLift}`}>
@@ -161,9 +161,9 @@ export default function SettingsForms({
       </GlassCard>
 
       <PremiumCard padding="lg">
-        <SectionHeader title="Data controls" description="Export your family data or request account deletion." />
+        <SectionHeader title="Data controls" description="Share a copy of your family data or request account deletion." />
         <a href="/api/export" className={ds.btnSecondary}>
-          Export family data
+          Share family data
         </a>
       </PremiumCard>
 

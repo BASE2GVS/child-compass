@@ -33,7 +33,7 @@ export function buildChildCardSummary(
     moodLabel: moodLabel(checkin?.mood),
     aiSummary: mood?.message ?? `Start a check-in to unlock insights for ${childName}.`,
     schoolReadiness: readiness,
-    todayRecommendation: recommendation?.message ?? "Complete today's check-in for a personalised tip.",
+    todayRecommendation: recommendation?.message ?? "When you're ready, a check-in opens a personalised tip.",
     hasCheckin: Boolean(checkin),
   };
 }

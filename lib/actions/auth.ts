@@ -32,8 +32,20 @@ export async function signIn(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) return { error: error.message };
 
-  const redirectTo = (formData.get("redirect") as string) || "/dashboard";
-  redirect(redirectTo);
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) redirect("/today");
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("onboarding_completed")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  const redirectTo = (formData.get("redirect") as string) || null;
+  if (redirectTo) redirect(redirectTo);
+  redirect(profile?.onboarding_completed ? "/today" : "/onboarding");
 }
 
 export async function signOut() {

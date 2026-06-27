@@ -16,13 +16,13 @@ test("brand-new parent journey", async ({ page }) => {
   await page.getByLabel(/^password$/i).fill(password);
   await page.getByRole("button", { name: /create account/i }).click();
 
-  await page.waitForURL(/\/(verify-email|onboarding|dashboard)/, { timeout: 15000 });
+  await page.waitForURL(/\/(verify-email|onboarding|today|dashboard)/, { timeout: 15000 });
 
   if (page.url().includes("/verify-email")) {
     await page.goto("http://localhost:3000/onboarding");
   }
 
-  if (page.url().includes("/dashboard")) {
+  if (page.url().includes("/today") || page.url().includes("/dashboard")) {
     const continueOnboarding = page.getByRole("link", { name: /continue onboarding/i });
     if (await continueOnboarding.isVisible().catch(() => false)) {
       await continueOnboarding.click();
@@ -49,15 +49,15 @@ test("brand-new parent journey", async ({ page }) => {
   const error = page.locator("text=/error|violates|could not find/i");
   await expect(error).toHaveCount(0);
 
-  await page.getByRole("button", { name: /go to my dashboard/i }).click();
-  await expect(page).toHaveURL(/\/dashboard/, { timeout: 15000 });
+  await page.getByRole("button", { name: /go to today/i }).click();
+  await expect(page).toHaveURL(/\/(today|dashboard)/, { timeout: 15000 });
 
   await page.goto("http://localhost:3000/check-in");
   await page.getByRole("button", { name: /save check-in|submit|complete/i }).first().click();
 
-  await page.goto("http://localhost:3000/debrief");
+  await page.goto("http://localhost:3000/coach");
   await page.getByRole("textbox").first().fill("Today was challenging after school.");
-  await page.getByRole("button", { name: /get guidance/i }).click();
+  await page.getByRole("button", { name: /ask child compass/i }).click();
 
   await page.goto("http://localhost:3000/timeline");
   await expect(page.getByText(/timeline/i).first()).toBeVisible();
@@ -65,7 +65,7 @@ test("brand-new parent journey", async ({ page }) => {
   await page.goto("http://localhost:3000/reports");
   await page.getByRole("button", { name: /^generate$/i }).first().click();
 
-  await page.goto("http://localhost:3000/dashboard");
+  await page.goto("http://localhost:3000/today");
   await page.getByRole("button", { name: /^logout$/i }).click({ force: true });
   await expect(page).toHaveURL(/\/login/, { timeout: 30000 });
 
@@ -73,5 +73,5 @@ test("brand-new parent journey", async ({ page }) => {
   await page.getByLabel(/^password$/i).fill(password);
   await page.getByRole("button", { name: /sign in/i }).click();
 
-  await expect(page).toHaveURL(/\/dashboard/, { timeout: 15000 });
+  await expect(page).toHaveURL(/\/(today|dashboard)/, { timeout: 15000 });
 });

@@ -20,8 +20,7 @@ const testimonials = [
     detail: "Parent of a 7-year-old",
   },
   {
-    quote:
-      "School mornings are calmer. We still have hard days — but now we know what to do.",
+    quote: "School mornings are calmer. We still have hard days — but now we know what to do.",
     author: "David R.",
     detail: "Parent of an 11-year-old",
   },
@@ -29,43 +28,40 @@ const testimonials = [
 
 export default function TestimonialSection() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-[var(--cc-cream-100)] py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <ScrollReveal>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-[#0F172A] lg:text-5xl">
+            <p className="text-sm font-semibold tracking-wide text-[var(--cc-teal-deep)]">Real families</p>
+            <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight text-[var(--cc-ink)] lg:text-5xl">
               What parents say
             </h2>
-            <p className="mt-4 text-lg text-slate-600">
-              Real families. Real struggles. Real change.
-            </p>
+            <p className="mt-4 text-lg text-[var(--cc-ink-muted)]">Real struggles. Real change. Real relief.</p>
           </div>
         </ScrollReveal>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2">
           {testimonials.map((t) => (
             <ScrollReveal key={t.author}>
-              <div className="h-full rounded-[32px] border border-slate-100 bg-[#FAF8F4] p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(15,23,42,0.08)]">
-                <div className="flex gap-0.5 text-[#14B8A6]">
+              <blockquote className="cc-card-lift flex h-full flex-col rounded-[2rem] border border-[var(--cc-border-soft)] bg-white p-8 shadow-sm">
+                <div className="flex gap-0.5 text-[var(--cc-amber)]" aria-hidden>
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <svg key={i} className="h-4 w-4 fill-current" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
+                    <span key={i} className="text-sm">
+                      ★
+                    </span>
                   ))}
                 </div>
-                <blockquote className="mt-5 text-lg leading-relaxed text-[#0F172A]">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <div className="mt-6 flex items-center gap-3 border-t border-slate-200/80 pt-5">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#14B8A6]/15 text-sm font-bold text-[#14B8A6]">
+                <p className="mt-5 flex-1 text-lg leading-relaxed text-[var(--cc-ink)]">&ldquo;{t.quote}&rdquo;</p>
+                <footer className="mt-6 flex items-center gap-3 border-t border-[var(--cc-border-soft)] pt-5">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[var(--cc-teal-wash)] text-sm font-bold text-[var(--cc-teal-deep)]">
                     {t.author.charAt(0)}
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-[#0F172A]">{t.author}</p>
-                    <p className="text-xs text-slate-500">{t.detail}</p>
+                    <p className="text-sm font-semibold text-[var(--cc-ink)]">{t.author}</p>
+                    <p className="text-xs text-[var(--cc-ink-muted)]">{t.detail}</p>
                   </div>
-                </div>
-              </div>
+                </footer>
+              </blockquote>
             </ScrollReveal>
           ))}
         </div>

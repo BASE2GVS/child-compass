@@ -101,7 +101,7 @@ export async function saveCheckin(data: {
     .eq("child_id", data.childId);
 
   const isFirstCheckin = (count ?? 0) <= 1;
-  redirect(`/dashboard?child=${data.childId}${isFirstCheckin ? "&first-checkin=1" : ""}`);
+  redirect(`/today?child=${data.childId}${isFirstCheckin ? "&first-checkin=1" : ""}`);
 }
 
 export async function addTimelineEvent(data: {

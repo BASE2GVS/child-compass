@@ -44,10 +44,13 @@ export default async function ChildrenPage() {
       <PageHeader
         eyebrow="Family"
         title="Your children"
-        description="Beautiful profiles with mood, school readiness, and today's AI guidance — all in one place."
+        description="Beautiful profiles with mood, school readiness, and today's gentle guidance."
         actions={
-          <Link href="/check-in" className="rounded-2xl bg-[#14B8A6] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(20,184,166,0.28)] hover:bg-[#0D9488]">
-            Daily Check-In
+          <Link
+            href={children.length === 1 ? `/check-in?child=${children[0].id}` : "/today"}
+            className="rounded-2xl bg-[#14B8A6] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(20,184,166,0.28)] hover:bg-[#0D9488]"
+          >
+            {children.length === 1 ? "Check in" : "Go to Today"}
           </Link>
         }
       />
@@ -73,10 +76,8 @@ export default async function ChildrenPage() {
           title="Add your first child"
           description="Child Compass learns from each child's unique profile to offer calm, personalised guidance."
           why="A complete profile helps us understand triggers, strengths, and what works for your family."
-          actionLabel="Complete onboarding"
+          actionLabel="Set up your family"
           actionHref="/onboarding"
-          secondaryActionLabel="Learn how it works"
-          secondaryActionHref="/dashboard"
         />
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">

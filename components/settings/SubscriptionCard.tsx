@@ -5,7 +5,7 @@ import { selectPlan } from "@/lib/actions/subscription";
 import { formatPriceZar, planDisplayName, usageSnapshot } from "@/lib/commercial/subscription";
 import type { SubscriptionSnapshot } from "@/lib/commercial/types";
 import type { PlanTier } from "@/lib/commercial/plans";
-import { Button, GlassCard } from "@/components/design-system";
+import { Button } from "@/components/design-system";
 
 type SubscriptionCardProps = {
   familyId: string;
@@ -16,14 +16,14 @@ function UsageMeter({ label, used, limit }: { label: string; used: number; limit
   const pct = limit > 0 ? Math.min(100, Math.round((used / limit) * 100)) : 0;
   return (
     <div>
-      <div className="flex justify-between text-xs text-[#64748B]">
+      <div className="flex justify-between text-xs text-[var(--cc-ink-muted)]">
         <span>{label}</span>
         <span>
           {used} / {limit}
         </span>
       </div>
-      <div className="mt-1.5 h-2 rounded-full bg-[#E8E4DC]">
-        <div className="h-2 rounded-full bg-[#14B8A6] transition-all" style={{ width: `${pct}%` }} />
+      <div className="mt-1.5 h-2 rounded-full bg-[var(--cc-border)]">
+        <div className="h-2 rounded-full bg-[var(--cc-teal)] transition-all duration-500" style={{ width: `${pct}%` }} />
       </div>
     </div>
   );
@@ -35,12 +35,13 @@ export default function SubscriptionCard({ familyId, snapshot }: SubscriptionCar
   const currentTier = snapshot.subscription.plan_tier === "trial" ? "trial" : tier;
 
   return (
-    <GlassCard padding="lg">
-      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#14B8A6]">Your plan</p>
-      <h2 className="mt-2 text-2xl font-bold text-[#0F172A]">{planDisplayName(currentTier)}</h2>
+    <div className="space-y-8">
+      <div>
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--cc-teal-deep)]">Your plan</p>
+        <h2 className="mt-2 font-display text-3xl font-semibold text-[var(--cc-ink)]">{planDisplayName(currentTier)}</h2>
 
       {snapshot.isTrialing && snapshot.daysLeftInTrial != null && (
-        <p className="mt-2 text-sm text-[#64748B]">
+        <p className="mt-2 text-sm text-[var(--cc-ink-muted)]">
           {snapshot.daysLeftInTrial} day{snapshot.daysLeftInTrial === 1 ? "" : "s"} left in your free trial — full
           Family Plus access included.
         </p>
@@ -60,12 +61,12 @@ export default function SubscriptionCard({ familyId, snapshot }: SubscriptionCar
 
       <div className="mt-6 grid gap-4 sm:grid-cols-3">
         <UsageMeter label="Check-ins today" used={usage.checkins.used} limit={usage.checkins.limit} />
-        <UsageMeter label="Reports this month" used={usage.reports.used} limit={usage.reports.limit} />
-        <UsageMeter label="Coach messages today" used={usage.coach.used} limit={usage.coach.limit} />
+        <UsageMeter label="Summaries this month" used={usage.reports.used} limit={usage.reports.limit} />
+        <UsageMeter label="Conversations today" used={usage.coach.used} limit={usage.coach.limit} />
       </div>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-2xl border border-[#E8E4DC] bg-white p-5">
+      <div className="mt-8 grid gap-8 border-t border-[var(--cc-border-soft)]/60 pt-8 sm:grid-cols-2">
+        <div className="space-y-4">
           <p className="font-semibold text-[#0F172A]">Family</p>
           <p className="mt-1 text-sm text-[#64748B]">{formatPriceZar("family")} · up to 3 children</p>
           <form action={selectPlan} className="mt-4">
@@ -76,9 +77,9 @@ export default function SubscriptionCard({ familyId, snapshot }: SubscriptionCar
             </Button>
           </form>
         </div>
-        <div className="rounded-2xl border border-[#14B8A6]/30 bg-[#14B8A6]/5 p-5">
+        <div className="space-y-4 border-l border-[var(--cc-border-soft)]/40 pl-0 sm:pl-8">
           <p className="font-semibold text-[#0F172A]">Family Plus</p>
-          <p className="mt-1 text-sm text-[#64748B]">{formatPriceZar("family_plus")} · Health Hub + longitudinal reviews</p>
+          <p className="mt-1 text-sm text-[#64748B]">{formatPriceZar("family_plus")} · wellbeing notes and longer reviews</p>
           <form action={selectPlan} className="mt-4">
             <input type="hidden" name="familyId" value={familyId} />
             <input type="hidden" name="planTier" value="family_plus" />
@@ -101,6 +102,7 @@ export default function SubscriptionCard({ familyId, snapshot }: SubscriptionCar
           Contact support
         </Link>
       </div>
-    </GlassCard>
+      </div>
+    </div>
   );
 }

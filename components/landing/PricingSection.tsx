@@ -9,7 +9,7 @@ const plans = [
     description: "Full Family Plus access while you explore Child Compass.",
     features: [
       "Daily check-ins & Parent Debrief™",
-      "Ask Child Compass™ AI coach",
+      "Ask Child Compass™",
       "Reports for teachers & therapists",
       "Health Hub included during trial",
     ],
@@ -23,13 +23,13 @@ const plans = [
     period: "per month",
     description: "Core support for everyday parenting with up to 3 children.",
     features: [
-      "Daily check-ins & intelligence",
-      "School & Therapist Hubs",
+      "Daily check-ins & gentle insights",
+      "School & therapy notes",
       "Teacher Guide™ & PDA Passport™",
-      "Usage limits apply — see Settings",
+      "Thoughtful usage limits",
     ],
     popular: true,
-    cta: "Get Started",
+    cta: "Get started",
     showNoCard: false,
   },
   {
@@ -41,64 +41,59 @@ const plans = [
       "Everything in Family",
       "Health Hub",
       "30/90/180/365-day reviews",
-      "Higher daily limits",
+      "More room for daily guidance",
     ],
     popular: false,
-    cta: "Get Started",
+    cta: "Get started",
     showNoCard: false,
   },
 ] as const;
 
 export default function PricingSection() {
   return (
-    <section id="pricing" className="bg-white py-28">
+    <section id="pricing" className="bg-[var(--cc-paper-elevated)] py-24 sm:py-28">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <ScrollReveal>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-[#0F172A] lg:text-5xl">
-              Simple pricing
+            <p className="text-sm font-semibold tracking-wide text-[var(--cc-teal-deep)]">Plans</p>
+            <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight text-[var(--cc-ink)] lg:text-5xl">
+              Simple, honest pricing
             </h2>
-            <p className="mt-4 text-lg text-slate-600">
+            <p className="mt-4 text-lg text-[var(--cc-ink-muted)]">
               Start free. Upgrade when you&apos;re ready. Cancel anytime.
             </p>
           </div>
         </ScrollReveal>
 
-        <div className="mt-16 grid gap-8 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:gap-8">
           {plans.map((plan) => (
             <ScrollReveal key={plan.name}>
               <div
-                className={`relative flex h-full flex-col rounded-[32px] border p-8 transition-all duration-300 ${
+                className={`cc-card-lift relative flex h-full flex-col rounded-[2rem] border p-8 ${
                   plan.popular
-                    ? "scale-[1.02] border-[#14B8A6] bg-[#FAF8F4] shadow-[0_40px_100px_rgba(20,184,166,0.18)] ring-2 ring-[#14B8A6]/20"
-                    : "border-slate-100 bg-white shadow-sm hover:-translate-y-1 hover:shadow-lg"
+                    ? "border-[var(--cc-teal)]/40 bg-gradient-to-br from-[var(--cc-cream-100)] to-white shadow-[0_24px_60px_var(--cc-teal-glow)] ring-1 ring-[var(--cc-teal)]/20"
+                    : "border-[var(--cc-border-soft)] bg-white shadow-sm"
                 }`}
               >
                 {plan.popular && (
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-[#14B8A6] px-5 py-1.5 text-xs font-bold tracking-wide text-white shadow-md">
-                    Most Popular
+                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-[var(--cc-teal)] px-5 py-1.5 text-xs font-bold tracking-wide text-white shadow-md">
+                    Most loved
                   </span>
                 )}
 
-                <h3 className="text-xl font-bold text-[#0F172A]">{plan.name}</h3>
+                <h3 className="font-display text-xl font-semibold text-[var(--cc-ink)]">{plan.name}</h3>
                 <div className="mt-3 flex items-baseline gap-1">
-                  <span className="text-4xl font-bold text-[#0F172A]">{plan.price}</span>
-                  <span className="text-sm text-slate-500">/{plan.period}</span>
+                  <span className="font-display text-4xl font-semibold text-[var(--cc-ink)]">{plan.price}</span>
+                  <span className="text-sm text-[var(--cc-ink-muted)]">/{plan.period}</span>
                 </div>
-                <p className="mt-3 text-sm text-slate-600">{plan.description}</p>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--cc-ink-muted)]">{plan.description}</p>
 
                 <ul className="mt-6 flex-1 space-y-3">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5 text-sm text-slate-600">
-                      <svg
-                        className="mt-0.5 h-4 w-4 shrink-0 text-[#14B8A6]"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
+                    <li key={feature} className="flex items-start gap-2.5 text-sm text-[var(--cc-ink-muted)]">
+                      <span className="mt-1 text-[var(--cc-teal)]" aria-hidden>
+                        ✓
+                      </span>
                       {feature}
                     </li>
                   ))}
@@ -106,19 +101,17 @@ export default function PricingSection() {
 
                 <Link
                   href="/register"
-                  className={`mt-8 block w-full rounded-2xl py-3.5 text-center text-sm font-semibold transition-all ${
+                  className={`cc-btn-alive mt-8 block w-full rounded-full py-3.5 text-center text-sm font-semibold transition-all ${
                     plan.popular
-                      ? "bg-[#14B8A6] text-white shadow-lg shadow-[#14B8A6]/25 hover:bg-[#0D9488] hover:shadow-xl"
-                      : "border border-slate-200 bg-white text-[#0F172A] hover:border-slate-300 hover:shadow-sm"
+                      ? "bg-[var(--cc-teal)] text-white shadow-[0_8px_24px_var(--cc-teal-glow)] hover:bg-[var(--cc-teal-deep)]"
+                      : "border border-[var(--cc-border)] bg-white text-[var(--cc-ink)] hover:border-[var(--cc-teal)]/30"
                   }`}
                 >
                   {plan.cta}
                 </Link>
 
                 {plan.showNoCard && (
-                  <p className="mt-3 text-center text-xs text-slate-500">
-                    No credit card required.
-                  </p>
+                  <p className="mt-3 text-center text-xs text-[var(--cc-ink-faint)]">No credit card required</p>
                 )}
               </div>
             </ScrollReveal>

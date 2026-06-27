@@ -1,22 +1,17 @@
 import type { ButtonHTMLAttributes, InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from "react";
 import { ds } from "./tokens";
+import { EmotionalButton, type ButtonVariant } from "./buttons";
 
 export function Button({
   variant = "primary",
   className = "",
   children,
   ...props
-}: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "secondary" | "ghost" }) {
-  const base =
-    variant === "primary"
-      ? ds.btnPrimary
-      : variant === "secondary"
-        ? ds.btnSecondary
-        : "inline-flex items-center justify-center rounded-2xl px-4 py-2.5 text-sm font-semibold text-[#64748B] hover:bg-[#FAF8F4] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#14B8A6]/30";
+}: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: ButtonVariant }) {
   return (
-    <button className={`${base} ${className}`} {...props}>
+    <EmotionalButton variant={variant} className={className} {...props}>
       {children}
-    </button>
+    </EmotionalButton>
   );
 }
 
@@ -52,34 +47,21 @@ export function Banner({
   children: ReactNode;
 }) {
   const styles = {
-    success: "border-emerald-200/80 bg-emerald-50 text-emerald-900",
-    warning: "border-amber-200/80 bg-amber-50 text-amber-900",
-    info: "border-[#14B8A6]/20 bg-[#14B8A6]/5 text-[#0F172A]",
+    success: "border-[var(--cc-success)]/20 bg-[var(--cc-success-wash)] text-[var(--cc-ink)]",
+    warning: "border-[var(--cc-warning)]/25 bg-[var(--cc-warning-wash)] text-[var(--cc-ink)]",
+    info: "border-[var(--cc-teal)]/20 bg-[var(--cc-teal-wash)]/50 text-[var(--cc-ink)]",
   };
   return (
     <div className={`rounded-2xl border px-5 py-4 text-sm leading-relaxed ${styles[variant]}`} role="status">
+      {variant === "warning" && (
+        <p className="mb-1 font-semibold text-[var(--cc-ink)]">That didn&apos;t quite work</p>
+      )}
       {children}
+      {variant === "warning" && (
+        <p className="mt-2 text-xs text-[var(--cc-ink-faint)]">Your information is safe. Please try again when you&apos;re ready.</p>
+      )}
     </div>
   );
 }
 
-export function StatusBadge({
-  label,
-  tone = "neutral",
-}: {
-  label: string;
-  tone?: "success" | "warning" | "danger" | "brand" | "neutral";
-}) {
-  const tones = {
-    success: "bg-emerald-50 text-emerald-700",
-    warning: "bg-amber-50 text-amber-700",
-    danger: "bg-rose-50 text-rose-700",
-    brand: "bg-[#14B8A6]/10 text-[#0D9488]",
-    neutral: "bg-[#FAF8F4] text-[#64748B]",
-  };
-  return (
-    <span className={`inline-flex rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${tones[tone]}`}>
-      {label}
-    </span>
-  );
-}
+export { StatusBadge } from "./status-chips";

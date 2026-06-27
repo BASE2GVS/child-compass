@@ -396,10 +396,15 @@ export type ChildContext = {
   > | null;
   recentCheckins: DailyCheckin[];
   recentDebriefs: Pick<ParentDebrief, "parent_message" | "likely_trigger" | "created_at">[];
+  recentTimeline: { date: string; title: string; description: string | null; event_type: string }[];
   patterns: Pick<PatternFinding, "title" | "description" | "category" | "confidence">[];
   memoryReferences: string[];
   knowledgeGuidance?: string[];
   graphInsights?: string[];
+  /** Phase 4 — distilled family understanding (not raw memory dumps) */
+  familyInsights?: string[];
+  /** Days between earliest and latest check-in in context */
+  dataSpanDays?: number;
 };
 
 export type ReportType =

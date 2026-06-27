@@ -1,33 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { saveCheckin } from "@/lib/actions/checkin";
-import SliderField from "@/components/app/SliderField";
+import EditorialPage from "@/components/editorial/EditorialPage";
+import { Banner, Button } from "@/components/design-system";
+import EmotionalChoices from "@/components/check-in/EmotionalChoices";
+import PaperTextarea from "@/components/check-in/PaperTextarea";
+import CheckInComplete from "@/components/check-in/CheckInComplete";
+import { FirstCheckinIntro } from "@/components/first-time";
 import {
-  Banner,
-  Button,
-  GlassCard,
-  PremiumCard,
-  ProgressBar,
-  Textarea,
-} from "@/components/design-system";
-import { actionCopy, aiCopy } from "@/lib/presentation/copy";
+  buildCheckInSteps,
+  MOOD_OPTIONS,
+  type ScaleField,
+  type TextField,
+} from "@/components/check-in/check-in-steps";
+import type { Child } from "@/lib/types/database";
 
-const MOOD_EMOJIS = ["😢", "😕", "😐", "🙂", "😊"];
-
-type Step =
-  | { id: "welcome"; title: string; subtitle: string }
-  | { id: "sliders"; fields: { key: string; label: string; value: number; set: (v: number) => void; low?: string; high?: string }[]; title: string; subtitle: string }
-  | { id: "reflection"; title: string; subtitle: string }
-  | { id: "celebration"; title: string; subtitle: string };
+type CheckInFormProps = {
+  childId: string;
+  childName: string;
+  familyChildren: Child[];
+  parentName?: string | null;
+  isFirstCheckin?: boolean;
+};
 
 export default function CheckInForm({
   childId,
   childName,
-}: {
-  childId: string;
-  childName: string;
-}) {
+  familyChildren,
+  parentName,
+  isFirstCheckin = false,
+}: CheckInFormProps) {
+  const steps = useMemo(() => buildCheckInSteps(childName), [childName]);
+
   const [sleepQuality, setSleepQuality] = useState(3);
   const [mood, setMood] = useState(3);
   const [energy, setEnergy] = useState(3);
@@ -40,67 +45,92 @@ export default function CheckInForm({
   const [wins, setWins] = useState("");
   const [challenges, setChallenges] = useState("");
   const [notes, setNotes] = useState("");
+
   const [stepIndex, setStepIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [complete, setComplete] = useState(false);
-
-  const steps: Step[] = [
-    {
-      id: "welcome",
-      title: `How is ${childName} feeling today?`,
-      subtitle: "Tap the emoji that feels closest — there are no wrong answers.",
-    },
-    {
-      id: "sliders",
-      title: "Rest & energy",
-      subtitle: "Sleep and energy shape the whole day.",
-      fields: [
-        { key: "sleep", label: "Sleep", value: sleepQuality, set: setSleepQuality, low: "Poor", high: "Great" },
-        { key: "energy", label: "Energy", value: energy, set: setEnergy, low: "Low", high: "High" },
-      ],
-    },
-    {
-      id: "sliders",
-      title: "School & emotions",
-      subtitle: "Help Child Compass understand today's demands.",
-      fields: [
-        { key: "school", label: "School", value: schoolRating, set: setSchoolRating, low: "Hard", high: "Good" },
-        { key: "anxiety", label: "Anxiety", value: anxiety, set: setAnxiety, low: "Calm", high: "High" },
-      ],
-    },
-    {
-      id: "sliders",
-      title: "Regulation",
-      subtitle: "Sensory load and demand tolerance matter.",
-      fields: [
-        { key: "sensory", label: "Sensory overload", value: sensoryOverload, set: setSensoryOverload, low: "Low", high: "High" },
-        { key: "demand", label: "Demand tolerance", value: demandTolerance, set: setDemandTolerance, low: "Low", high: "High" },
-      ],
-    },
-    {
-      id: "sliders",
-      title: "Body & connection",
-      subtitle: "Appetite and social battery complete the picture.",
-      fields: [
-        { key: "appetite", label: "Appetite", value: appetite, set: setAppetite },
-        { key: "social", label: "Social battery", value: socialBattery, set: setSocialBattery, low: "Empty", high: "Full" },
-      ],
-    },
-    {
-      id: "reflection",
-      title: "Celebrate & reflect",
-      subtitle: "Wins matter as much as challenges.",
-    },
-    {
-      id: "celebration",
-      title: "Ready to save?",
-      subtitle: "Child Compass will use this to personalise your dashboard.",
-    },
-  ];
+  const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const step = steps[stepIndex];
-  const progress = Math.round(((stepIndex + 1) / steps.length) * 100);
+
+  const scaleSetters: Record<ScaleField, (v: number) => void> = {
+    sleepQuality: setSleepQuality,
+    energy: setEnergy,
+    schoolRating: setSchoolRating,
+    anxiety: setAnxiety,
+    sensoryOverload: setSensoryOverload,
+    demandTolerance: setDemandTolerance,
+    appetite: setAppetite,
+    socialBattery: setSocialBattery,
+  };
+
+  const scaleValues: Record<ScaleField, number> = {
+    sleepQuality,
+    energy,
+    schoolRating,
+    anxiety,
+    sensoryOverload,
+    demandTolerance,
+    appetite,
+    socialBattery,
+  };
+
+  const textSetters: Record<TextField, (v: string) => void> = {
+    wins: setWins,
+    challenges: setChallenges,
+    notes: setNotes,
+  };
+
+  const textValues: Record<TextField, string> = {
+    wins,
+    challenges,
+    notes,
+  };
+
+  const goNext = useCallback(() => {
+    if (stepIndex < steps.length - 1) {
+      setAnimating(true);
+      setTimeout(() => {
+        setStepIndex((i) => i + 1);
+        setAnimating(false);
+      }, 280);
+    }
+  }, [stepIndex, steps.length]);
+
+  const goBack = useCallback(() => {
+    if (stepIndex > 0) {
+      setAnimating(true);
+      setTimeout(() => {
+        setStepIndex((i) => i - 1);
+        setAnimating(false);
+      }, 280);
+    }
+  }, [stepIndex]);
+
+  const scheduleAdvance = useCallback(
+    (advance: () => void) => {
+      if (advanceTimer.current) clearTimeout(advanceTimer.current);
+      const reduced =
+        typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const delay = reduced ? 80 : 420;
+      advanceTimer.current = setTimeout(advance, delay);
+    },
+    [],
+  );
+
+  function handleScaleChoice(field: ScaleField, value: number) {
+    scaleSetters[field](value);
+    if (stepIndex < steps.length - 1) {
+      scheduleAdvance(goNext);
+    }
+  }
+
+  function handleMoodChoice(value: number) {
+    setMood(value);
+    scheduleAdvance(goNext);
+  }
 
   async function handleSubmit() {
     setLoading(true);
@@ -123,107 +153,85 @@ export default function CheckInForm({
     if (result?.error) {
       setError(result.error);
       setLoading(false);
-      return;
     }
-    setComplete(true);
-    setLoading(false);
   }
 
-  if (complete) {
-    return (
-      <GlassCard padding="lg" className="text-center animate-fade-in">
-        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-[28px] bg-gradient-to-br from-[#14B8A6]/20 to-emerald-100 text-5xl" aria-hidden="true">
-          🎉
-        </div>
-        <h2 className="mt-6 text-2xl font-bold text-[#0F172A]">You did it!</h2>
-        <p className="mx-auto mt-3 max-w-md text-base leading-relaxed text-[#64748B]">
-          {aiCopy.checkinSaved} {childName}&apos;s dashboard now reflects today.
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a href="/dashboard" className="rounded-2xl bg-[#14B8A6] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0D9488]">
-            View dashboard
-          </a>
-          <a href={`/children/${childId}`} className="rounded-2xl border border-[#E8E4DC] bg-white px-6 py-3 text-sm font-semibold text-[#0F172A] hover:bg-[#FAF8F4]">
-            Child profile
-          </a>
-        </div>
-      </GlassCard>
-    );
-  }
+  const title =
+    step.type === "mood" || step.type === "scale"
+      ? step.title(childName)
+      : step.title;
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
-      <ProgressBar label={`Step ${stepIndex + 1} of ${steps.length}`} value={progress} />
-
-      <PremiumCard padding="lg" className="animate-fade-in">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#14B8A6]">Daily Check-In</p>
-        <h2 className="mt-2 text-2xl font-bold text-[#0F172A]">{step.title}</h2>
-        <p className="mt-2 text-sm leading-relaxed text-[#64748B]">{step.subtitle}</p>
-
-        {step.id === "welcome" && (
-          <div className="mt-8 flex justify-center gap-3" role="radiogroup" aria-label="Mood">
-            {MOOD_EMOJIS.map((emoji, i) => {
-              const value = i + 1;
-              return (
-                <button
-                  key={emoji}
-                  type="button"
-                  role="radio"
-                  aria-checked={mood === value}
-                  onClick={() => setMood(value)}
-                  className={`flex h-16 w-16 items-center justify-center rounded-2xl text-3xl transition-all ${
-                    mood === value
-                      ? "scale-110 bg-[#14B8A6]/15 ring-2 ring-[#14B8A6]/40 shadow-md"
-                      : "bg-[#FAF8F4] hover:bg-[#14B8A6]/10"
-                  }`}
-                >
-                  {emoji}
-                </button>
-              );
-            })}
-          </div>
+    <EditorialPage
+      variant="checkin"
+      title="Check-in"
+      parentName={parentName}
+      childName={childName}
+      familyChildren={familyChildren}
+      activeChildId={childId}
+    >
+      {isFirstCheckin && stepIndex === 0 && step.type !== "complete" && <FirstCheckinIntro />}
+      <article
+        className={`cc-flow-enter rounded-[1.5rem] bg-white/40 p-6 backdrop-blur-md sm:p-10 ${
+          animating ? "animate-cc-slide-out motion-reduce:animate-none" : "animate-cc-slide-in motion-reduce:animate-none"
+        }`}
+        aria-live="polite"
+        key={step.id}
+      >
+        {step.type !== "complete" && (
+          <header>
+            <h2 className="font-display text-2xl font-semibold leading-snug text-[var(--cc-ink)] sm:text-3xl">
+              {title}
+            </h2>
+          </header>
         )}
 
-        {step.id === "sliders" && (
-          <div className="mt-8 space-y-6">
-            {step.fields.map((field) => (
-              <SliderField
-                key={field.key}
-                label={field.label}
-                name={field.key}
-                value={field.value}
-                onChange={field.set}
-                lowLabel={field.low}
-                highLabel={field.high}
-              />
-            ))}
-          </div>
+        {step.type === "mood" && (
+          <EmotionalChoices
+            options={MOOD_OPTIONS}
+            value={mood}
+            onChange={handleMoodChoice}
+            groupLabel={`How is ${childName} feeling today?`}
+            disabled={loading || animating}
+          />
         )}
 
-        {step.id === "reflection" && (
-          <div className="mt-8 space-y-5">
-            <div>
-              <label className="mb-1.5 block text-sm font-semibold text-[#0F172A]">Today&apos;s wins 🌟</label>
-              <Textarea rows={3} value={wins} onChange={(e) => setWins(e.target.value)} placeholder="One line per win — every small victory counts" />
-            </div>
-            <div>
-              <label className="mb-1.5 block text-sm font-semibold text-[#0F172A]">Today&apos;s challenges</label>
-              <Textarea rows={3} value={challenges} onChange={(e) => setChallenges(e.target.value)} placeholder="What felt hard today?" />
-            </div>
-            <div>
-              <label className="mb-1.5 block text-sm font-semibold text-[#0F172A]">Anything else?</label>
-              <Textarea rows={2} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Free notes for your family story" />
-            </div>
-          </div>
+        {step.type === "scale" && (
+          <EmotionalChoices
+            options={step.options}
+            value={scaleValues[step.field]}
+            onChange={(v) => handleScaleChoice(step.field, v)}
+            groupLabel={title}
+            disabled={loading || animating}
+          />
         )}
 
-        {step.id === "celebration" && (
-          <div className="mt-8 rounded-2xl bg-[#FAF8F4] p-6 text-center">
-            <p className="text-4xl" aria-hidden="true">{MOOD_EMOJIS[mood - 1]}</p>
-            <p className="mt-3 text-sm text-[#64748B]">
-              You&apos;re building a meaningful record for {childName}. This takes courage.
-            </p>
-          </div>
+        {step.type === "text" && (
+          <>
+            <PaperTextarea
+              id={`checkin-${step.field}`}
+              value={textValues[step.field]}
+              onChange={textSetters[step.field]}
+              placeholder={step.placeholder}
+              label={step.title}
+              rows={step.multiline ? 5 : 3}
+              disabled={loading}
+            />
+            <div className="mt-8 flex flex-wrap gap-3">
+              {stepIndex > 0 && (
+                <Button type="button" variant="secondary" onClick={goBack}>
+                  Back
+                </Button>
+              )}
+              <Button type="button" variant="pill" onClick={goNext} className="flex-1 sm:flex-none">
+                Continue
+              </Button>
+            </div>
+          </>
+        )}
+
+        {step.type === "complete" && (
+          <CheckInComplete childName={childName} loading={loading} onSubmit={handleSubmit} />
         )}
 
         {error && (
@@ -232,23 +240,14 @@ export default function CheckInForm({
           </div>
         )}
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          {stepIndex > 0 && (
-            <Button type="button" variant="secondary" onClick={() => setStepIndex((i) => i - 1)}>
-              {actionCopy.goBack}
+        {step.type !== "text" && step.type !== "complete" && stepIndex > 0 && (
+          <div className="mt-8">
+            <Button type="button" variant="secondary" onClick={goBack}>
+              Back
             </Button>
-          )}
-          {stepIndex < steps.length - 1 ? (
-            <Button type="button" onClick={() => setStepIndex((i) => i + 1)}>
-              {actionCopy.continue}
-            </Button>
-          ) : (
-            <Button type="button" disabled={loading} onClick={handleSubmit}>
-              {loading ? "Saving your check-in…" : actionCopy.saveCheckin}
-            </Button>
-          )}
-        </div>
-      </PremiumCard>
-    </div>
+          </div>
+        )}
+      </article>
+    </EditorialPage>
   );
 }

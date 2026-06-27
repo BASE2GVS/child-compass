@@ -34,7 +34,10 @@ export async function updateSession(request: NextRequest) {
 
   const authRoutes = ["/login", "/register", "/forgot-password", "/verify-email"];
   const protectedPrefixes = [
+    "/today",
     "/dashboard",
+    "/track",
+    "/documents-hub",
     "/compass",
     "/coach",
     "/school",
@@ -77,7 +80,7 @@ export async function updateSession(request: NextRequest) {
 
   if (user && isAuthRoute) {
     const url = request.nextUrl.clone();
-    url.pathname = "/dashboard";
+    url.pathname = "/today";
     return NextResponse.redirect(url);
   }
 

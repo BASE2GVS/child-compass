@@ -58,6 +58,6 @@ export async function requirePilotFeedbackAccess(): Promise<boolean> {
 export async function guardPilotFeedbackPage(): Promise<void> {
   const active = pilotFeedbackEnabled() || (await isPilotFeedbackActive());
   if (!active) {
-    redirect("/dashboard");
+    redirect("/today");
   }
 }

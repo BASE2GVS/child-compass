@@ -1,6 +1,7 @@
 import { submitFeatureSuggestionForm } from "@/lib/actions/support";
 import { aiCopy } from "@/lib/presentation/copy";
 import { Button, Input, Textarea } from "@/components/design-system";
+import { typeScale } from "@/components/design-system/tokens/typography";
 
 export const metadata = { title: "Suggest a Feature — Child Compass" };
 
@@ -12,26 +13,26 @@ export default async function SuggestPage({
   const params = await searchParams;
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-[#0F172A]">Suggest a feature</h1>
-      <p className="mt-4 text-sm text-[#64748B]">
-        We prioritise features that help parents understand their child and build trust. Share your idea below.
+    <div className="max-w-xl">
+      <h1 className={typeScale.title}>Suggest a feature</h1>
+      <p className={`mt-4 ${typeScale.body}`}>
+        Tell us what would make life easier for your family — we read every suggestion with care.
       </p>
       {params.sent === "1" && (
-        <p className="mt-4 rounded-xl bg-emerald-50 px-4 py-3 text-sm text-emerald-800" role="status">
+        <p className="mt-4 rounded-2xl border border-[var(--cc-success)]/20 bg-[var(--cc-success-wash)] px-4 py-3 text-sm text-[var(--cc-ink)]" role="status">
           {aiCopy.supportReceived}
         </p>
       )}
       {params.error && (
-        <p className="mt-4 rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-800" role="alert">
-          {decodeURIComponent(params.error)}
+        <p className="mt-4 rounded-2xl border border-[var(--cc-warning)]/25 bg-[var(--cc-warning-wash)] px-4 py-3 text-sm text-[var(--cc-ink)]" role="alert">
+          That didn&apos;t quite work — please try again when you&apos;re ready.
         </p>
       )}
-      <form action={submitFeatureSuggestionForm} className="mt-8 space-y-4">
+      <form action={submitFeatureSuggestionForm} className="cc-fw-form mt-8">
         <input type="hidden" name="ticketType" value="feature" />
-        <Input name="subject" required placeholder="Feature title" />
-        <Textarea name="message" rows={6} required placeholder="What problem would this solve for your family?" />
-        <Button type="submit">Submit suggestion</Button>
+        <Input name="subject" required placeholder="Feature title" className="cc-fw-form-span-2" />
+        <Textarea name="message" rows={6} required placeholder="What problem would this solve for your family?" className="cc-fw-form-span-2" />
+        <Button type="submit" className="cc-fw-form-span-2">Save suggestion</Button>
       </form>
     </div>
   );

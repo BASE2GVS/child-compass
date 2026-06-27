@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -12,7 +13,7 @@ const navLinks = [
 
 const sectionIds = navLinks.map((link) => link.id);
 
-export default function Navbar() {
+export default function Navbar({ authSlot }: { authSlot?: ReactNode }) {
   const [active, setActive] = useState("hero");
 
   useEffect(() => {
@@ -40,16 +41,12 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/40 bg-[#FAF8F4]/90 backdrop-blur-md">
-      <nav className="mx-auto grid max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 py-5 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-[var(--cc-border-soft)]/80 bg-[var(--cc-bg)]/92 backdrop-blur-lg">
+      <nav className="mx-auto grid max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 py-4 lg:px-8 lg:py-5">
         <div className="flex items-center">
           <a href="#hero" className="block transition-opacity hover:opacity-80">
-            <p className="text-lg font-bold tracking-tight text-[#0F172A]">
-              Child Compass™
-            </p>
-            <p className="text-[11px] font-medium tracking-widest text-slate-500 uppercase">
-              Powered by VYRONSOFT
-            </p>
+            <p className="font-display text-lg font-semibold tracking-tight text-[var(--cc-ink)]">Child Compass™</p>
+            <p className="text-[11px] font-medium tracking-widest text-[var(--cc-ink-muted)] uppercase">Powered by VYRONSOFT</p>
           </a>
         </div>
 
@@ -59,9 +56,7 @@ export default function Navbar() {
               <a
                 href={link.href}
                 className={`text-sm font-medium transition-colors ${
-                  active === link.id
-                    ? "text-[#14B8A6]"
-                    : "text-[#0F172A] hover:text-[#14B8A6]"
+                  active === link.id ? "text-[var(--cc-teal-deep)]" : "text-[var(--cc-ink)] hover:text-[var(--cc-teal-deep)]"
                 }`}
               >
                 {link.label}
@@ -70,10 +65,11 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="flex items-center justify-end">
+        <div className="flex items-center justify-end gap-3">
+          {authSlot}
           <Link
             href="/register"
-            className="rounded-2xl bg-[#14B8A6] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-[#0D9488] hover:shadow-md"
+            className="cc-btn-alive rounded-full bg-[var(--cc-teal)] px-6 py-3 text-sm font-semibold text-white shadow-[0_6px_20px_var(--cc-teal-glow)] transition-all hover:bg-[var(--cc-teal-deep)] hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
           >
             Start Free
           </Link>

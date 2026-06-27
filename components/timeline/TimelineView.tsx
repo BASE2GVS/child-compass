@@ -96,8 +96,6 @@ export default function TimelineView({
           why="The timeline helps you spot patterns and share context with schools and therapists."
           actionLabel="Start today's check-in"
           actionHref={`/check-in?child=${childId}`}
-          secondaryActionLabel="Try Parent Debrief™"
-          secondaryActionHref={`/debrief?child=${childId}`}
         />
       ) : (
         <div className="space-y-12">

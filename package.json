@@ -8,7 +8,14 @@
     "start": "next start",
     "lint": "eslint",
     "db:baseline": "node scripts/apply-baseline.mjs",
-    "test:journey": "playwright test tests/live-journey.spec.ts"
+    "test:journey": "playwright test tests/live-journey.spec.ts",
+    "test:coach": "npx tsx scripts/verify-coach-pipeline.ts",
+    "test:companion": "npx tsx scripts/verify-companion-conversations.ts",
+    "test:curious": "npx tsx scripts/verify-curious-conversations.ts",
+    "test:family": "npx tsx scripts/verify-family-understanding.ts",
+    "test:rhythm": "npx tsx scripts/verify-daily-rhythm.ts",
+    "test:trust": "npx tsx scripts/verify-trust-conversations.ts",
+    "test:life": "npx tsx scripts/verify-companion-life.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

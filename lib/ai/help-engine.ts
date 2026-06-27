@@ -1,7 +1,14 @@
-import { generateDebriefResponse } from "@/lib/ai/debrief-engine";
 import { assembleChildContext } from "@/lib/ai/child-context";
-import type { Child, ChildProfile, DailyCheckin, ParentDebrief, PatternFinding } from "@/lib/types/database";
-import type { TimelineEvent } from "@/lib/types/database";
+import { generateCoachResponse } from "@/lib/ai/coach-engine";
+import type {
+  Child,
+  ChildProfile,
+  CoachMessage,
+  DailyCheckin,
+  ParentDebrief,
+  PatternFinding,
+  TimelineEvent,
+} from "@/lib/types/database";
 
 export async function helpEngine(
   message: string,
@@ -11,7 +18,9 @@ export async function helpEngine(
   debriefs: ParentDebrief[],
   patterns: PatternFinding[],
   timeline: TimelineEvent[] = [],
+  conversationHistory: Pick<CoachMessage, "role" | "content">[] = [],
 ) {
   const context = assembleChildContext(child, profile, checkins, debriefs, patterns, timeline);
-  return generateDebriefResponse(message, context);
+  const { response } = await generateCoachResponse(message, context, conversationHistory);
+  return response;
 }

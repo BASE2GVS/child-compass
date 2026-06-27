@@ -38,7 +38,7 @@ export default function ChildProfileWizard() {
       </h1>
 
       <p className="mb-8 text-slate-600">
-        Build your Child Compass profile.
+        Build your child&apos;s profile.
       </p>
 
       <ProfileProgress current={step} total={questions.length} />
@@ -48,7 +48,7 @@ export default function ChildProfileWizard() {
       ))}
 
       <button className="mt-6 rounded-2xl bg-indigo-600 px-8 py-4 font-semibold text-white">
-        Generate Child Compass Profile
+        Save profile
       </button>
     </div>
   );
