@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+import { getSessionUser } from "@/lib/data/queries";
 import HeroSection from "@/components/landing/HeroSection";
 import TrustBar from "@/components/landing/TrustBar";
 import FamilyRecognitionSection from "@/components/landing/FamilyRecognitionSection";
@@ -16,7 +18,10 @@ import FinalCTA from "@/components/landing/FinalCTA";
 import ResourcesSection from "@/components/landing/ResourcesSection";
 import Footer from "@/components/landing/Footer";
 
-export default function Home() {
+export default async function Home() {
+  const user = await getSessionUser();
+  if (user) redirect("/today");
+
   return (
     <main className="bg-[#FAF8F4]">
       <HeroSection />

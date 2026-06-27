@@ -71,7 +71,7 @@ export default function Navbar({ authSlot }: { authSlot?: ReactNode }) {
             href="/register"
             className="cc-btn-alive rounded-full bg-[var(--cc-teal)] px-6 py-3 text-sm font-semibold text-white shadow-[0_6px_20px_var(--cc-teal-glow)] transition-all hover:bg-[var(--cc-teal-deep)] hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
           >
-            Start Free
+            Start Free Trial
           </Link>
         </div>
       </nav>

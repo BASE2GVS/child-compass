@@ -30,7 +30,7 @@ export default function HeroSection() {
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link href="/register" className="cc-btn-alive rounded-full bg-[var(--cc-teal)] px-8 py-4 text-base font-semibold text-white shadow-[0_8px_28px_var(--cc-teal-glow)] transition-all hover:bg-[var(--cc-teal-deep)] hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
-                Start free
+                Start Free Trial
               </Link>
             </div>
           </div>

@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { getProfile } from "@/lib/data/queries";
+import { getSessionUser } from "@/lib/data/queries";
 
 export default async function LandingAuthNav() {
-  const profile = await getProfile();
-  const isAuthenticated = Boolean(profile);
+  const user = await getSessionUser();
+  const isAuthenticated = Boolean(user);
 
   if (isAuthenticated) {
     return (
