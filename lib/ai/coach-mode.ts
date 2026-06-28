@@ -63,24 +63,54 @@ const SCHOOL_SIGNALS = ["school", "teacher", "homework", "classroom", "refusal",
 const HEALTH_SIGNALS = ["doctor", "medication", "therapy", "appointment", "sick", "health", "paediatrician"];
 const EMOTION_SIGNALS = ["feeling", "mood", "anxious", "worried", "sad", "overwhelmed", "exhausted"];
 const REPORT_SIGNALS = ["report", "summary", "export", "share with", "professional"];
-const PRODUCT_SIGNALS = [
+const PRODUCT_TRIGGER_PHRASES = [
   "what is",
   "what's",
   "where is",
+  "where do i",
+  "what does",
+  "how do i",
+  "why should i",
+];
+const PRODUCT_ONLY_PHRASES = [
   "this button",
   "this page",
   "this icon",
-  "why should i check",
   "child compass",
-  "how do i check",
-  "how do i use",
-  "how do i find",
-  "how do i invite",
-  "how do i open",
-  "how do i add",
-  "how do i create",
-  "how do i export",
-  "how do i share",
+];
+const PRODUCT_HELP_SUBJECTS = [
+  "check-in",
+  "check in",
+  "checkin",
+  "timeline",
+  "document",
+  "documents",
+  "passport",
+  "pda passport",
+  "settings",
+  "report",
+  "teacher guide",
+  "compass",
+  "dashboard",
+  "login",
+  "sign in",
+  "sign out",
+  "subscription",
+  "payment",
+  "export",
+  "share",
+  "invite",
+  "feature",
+  "button",
+  "page",
+  "icon",
+  "navigate",
+  "open",
+  "app",
+  "child compass",
+  "documents hub",
+  "family settings",
+  "today",
 ];
 
 /** Parenting topics — "how do I handle X" is coaching, not app help */
@@ -142,12 +172,15 @@ export function detectCoachMode(
   if (containsAny(lower, EMERGENCY_SIGNALS)) return "emergency";
   if (options?.preferReflection) return "behaviour_reflection";
   if (containsAny(lower, NAVIGATION_SIGNALS)) return "navigation";
-  if (
-    containsAny(lower, PRODUCT_SIGNALS) &&
-    !containsAny(lower, PARENTING_CONTEXT_SIGNALS)
-  ) {
+
+  const isProductHelpRequest =
+    containsAny(lower, PRODUCT_ONLY_PHRASES) ||
+    (containsAny(lower, PRODUCT_TRIGGER_PHRASES) && containsAny(lower, PRODUCT_HELP_SUBJECTS));
+
+  if (isProductHelpRequest && !containsAny(lower, PARENTING_CONTEXT_SIGNALS)) {
     return "product_help";
   }
+
   if (containsAny(lower, REPORT_SIGNALS)) return "report_generation";
   if (
     containsAny(lower, PARENT_SIGNALS) ||
