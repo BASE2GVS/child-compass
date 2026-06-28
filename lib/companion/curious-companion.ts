@@ -32,19 +32,19 @@ import {
 } from "@/lib/companion/family-rhythms";
 import { buildQuietAnticipation } from "@/lib/companion/quiet-anticipation";
 import { buildMicroMoment } from "@/lib/companion/micro-moments";
-
-const CLARIFY_OPENERS = [
-  "I'd like to understand one thing first...",
-  "Can I ask something?",
-  "Just to help me understand...",
-  "Before I suggest anything...",
-];
-
-function pickOpener(seed: string): string {
-  let h = 0;
-  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
-  return CLARIFY_OPENERS[h % CLARIFY_OPENERS.length];
-}
+import { classifyParentNeed, type ParentNeed } from "@/lib/conversation/parent-need";
+import {
+  selectConversationStyle,
+  type ConversationStyle,
+} from "@/lib/conversation/conversation-style";
+import {
+  buildCuriosityAcknowledgment,
+  buildCuriosityResponse,
+  isAnsweringCuriosity,
+  shouldBeCurious,
+  type CuriosityInput,
+} from "@/lib/conversation/curiosity-engine";
+import { analyzeParentStory, type ParentStory } from "@/lib/conversation/parent-emotion";
 
 const VAGUE_SIGNALS = [
   "help",
@@ -100,10 +100,27 @@ export function shouldClarifyBeforeAdvice(
   message: string,
   conversationHistory: { role: string; content: string }[],
   mode: CoachMode,
+  options?: { parentNeed?: ParentNeed; parentMood?: ParentMood | null },
 ): boolean {
   if (mode === "emergency" || mode === "product_help" || mode === "navigation") return false;
   if (isBriefMoment(message)) return false;
-  return !hasEnoughContext(message, conversationHistory);
+
+  const parentNeed =
+    options?.parentNeed ??
+    classifyParentNeed(message, {
+      parentMood: options?.parentMood ?? null,
+      conversationHistory,
+    });
+
+  const input: CuriosityInput = {
+    message,
+    conversationHistory,
+    parentNeed,
+    parentMood: options?.parentMood ?? null,
+    mode,
+  };
+
+  return shouldBeCurious(input);
 }
 
 export function buildCuriousClarification(
@@ -111,36 +128,13 @@ export function buildCuriousClarification(
   context: ChildContext,
   conversationHistory: { role: string; content: string }[],
   parentMoodNote?: string | null,
+  parentNeed?: ParentNeed,
+  parentStory?: ParentStory,
 ): DebriefResponse {
-  const name = context.child.nickname || context.child.first_name;
-  const opener = pickOpener(message + String(conversationHistory.length));
-  const parentTurns = parentTurnCount(conversationHistory);
-
-  const questions: string[] = [];
-  if (parentTurns === 0) {
-    questions.push(`What was happening just before things felt difficult with ${name}?`);
-    questions.push("What would feel most helpful — understanding, planning, or just being heard?");
-  } else {
-    questions.push(`Can you tell me a little more about what ${name} did or said?`);
-    questions.push("Was there anything different about today compared to usual?");
-  }
-
-  const moodLine = parentMoodNote ? ` ${parentMoodNote}` : "";
-
-  return {
-    likely_trigger: "I'm gathering context before suggesting anything.",
-    behaviour_explanation: `${opener}${moodLine} I don't want to guess about ${name} when a small detail could change everything.`,
-    emotional_interpretation:
-      parentTurns === 0
-        ? "It's okay not to have it all sorted in your head yet. We can take this one piece at a time."
-        : "Thank you for sharing what you have so far — a bit more will help me connect the dots.",
-    suggested_response: questions[0],
-    things_not_to_say: [],
-    tomorrow_plan: "I'll have something more useful once I understand a little more.",
-    long_term_recommendation: "There's no rush — tell me in your own words.",
-    confidence_level: 0.42,
-    follow_up_questions: questions.slice(0, 2),
-  };
+  const need =
+    parentNeed ??
+    classifyParentNeed(message, { conversationHistory });
+  return buildCuriosityResponse(message, context, conversationHistory, need, parentStory);
 }
 
 export type CuriousEnrichment = {
@@ -163,6 +157,12 @@ export type CuriousEnrichment = {
   rhythmNote: string | null;
   quietAnticipation: string | null;
   microMoment: string | null;
+  parentNeed: ParentNeed;
+  conversationStyle: ConversationStyle;
+  isCuriosityMode: boolean;
+  respondingToCuriosity: boolean;
+  curiosityAcknowledgment: string | null;
+  parentStory: ParentStory;
 };
 
 export type { CoachMessageTurn };
@@ -192,8 +192,24 @@ export function buildCuriousEnrichment(
     mode,
   );
 
+  let parentNeed = classifyParentNeed(parentMessage, {
+    parentMood: options?.parentMood ?? null,
+    conversationHistory,
+  });
+  if (presenceOnly) parentNeed = "presence_only";
+
+  const conversationStyle = selectConversationStyle(parentNeed, {
+    lowConfidence: false,
+    repeatAdvice: false,
+  });
+
+  const memoryVisible =
+    conversationStyle.need === "problem_solving" ||
+    conversationStyle.need === "new_ideas" ||
+    conversationStyle.need === "preparation";
+
   const familyUnderstanding =
-    isBrief || presenceOnly || trust.deferAdvice
+    isBrief || presenceOnly || trust.deferAdvice || !memoryVisible
       ? null
       : weaveFamilyUnderstanding(context, parentMessage);
 
@@ -214,7 +230,7 @@ export function buildCuriousEnrichment(
       : buildFamilyStoryMoment(context);
 
   const crossDayContinuity =
-    isBrief || presenceOnly
+    isBrief || presenceOnly || !memoryVisible
       ? null
       : buildCrossDayContinuity(coachMessages, parentMessage);
 
@@ -240,6 +256,26 @@ export function buildCuriousEnrichment(
       ? null
       : buildMicroMoment(parentMessage, context, parentTurns);
 
+  const respondingToCuriosity = isAnsweringCuriosity(conversationHistory, parentMessage);
+  const curiosityAcknowledgment = respondingToCuriosity
+    ? buildCuriosityAcknowledgment(parentMessage)
+    : null;
+
+  const willBeCurious = shouldBeCurious({
+    message: parentMessage,
+    conversationHistory,
+    parentNeed,
+    parentMood: options?.parentMood ?? null,
+    mode,
+  });
+
+  const parentStory = analyzeParentStory(parentMessage, {
+    parentNeed,
+    parentMood: options?.parentMood ?? null,
+    childName,
+    willBeCurious,
+  });
+
   return {
     thinkingAloud: isBrief || presenceOnly ? null : buildThinkingAloud(parentMessage, context, mode),
     familyUnderstanding,
@@ -259,7 +295,21 @@ export function buildCuriousEnrichment(
     rhythmNote,
     quietAnticipation,
     microMoment,
+    parentNeed,
+    conversationStyle,
+    isCuriosityMode: false,
+    respondingToCuriosity,
+    curiosityAcknowledgment,
+    parentStory,
   };
+}
+
+function memoryWeavingVisible(style: ConversationStyle): boolean {
+  return (
+    style.need === "problem_solving" ||
+    style.need === "new_ideas" ||
+    style.need === "preparation"
+  );
 }
 
 export function applyCuriousEnrichment(
@@ -283,16 +333,25 @@ export function applyCuriousEnrichment(
   let behaviour = shapeWithBeliefs(response.behaviour_explanation);
   let emotional = shapeWithBeliefs(response.emotional_interpretation);
 
+  if (enrichment.respondingToCuriosity && enrichment.curiosityAcknowledgment) {
+    emotional = `${enrichment.curiosityAcknowledgment} ${emotional}`.trim();
+  }
+
+  const weaveMemory = memoryWeavingVisible(enrichment.conversationStyle);
   const stackLimit = enrichment.trust.deferAdvice ? 2 : 4;
   const emotionalParts: (string | null)[] = [];
 
-  if (enrichment.familyStory) emotionalParts.push(enrichment.familyStory);
-  if (enrichment.relationshipDepth && !enrichment.trust.deferAdvice) {
+  if (weaveMemory && enrichment.familyStory) emotionalParts.push(enrichment.familyStory);
+  if (weaveMemory && enrichment.relationshipDepth && !enrichment.trust.deferAdvice) {
     emotionalParts.push(enrichment.relationshipDepth.replace(/— $/, ""));
   }
-  if (enrichment.parentUnderstanding) emotionalParts.push(enrichment.parentUnderstanding);
-  if (enrichment.familyUnderstanding) emotionalParts.push(enrichment.familyUnderstanding);
-  if (enrichment.positiveChange && !enrichment.trust.deferAdvice) {
+  if (weaveMemory && enrichment.parentUnderstanding) emotionalParts.push(enrichment.parentUnderstanding);
+  if (weaveMemory && enrichment.familyUnderstanding) emotionalParts.push(enrichment.familyUnderstanding);
+  if (
+    (weaveMemory || enrichment.conversationStyle.need === "celebration") &&
+    enrichment.positiveChange &&
+    !enrichment.trust.deferAdvice
+  ) {
     emotionalParts.push(enrichment.positiveChange);
   }
 
@@ -301,7 +360,7 @@ export function applyCuriousEnrichment(
     emotional = `${stacked.join(" ")} ${emotional}`;
   }
 
-  if (enrichment.thinkingAloud && !enrichment.trust.deferAdvice) {
+  if (weaveMemory && enrichment.thinkingAloud && !enrichment.trust.deferAdvice) {
     behaviour = `${enrichment.thinkingAloud} ${behaviour}`;
   }
 
@@ -309,19 +368,19 @@ export function applyCuriousEnrichment(
     behaviour = `${enrichment.gentleChallenge} ${behaviour}`;
   }
 
-  if (enrichment.crossDayContinuity) {
+  if (weaveMemory && enrichment.crossDayContinuity) {
     emotional = `${enrichment.crossDayContinuity}${emotional}`;
   }
 
-  if (enrichment.continuity) {
+  if (weaveMemory && enrichment.continuity) {
     emotional = `${enrichment.continuity}${emotional}`;
   }
 
-  if (enrichment.rhythmNote && !enrichment.trust.deferAdvice) {
+  if (weaveMemory && enrichment.rhythmNote && !enrichment.trust.deferAdvice) {
     behaviour = `${enrichment.rhythmNote} ${behaviour}`;
   }
 
-  if (enrichment.quietAnticipation && !enrichment.trust.deferAdvice) {
+  if (weaveMemory && enrichment.quietAnticipation && !enrichment.trust.deferAdvice) {
     behaviour = `${behaviour} ${enrichment.quietAnticipation}`;
   }
 

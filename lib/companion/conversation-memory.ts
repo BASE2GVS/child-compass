@@ -45,7 +45,20 @@ export function extractPriorAdviceTopics(
   return history
     .filter((m) => m.role === "assistant")
     .flatMap((m) => {
-      const match = m.content.match(/Something you could try\n"([^"]+)"/);
-      return match ? [match[1]] : [];
+      const templateMatch = m.content.match(/Something you could try\n"([^"]+)"/);
+      if (templateMatch) return [templateMatch[1]];
+
+      const thoughtMatch = m.content.match(/One thought — (.+?)(?:\n|$)/i);
+      if (thoughtMatch) return [thoughtMatch[1].replace(/\.$/, "")];
+
+      const quotedMatch = m.content.match(/"([^"]{15,})"/);
+      if (quotedMatch) return [quotedMatch[1]];
+
+      const tryMatch = m.content.match(
+        /(?:you might try|try saying|what if you|consider)\s+([^.!?]{10,}[.!?])/i,
+      );
+      if (tryMatch) return [tryMatch[1]];
+
+      return [];
     });
 }

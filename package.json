@@ -18,6 +18,8 @@
     "test:documents": "npx tsx scripts/verify-smart-documents.ts",
     "test:rhythm": "npx tsx scripts/verify-daily-rhythm.ts",
     "test:trust": "npx tsx scripts/verify-trust-conversations.ts",
+    "test:conversation": "npx tsx scripts/verify-conversation-intelligence.ts",
+    "generate:conversation-review": "npx tsx scripts/generate-conversation-review.ts",
     "test:life": "npx tsx scripts/verify-companion-life.ts"
   },
   "dependencies": {

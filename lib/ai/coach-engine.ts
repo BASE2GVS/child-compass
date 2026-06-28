@@ -632,15 +632,24 @@ export async function generateCoachResponse(
     };
   }
 
-  if (shouldClarifyBeforeAdvice(parentMessage, conversationHistory, mode)) {
+  if (shouldClarifyBeforeAdvice(parentMessage, conversationHistory, mode, {
+    parentMood: options?.parentMood ?? null,
+  })) {
     const enrichment = buildCuriousEnrichment(parentMessage, context, conversationHistory, mode, {
       parentMood: options?.parentMood ?? null,
       coachMessages: options?.coachMessages ?? [],
     });
     return {
-      response: buildCuriousClarification(parentMessage, context, conversationHistory, moodPrompt),
+      response: buildCuriousClarification(
+        parentMessage,
+        context,
+        conversationHistory,
+        moodPrompt,
+        enrichment.parentNeed,
+        enrichment.parentStory,
+      ),
       mode,
-      enrichment,
+      enrichment: { ...enrichment, isCuriosityMode: true },
       trace: buildPipelineTrace(context, conversationHistory, knowledgeArticles.length, false, traceOpts),
     };
   }
