@@ -134,59 +134,76 @@ Respond with JSON:
 
 export { DEBRIEF_SYSTEM };
 
-export const COACH_SYSTEM = `You are Child Compass™, a warm, experienced guide for ONE specific child and family.
-You sit across the kitchen table — calm, unhurried, never robotic, never preachy, never judgemental.
-Never mention algorithms, AI, models, or technology.
+function formatList(items: string[] | undefined, fallback: string): string {
+  return items && items.length > 0 ? items.join(", ") : fallback;
+}
 
-Trust — parents should feel understood, not analysed:
-- Before replying, sense what the parent needs: understanding, reassurance, advice, reflection, planning, or simply being heard.
-- Advice is not always first. Presence and curiosity often build more trust than solutions.
-- When evidence is limited, say so: "I'm not sure yet." "We've only seen this a couple of times." "I'd like to understand better before calling it a pattern."
-- Offer multiple possibilities: "This could be related to..." "I wonder whether..." "There may be more than one explanation."
-- Never diagnose. Never promise outcomes. Never imply certainty beyond the evidence.
-- When guilt, fear, shame, grief, or anger appear — stay emotionally present before coaching.
-- Avoid sounding scripted, analytical, or like a textbook. Never mention confidence scores, patterns as facts, or technology.
-- Recommend appropriate professionals when clinical topics arise — encouragingly, not alarmingly.
+function formatBulletList(title: string, items: string[], fallback: string): string {
+  if (!items.length) return `${title}: ${fallback}`;
+  return `${title}:\n${items.map((item) => `- ${item}`).join("\n")}`;
+}
 
-Curiosity first:
-- If context is thin, ask ONE or TWO short natural questions before advising.
-- Use openers like "I'd like to understand one thing first..." or "Can I ask something?"
-- Never interrogate. Never overwhelm.
+function buildFamilySnapshot(
+  context: ChildContext,
+  memoryItems: string[],
+  parentMoodNote: string | null,
+): string {
+  const name = context.child.nickname || context.child.first_name;
+  const ageNote = context.childAgeNote ? `${context.childAgeNote}\n` : "";
+  const rhythmNote = context.rhythmNote ? `${context.rhythmNote}\n` : "";
+  const triggers = formatList(context.profile?.known_triggers, "none recorded");
+  const calming = formatList(context.profile?.calming_strategies, "none recorded");
+  const successful = formatList(context.profile?.successful_strategies, "none recorded");
+  const strengths = formatList(context.profile?.strengths, "not specified");
 
-Thinking aloud (occasionally, naturally):
-- "I'm wondering whether..."
-- "What catches my attention is..."
-- "This reminds me of..."
-- "The pattern I'm noticing is..."
+  const checkins = context.recentCheckins
+    .slice(0, 7)
+    .map(
+      (c) =>
+        `- ${c.checkin_date}: sleep ${c.sleep_quality ?? "?"}/5, mood ${c.mood ?? "?"}/5, anxiety ${c.anxiety ?? "?"}/5, school ${c.school_rating ?? "?"}/5`,
+    );
 
-Memory — growing understanding, not database recall:
-- Prefer "One thing I've been learning about [child]..." "I've started noticing..." "I'm beginning to understand..."
-- Never "I remember..." or data dumps.
-- Weave family insights naturally when relevant — never force it.
+  const patterns = context.patterns.map((p) => `- ${p.title}: ${p.description}`);
+  const insights = context.companionInsightTexts?.slice(0, 4).map((i) => `- ${i}`) ?? [];
+  const memoryLines = memoryItems.length ? memoryItems.map((m) => `- ${m}`) : ["- None selected"]; 
+  const recentDebriefs = context.recentDebriefs
+    .slice(-3)
+    .map((d) => `- ${d.created_at.split("T")[0]}: ${d.parent_message.slice(0, 120)}`);
 
-Family understanding:
-- Notice the parent too — their worry, exhaustion, preferred style (brief vs detailed, planning vs reflection).
-- Reflect core beliefs in tone (never as slogans): behaviour is communication; understanding before correcting; parents deserve compassion; progress over perfection.
+  return `Family Snapshot:
+Child: ${name}
+${ageNote}${rhythmNote}Diagnosis: ${context.child.diagnosis.join(", ") || "not specified"}
+Support needs: ${formatList(context.child.support_needs, "not specified")}
+School: ${context.child.school || "not specified"}
+Interests: ${formatList(context.child.interests, "not specified")}
+Known triggers: ${triggers}
+Calming strategies: ${calming}
+Successful strategies: ${successful}
+Strengths: ${strengths}
 
-Emotional presence:
-- Sometimes advice is not appropriate yet. Presence first: "I'm really glad you told me." "That sounds incredibly heavy." "We don't need to solve everything right now."
+Recent check-ins:
+${checkins.length ? checkins.join("\n") : "- No recent check-ins"}
 
-Gentle challenge:
-- If a parent says the child was "naughty" or "defiant", gently wonder if there's another explanation — never shame.
+Detected patterns:
+${patterns.length ? patterns.join("\n") : "- No patterns detected"}
 
-Growing relationship:
-- When history supports it, reflect on the family's journey — never invent progress.
+Family insights:
+${insights.length ? insights.join("\n") : "- No family insights yet"}
 
-Brevity:
-- Sometimes the most helpful reply is brief: "That sounds incredibly hard." "I'm glad you told me." "I'm here."
-- Match the parent's rhythm — short messages deserve short replies.
+Family memories:
+${memoryLines.join("\n")}
 
-Conversation:
-- Reference earlier messages in THIS conversation.
-- Do not repeat advice already given — build on it instead.
+Recent debriefs:
+${recentDebriefs.length ? recentDebriefs.join("\n") : "- No recent debriefs"}
+${parentMoodNote ? `\nParent mood: ${parentMoodNote}` : ""}`;
+}
 
-Reference THIS child's name, check-ins, patterns, and memories when available.
-Never say "children with PDA" — speak about THIS child only.
+export const COACH_SYSTEM = `You are Child Compass™, a warm, neurodiversity-affirming parenting assistant.
+You sit across the kitchen table — calm, compassionate, and practical.
+You support ONE child and their parent in this moment.
+Respond with empathy first, then guidance.
+Do not mention algorithms, AI, or prompts.
+Use the Family Snapshot below naturally. Do not list memory items or explain where information came from.
 
 Respond ONLY with valid JSON matching this schema:
 {
@@ -199,7 +216,41 @@ Respond ONLY with valid JSON matching this schema:
   "long_term_recommendation": "string",
   "confidence_level": 0.0-1.0,
   "follow_up_questions": ["string"]
-}`;
+}
+
+Write JSON field values as natural prose that will flow together — not labelled report sections.`;
+
+export function buildCoachPromptWithEngine(
+  parentMessage: string,
+  context: ChildContext,
+  conversationHistory: { role: string; content: string }[] = [],
+  parentMoodNote: string | null,
+  engine: import("@/lib/conversation-engine").ConversationEngineResult,
+): string {
+  const snapshot = buildFamilySnapshot(
+    context,
+    engine.retrievedMemory.map((item) => item.text),
+    parentMoodNote,
+  );
+
+  const conversationBlock =
+    conversationHistory.length > 0
+      ? conversationHistory
+          .slice(-8)
+          .map((m) => `${m.role === "parent" ? "Parent" : "Child Compass"}: ${m.content.slice(0, 400)}`)
+          .join("\n")
+      : "This is the start of a new conversation.";
+
+  return `${snapshot}
+
+Conversation history:
+${conversationBlock}
+
+Current parent message:
+"${parentMessage}"
+
+Think about what this parent needs and respond for this child only.`;
+}
 
 export function buildCoachPrompt(
   parentMessage: string,

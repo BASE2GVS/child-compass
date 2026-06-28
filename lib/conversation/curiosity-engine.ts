@@ -105,6 +105,19 @@ export function shouldSkipCuriosity(input: CuriosityInput): boolean {
   if (containsAny(lower, EMOTIONAL_NO_CURIOSITY)) return true;
   if (isParentEmotionalFocus(message, "")) return true;
   if (parentNeed === "emotional_support" && /^i'?m /i.test(message.trim())) return true;
+  if (
+    containsAny(lower, [
+      "won't eat",
+      "wont eat",
+      "not eating",
+      "not drinking",
+      "won't drink",
+      "self-harm",
+      "self harm",
+    ])
+  ) {
+    return true;
+  }
 
   return false;
 }

@@ -2,7 +2,8 @@ import type { ChildContext, CoachMessage, DebriefResponse } from "@/lib/types/da
 import { detectCoachMode, type CoachMode } from "@/lib/ai/coach-mode";
 import { generateDebriefResponse } from "@/lib/ai/debrief-engine";
 import { getLLMProvider, isExternalLLMConfigured } from "@/lib/ai/future-provider";
-import { buildCoachPrompt, COACH_SYSTEM } from "@/lib/ai/prompt-builder";
+import { buildCoachPromptWithEngine, COACH_SYSTEM } from "@/lib/ai/prompt-builder";
+import { runConversationEngine, buildUrgentSafetyResponse, type ConversationEngineResult } from "@/lib/conversation-engine";
 import { parseDebriefResponse } from "@/lib/ai/response-parser";
 import { memoryForMessage } from "@/lib/ai/child-context";
 import { capConfidenceForEvidence } from "@/lib/companion/intellectual-humility";
@@ -84,20 +85,6 @@ function pickVariant<T>(items: T[], seed: string): T {
   return items[h % items.length];
 }
 
-function formatCheckinLine(c: ChildContext["recentCheckins"][0]): string {
-  return `${c.checkin_date}: sleep ${c.sleep_quality ?? "?"}/5, mood ${c.mood ?? "?"}/5, anxiety ${c.anxiety ?? "?"}/5, school ${c.school_rating ?? "?"}/5`;
-}
-
-function summarizeConversation(history: ConversationTurn[]): string | null {
-  if (history.length < 2) return null;
-  const recent = history.slice(-4);
-  const topics = recent
-    .filter((m) => m.role === "parent")
-    .map((m) => m.content.slice(0, 80))
-    .join("; ");
-  return topics ? `Earlier in this conversation you asked about: ${topics}` : null;
-}
-
 function followUpFromHistory(
   history: ConversationTurn[],
   name: string,
@@ -126,11 +113,11 @@ function buildLocalCoachResponse(
   conversationHistory: ConversationTurn[],
   mode: CoachMode = "coaching",
   parentMoodNote: string | null = null,
+  engine?: ConversationEngineResult,
 ): DebriefResponse {
   const name = context.child.nickname || context.child.first_name;
   const msg = parentMessage.toLowerCase();
   const latestCheckin = context.recentCheckins[0];
-  const convoSummary = summarizeConversation(conversationHistory);
 
   if (mode === "parent_support") {
     const parentOpening = parentMoodNote || "You matter in this story too.";
@@ -138,7 +125,6 @@ function buildLocalCoachResponse(
       likely_trigger: "Parent capacity is low — that's information, not failure.",
       behaviour_explanation: `${parentOpening} When you're depleted, everything feels harder — including supporting ${name}.`,
       emotional_interpretation:
-        convoSummary ||
         "Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.",
       suggested_response:
         "Be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough.",
@@ -153,57 +139,21 @@ function buildLocalCoachResponse(
     };
   }
 
-  const historyOpenerParts: string[] = [];
-
-  if (context.memoryReferences.length) {
-    historyOpenerParts.push(...context.memoryReferences.slice(0, 3));
-  }
-
-  if (latestCheckin) {
-    historyOpenerParts.push(
-      `On ${latestCheckin.checkin_date}, ${name}'s check-in showed mood ${latestCheckin.mood ?? "?"}/5, anxiety ${latestCheckin.anxiety ?? "?"}/5, and sleep ${latestCheckin.sleep_quality ?? "?"}/5.`,
-    );
-    if (latestCheckin.wins?.length) {
-      historyOpenerParts.push(`Recent win: "${latestCheckin.wins[0]}".`);
-    }
-    if (latestCheckin.challenges?.length) {
-      historyOpenerParts.push(`Recent challenge: "${latestCheckin.challenges[0]}".`);
-    }
-  }
-
-  for (const p of context.patterns.slice(0, 2)) {
-    historyOpenerParts.push(`Pattern we've noticed for ${name}: ${p.description}`);
-  }
-
-  for (const insight of (context.graphInsights || []).slice(0, 2)) {
-    historyOpenerParts.push(`From ${name}'s data: ${insight}`);
-  }
-
-  for (const event of context.recentTimeline.slice(0, 2)) {
-    historyOpenerParts.push(`Timeline (${event.date.split("T")[0]}): ${event.title}${event.description ? ` — ${event.description}` : ""}.`);
-  }
-
-  if (context.profile?.known_triggers?.length) {
-    historyOpenerParts.push(`Known triggers for ${name}: ${context.profile.known_triggers.join(", ")}.`);
-  }
-
-  if (context.profile?.calming_strategies?.length) {
-    historyOpenerParts.push(`Strategies that have helped ${name}: ${context.profile.calming_strategies.slice(0, 3).join(", ")}.`);
-  }
-
-  const historyOpener =
-    historyOpenerParts.length > 0
-      ? historyOpenerParts.join(" ")
-      : `We're still building ${name}'s story — daily check-ins will help Child Compass personalise guidance.`;
-
   let likelyTrigger = "An accumulation of demands or sensory input that exceeded their current capacity.";
-  let behaviourExplanation = `${name}'s behaviour could be a protective response — not necessarily defiance. ${historyOpener}`;
-  let emotionalInterpretation = convoSummary
-    ? `${convoSummary} Right now, beneath today's situation, ${name} may be communicating an unmet need.`
-    : `Beneath today's situation, ${name} may be feeling overwhelmed or unable to communicate their needs.`;
+  let behaviourExplanation = `${name} may be communicating an unmet need — not necessarily defiance.`;
+  let emotionalInterpretation = `This sounds hard for you both. ${name} may be overwhelmed or unable to show what they need yet.`;
   let suggestedResponse = context.profile?.calming_strategies?.[0]
-    ? `Try what has helped before: ${context.profile.calming_strategies[0]}. Also offer two choices ${name} controls.`
+    ? `Try what has helped before: ${context.profile.calming_strategies[0]}. Offer two choices ${name} controls.`
     : `Lower demands immediately. Offer two choices ${name} controls. Validate: "This feels really hard right now."`;
+
+  const topMemory = engine?.retrievedMemory[0];
+  if (topMemory?.category === "communication_style") {
+    suggestedResponse = `Use declarative language — describe what will happen rather than giving a direct order.`;
+  } else if (topMemory?.category === "profile_strategies" || topMemory?.category === "successful_strategies") {
+    suggestedResponse = `What has helped before may help again: ${topMemory.text}. Offer ${name} a sense of control where you can.`;
+  } else if (topMemory?.category === "routine_bath" || topMemory?.category === "sensory") {
+    suggestedResponse = `Reduce sensory load first — softer lighting, warmer room, or letting ${name} choose the order of steps.`;
+  }
   let adviceTailored = false;
   const thingsNotToSay = ["Stop being difficult.", "Everyone else manages fine.", "If you don't go, then…"];
   let tomorrowPlan = "Prepare the environment calmly tonight. Review a visual schedule if that helps your family.";
@@ -238,7 +188,7 @@ function buildLocalCoachResponse(
   }
 
   if (containsAny(msg, SCHOOL_KEYWORDS)) {
-    behaviourExplanation = `School demands can feel threatening when ${name}'s nervous system is elevated. ${historyOpener}`;
+    behaviourExplanation = `School demands can feel threatening when ${name}'s nervous system is elevated.`;
     suggestedResponse = pickVariant(
       [
         "Remove pressure to explain. Sit nearby without demanding eye contact. Offer a regulated activity before revisiting school talk.",
@@ -253,7 +203,7 @@ function buildLocalCoachResponse(
 
   if (containsAny(msg, SENSORY_KEYWORDS)) {
     likelyTrigger = likelyTrigger || `Sensory overload — the environment exceeded ${name}'s comfortable processing capacity.`;
-    behaviourExplanation = `${name}'s brain was filtering more input than it could handle. ${historyOpener}`;
+    behaviourExplanation = `${name}'s brain was filtering more input than it could handle.`;
     suggestedResponse = context.profile?.calming_strategies?.[0]
       ? pickVariant(
           [
@@ -301,7 +251,7 @@ function buildLocalCoachResponse(
   }
 
   if (containsAny(msg, HOMEWORK_KEYWORDS)) {
-    behaviourExplanation = `Homework can feel like an unexpected demand after a long school day for ${name}. ${historyOpener}`;
+    behaviourExplanation = `Homework can feel like an unexpected demand after a long school day for ${name}.`;
     suggestedResponse = context.profile?.calming_strategies?.[0]
       ? pickVariant(
           [
@@ -323,7 +273,7 @@ function buildLocalCoachResponse(
 
   if (containsAny(msg, PARTY_KEYWORDS)) {
     likelyTrigger = likelyTrigger || `Social event — parties combine sensory input, unpredictability, and social demands for ${name}.`;
-    behaviourExplanation = `Birthdays and parties can overwhelm ${name}'s nervous system even when they want to go. ${historyOpener}`;
+    behaviourExplanation = `Birthdays and parties can overwhelm ${name}'s nervous system even when they want to go.`;
     suggestedResponse = pickVariant(
       [
         "Share a visual plan of the event. Agree on a quiet exit signal. Pack familiar comfort items.",
@@ -338,7 +288,7 @@ function buildLocalCoachResponse(
 
   if (containsAny(msg, CLOTHING_KEYWORDS)) {
     likelyTrigger = likelyTrigger || `Sensory or demand barrier — clothing/shoes may feel physically uncomfortable or like a non-negotiable demand for ${name}.`;
-    behaviourExplanation = `Getting dressed can trigger sensory distress or demand avoidance for ${name}. ${historyOpener}`;
+    behaviourExplanation = `Getting dressed can trigger sensory distress or demand avoidance for ${name}.`;
     suggestedResponse = context.profile?.calming_strategies?.[0]
       ? pickVariant(
           [
@@ -359,7 +309,7 @@ function buildLocalCoachResponse(
 
   if (containsAny(msg, VISIT_KEYWORDS)) {
     likelyTrigger = likelyTrigger || `Change to routine — visitors or trips disrupt ${name}'s predictable environment.`;
-    behaviourExplanation = `Visits change the home environment and social expectations for ${name}. ${historyOpener}`;
+    behaviourExplanation = `Visits change the home environment and social expectations for ${name}.`;
     suggestedResponse = pickVariant(
       [
         "Prepare a visual schedule for the visit. Designate a quiet retreat space. Brief visitors on what helps.",
@@ -373,7 +323,7 @@ function buildLocalCoachResponse(
 
   if (containsAny(msg, SLEEP_KEYWORDS)) {
     likelyTrigger = likelyTrigger || `Sleep disruption — ${name}'s regulation capacity is closely tied to rest.`;
-    behaviourExplanation = `Sleep affects everything for ${name}. ${historyOpener}`;
+    behaviourExplanation = `Sleep affects everything for ${name}.`;
     suggestedResponse = pickVariant(
       [
         "Reduce evening demands. Dim lights an hour before bed. Keep the bedtime routine identical each night.",
@@ -436,7 +386,6 @@ function buildLocalCoachResponse(
   confidence = Math.max(confidence, depth.score * 0.95);
 
   if (conversationHistory.length >= 2) {
-    emotionalInterpretation = `${convoSummary || "Building on our earlier messages,"} ${emotionalInterpretation}`;
     confidence = Math.min(0.92, confidence + 0.05);
   }
 
@@ -505,6 +454,13 @@ export async function generateCoachResponse(
 }> {
   const knowledgeArticles = retrieveKnowledgeForMessage(parentMessage, context.child.diagnosis || []);
   const moodPrompt = parentMoodForPrompt(options?.parentMood ?? null);
+
+  const engine = runConversationEngine(parentMessage, context, {
+    conversationHistory,
+    parentMood: options?.parentMood ?? null,
+    preferReflection: options?.preferReflection,
+  });
+
   const mode = detectCoachMode(parentMessage, {
     preferReflection: options?.preferReflection,
     parentMood: options?.parentMood ?? null,
@@ -632,6 +588,19 @@ export async function generateCoachResponse(
     };
   }
 
+  if (engine.intent === "urgent_safety" || engine.priority === "urgent") {
+    const enrichment = buildCuriousEnrichment(parentMessage, context, conversationHistory, mode, {
+      parentMood: options?.parentMood ?? null,
+      coachMessages: options?.coachMessages ?? [],
+    });
+    return {
+      response: buildUrgentSafetyResponse(context, engine),
+      mode,
+      enrichment,
+      trace: buildPipelineTrace(context, conversationHistory, knowledgeArticles.length, false, traceOpts),
+    };
+  }
+
   if (shouldClarifyBeforeAdvice(parentMessage, conversationHistory, mode, {
     parentMood: options?.parentMood ?? null,
   })) {
@@ -661,7 +630,7 @@ export async function generateCoachResponse(
 
   if (mode === "parent_support") {
     return finish(
-      buildLocalCoachResponse(parentMessage, context, conversationHistory, mode, moodPrompt),
+      buildLocalCoachResponse(parentMessage, context, conversationHistory, mode, moodPrompt, engine),
       false,
     );
   }
@@ -669,11 +638,17 @@ export async function generateCoachResponse(
   if (isExternalLLMConfigured()) {
     try {
       const provider = getLLMProvider();
-      const prompt = buildCoachPrompt(parentMessage, context, conversationHistory, moodPrompt);
+      const prompt = buildCoachPromptWithEngine(
+        parentMessage,
+        context,
+        conversationHistory,
+        moodPrompt,
+        engine,
+      );
       const raw = await provider.complete(prompt, { system: COACH_SYSTEM, temperature: 0.55 });
       const parsed = parseDebriefResponse(raw);
       if (parsed) {
-        return finish(parsed, true);
+        return finish(parsed, true, { skipEnrich: true });
       }
     } catch {
       // Fall through to local intelligence
@@ -681,9 +656,7 @@ export async function generateCoachResponse(
   }
 
   return finish(
-    buildLocalCoachResponse(parentMessage, context, conversationHistory, mode, moodPrompt),
+    buildLocalCoachResponse(parentMessage, context, conversationHistory, mode, moodPrompt, engine),
     false,
   );
 }
-
-export { formatCheckinLine };

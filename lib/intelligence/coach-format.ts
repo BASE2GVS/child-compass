@@ -6,6 +6,7 @@ import { selectConversationStyle } from "@/lib/conversation/conversation-style";
 import { formatNaturalReply } from "@/lib/conversation/natural-reply";
 import { needsProfessionalHelp } from "@/lib/conversation/safety";
 import { extractPriorAdviceTopics } from "@/lib/companion/conversation-memory";
+import { applyCompanionVoice } from "@/lib/voice";
 
 export { needsProfessionalHelp } from "@/lib/conversation/safety";
 
@@ -38,7 +39,7 @@ export function formatCoachResponse(
     ? { ...style, includeProfessionalHelp: true }
     : style;
 
-  return formatNaturalReply(
+  const raw = formatNaturalReply(
     response,
     context,
     parentMessage,
@@ -46,4 +47,14 @@ export function formatCoachResponse(
     styleWithSafety,
     enrichment,
   );
+
+  const childName = context.child.nickname || context.child.first_name;
+
+  return applyCompanionVoice(raw, {
+    childName,
+    parentMessage,
+    conversationHistory,
+    parentFeeling: enrichment?.parentStory?.parentFeeling ?? null,
+    maxWords: 220,
+  });
 }
