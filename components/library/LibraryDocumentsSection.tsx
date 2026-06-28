@@ -46,13 +46,18 @@ export default function LibraryDocumentsSection({
     e.preventDefault();
     setUploading(true);
     setError(null);
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    formData.set("familyId", familyId);
-    formData.set("childId", childId);
-    const result = await uploadDocument(formData);
-    if (result?.error) {
-      setError(result.error);
+    try {
+      const form = e.currentTarget;
+      const formData = new FormData(form);
+      formData.set("familyId", familyId);
+      formData.set("childId", childId);
+      const result = await uploadDocument(formData);
+      if (result?.error) {
+        setError(result.error);
+      }
+    } catch {
+      setError("That didn't save just now. Please try again.");
+    } finally {
       setUploading(false);
     }
   }

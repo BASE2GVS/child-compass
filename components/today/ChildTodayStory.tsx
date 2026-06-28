@@ -1,48 +1,37 @@
 import { moodEmoji, moodLabel } from "@/lib/presentation/child-summary";
-
+import GentleInsight from "@/components/insights/GentleInsight";
 import type { DailyCheckin } from "@/lib/types/database";
 
-
+type CompanionInsightDisplay = {
+  displayText: string;
+  confidenceLabel: string;
+  supportingEvents?: { label: string; date?: string }[];
+};
 
 type ChildTodayStoryProps = {
-
   childName: string;
-
   photoUrl: string | null;
-
   checkin: DailyCheckin | null;
-
   insight: string | null;
-
+  companionInsight?: CompanionInsightDisplay | null;
   recommendation: string | null;
-
   encouragement: string | null;
-
 };
 
 
 
 export default function ChildTodayStory({
-
   childName,
-
   photoUrl,
-
   checkin,
-
   insight,
-
+  companionInsight,
   recommendation,
-
 }: ChildTodayStoryProps) {
-
   const initial = childName.charAt(0).toUpperCase();
-
   const emoji = moodEmoji(checkin?.mood);
-
   const mood = moodLabel(checkin?.mood);
-
-  const headline = insight || recommendation;
+  const headline = !companionInsight ? insight || recommendation : null;
 
 
 
@@ -111,6 +100,12 @@ export default function ChildTodayStory({
         )}
 
 
+
+        {companionInsight && (
+          <div className="mt-3">
+            <GentleInsight insight={companionInsight} compact />
+          </div>
+        )}
 
         {headline && (
 

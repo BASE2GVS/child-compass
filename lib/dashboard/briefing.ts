@@ -4,6 +4,7 @@ import type {
   PatternFinding,
   UnifiedTimelineItem,
 } from "@/lib/types/database";
+import { categoryMeta } from "@/lib/timeline/categories";
 import { detectCelebrations } from "@/lib/intelligence/celebrations";
 import { generatePredictions } from "@/lib/intelligence/predictions";
 
@@ -365,21 +366,25 @@ const EMOTIONAL_MAP: Record<string, { emoji: string; label: string; bg: string; 
 };
 
 export function mapEmotionalEvent(event: UnifiedTimelineItem): EmotionalEvent {
+  const meta = event.category ? categoryMeta(event.category) : null;
   const key = event.event_type || event.source;
-  const meta = EMOTIONAL_MAP[key] ?? {
+  const legacy = EMOTIONAL_MAP[key] ?? {
     emoji: "💛",
     label: "Family Moment",
     bg: "bg-slate-50",
     border: "border-slate-100",
   };
+  const display = meta
+    ? { emoji: meta.emoji, label: meta.label, bg: meta.tint, border: meta.ring }
+    : legacy;
   return {
     id: event.id,
-    emoji: meta.emoji,
-    label: meta.label,
+    emoji: display.emoji,
+    label: display.label,
     summary: event.description || event.title,
     time: event.event_date,
-    bg: meta.bg,
-    border: meta.border,
+    bg: display.bg,
+    border: display.border,
   };
 }
 

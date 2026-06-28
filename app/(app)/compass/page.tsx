@@ -17,7 +17,7 @@ import {
   getProfile,
 
   getUnifiedTimeline,
-
+  getCompanionInsights,
 } from "@/lib/data/queries";
 
 import { resolveActiveChild } from "@/lib/utils/child-selection";
@@ -70,6 +70,8 @@ export default async function CompassPage({
 
     patterns,
 
+    companionInsights,
+
   ] = await Promise.all([
 
     getChild(child.id),
@@ -83,6 +85,8 @@ export default async function CompassPage({
     getUnifiedTimeline(child.id, 8),
 
     getPatterns(child.id),
+
+    getCompanionInsights(child.id),
 
   ]);
 
@@ -115,7 +119,7 @@ export default async function CompassPage({
       patterns={patterns}
 
       timeline={timeline}
-
+      companionInsights={companionInsights}
       parentName={profile.full_name}
 
     />

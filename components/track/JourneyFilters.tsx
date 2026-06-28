@@ -6,22 +6,29 @@ import {
   type ThemeFilter,
   type TimeFilter,
 } from "@/components/track/track-filters";
+import TimelineSearch from "@/components/timeline/TimelineSearch";
 
 type JourneyFiltersProps = {
   timeFilter: TimeFilter;
   themeFilter: ThemeFilter;
+  searchQuery: string;
   onTimeChange: (f: TimeFilter) => void;
   onThemeChange: (f: ThemeFilter) => void;
+  onSearchChange: (q: string) => void;
 };
 
 export default function JourneyFilters({
   timeFilter,
   themeFilter,
+  searchQuery,
   onTimeChange,
   onThemeChange,
+  onSearchChange,
 }: JourneyFiltersProps) {
   return (
-    <div className="space-y-4" role="search" aria-label="Filter your family journey">
+    <div className="space-y-4" role="search" aria-label="Filter your family timeline">
+      <TimelineSearch value={searchQuery} onChange={onSearchChange} />
+
       <div className="flex flex-wrap gap-2">
         {TIME_FILTERS.map((f) => {
           const active = timeFilter === f.id;

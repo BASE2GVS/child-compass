@@ -1,10 +1,14 @@
+import { Suspense } from "react";
+
 import { addSchoolHubEntry } from "@/lib/actions/ecosystem";
+import FormFeedbackBanner from "@/components/forms/FormFeedbackBanner";
+import FormSaveButton from "@/components/forms/FormSaveButton";
 
 import { CompanionExpandable } from "@/components/companion";
 
 import EditorialPage from "@/components/editorial/EditorialPage";
 
-import { Button, Input, Select, StatusBadge, Textarea } from "@/components/design-system";
+import { Input, Select, StatusBadge, Textarea } from "@/components/design-system";
 
 import type { Child, SchoolHubEntry } from "@/lib/types/database";
 
@@ -90,6 +94,10 @@ export default function SchoolExperience({
 
     >
 
+      <Suspense fallback={null}>
+        <FormFeedbackBanner successMessage="Your notes have been updated." />
+      </Suspense>
+
       {insight && (
 
         <p className="text-lg leading-relaxed text-[var(--cc-ink-soft)]">{insight}</p>
@@ -136,11 +144,11 @@ export default function SchoolExperience({
 
             />
 
-            <Button type="submit" className="cc-fw-form-span-2">
+            <FormSaveButton className="cc-fw-form-span-2">
 
               Save note
 
-            </Button>
+            </FormSaveButton>
 
           </form>
 

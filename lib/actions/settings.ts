@@ -21,8 +21,8 @@ export async function updateFamilySettings(formData: FormData) {
     })
     .eq("id", familyId);
 
-  if (error) throw new Error(error.message);
-  redirect("/settings");
+  if (error) redirect("/settings?saveError=1");
+  redirect("/settings?saved=1");
 }
 
 export async function inviteCaregiver(formData: FormData) {
@@ -41,8 +41,8 @@ export async function inviteCaregiver(formData: FormData) {
     role: "caregiver",
   });
 
-  if (error) throw new Error(error.message);
-  redirect("/settings");
+  if (error) redirect("/settings?saveError=1");
+  redirect("/settings?saved=1");
 }
 
 export async function updateNotificationPreferences(formData: FormData) {
@@ -65,8 +65,8 @@ export async function updateNotificationPreferences(formData: FormData) {
     })
     .eq("id", user.id);
 
-  if (error) throw new Error(error.message);
-  redirect("/settings");
+  if (error) redirect("/settings?saveError=1");
+  redirect("/settings?saved=1");
 }
 
 export async function exportFamilyData() {

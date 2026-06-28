@@ -4,6 +4,7 @@ import type {
   ParentDebrief,
   PatternFinding,
   TimelineEvent,
+  UnifiedTimelineItem,
 } from "@/lib/types/database";
 
 export type MemoryCategory =
@@ -42,6 +43,7 @@ export function buildFamilyMemory(input: {
   debriefs: ParentDebrief[];
   timeline: TimelineEvent[];
   patterns: PatternFinding[];
+  unifiedTimeline?: UnifiedTimelineItem[];
 }): FamilyMemory[] {
   const memories: FamilyMemory[] = [];
   const seen = new Set<string>();
@@ -149,7 +151,56 @@ export function buildFamilyMemory(input: {
     });
   }
 
-  return memories.slice(0, 40);
+  for (const item of input.unifiedTimeline ?? []) {
+    const text = `${item.title} ${item.description ?? ""}`;
+    const lower = text.toLowerCase();
+    const date = item.event_date.split("T")[0];
+
+    if (item.category === "medication" || lower.includes("medication")) {
+      add({ category: "trigger", text: item.title, date, source: "timeline" });
+    }
+    if (item.category === "therapy" || item.source === "therapy") {
+      add({ category: "communication", text: item.title, date, source: "timeline" });
+    }
+    if (textMentionsShopping(lower)) {
+      add({
+        category: "sensory_event",
+        text: item.description || item.title,
+        date,
+        source: "timeline",
+      });
+    }
+    if (item.category === "wins" || item.event_type === "victory") {
+      add({ category: "win", text: item.description || item.title, date, source: "timeline" });
+    }
+    if (item.category === "challenges" || item.event_type === "meltdown") {
+      add({ category: "trigger", text: item.description || item.title, date, source: "timeline" });
+    }
+    if (/quiet|recovery|calm/i.test(lower)) {
+      add({
+        category: "recovery",
+        text: item.description || item.title,
+        date,
+        source: "timeline",
+      });
+    }
+    if (/countdown|visual timer|picture schedule|choices/i.test(lower)) {
+      add({
+        category: "successful_transition",
+        text: item.description || item.title,
+        date,
+        source: "timeline",
+      });
+    }
+  }
+
+  return memories.slice(0, 50);
+}
+
+function textMentionsShopping(lower: string): boolean {
+  return ["shop", "shopping", "supermarket", "crowd", "shoes", "sensory overload"].some((t) =>
+    lower.includes(t),
+  );
 }
 
 export function formatMemoryReference(memory: FamilyMemory): string {
@@ -185,9 +236,10 @@ export function memoryReferenceForContext(
   const msg = parentMessage.toLowerCase();
   const keywordSets: Record<string, string[]> = {
     school: ["school", "transition", "morning", "refusal"],
-    sensory: ["loud", "noise", "shop", "crowd", "sensory"],
+    sensory: ["loud", "noise", "shop", "shopping", "crowd", "sensory", "supermarket", "shoes"],
     sleep: ["sleep", "tired", "bed", "night"],
     choice: ["choice", "options", "demand"],
+    recovery: ["recover", "quiet", "calm", "regulate", "overload"],
   };
 
   for (const [, keys] of Object.entries(keywordSets)) {

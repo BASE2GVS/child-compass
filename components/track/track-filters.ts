@@ -1,7 +1,9 @@
 import type { UnifiedTimelineItem } from "@/lib/types/database";
+import { matchesCategoryFilter, type CategoryFilter } from "@/lib/timeline/categories";
+import { searchTimelineItems } from "@/lib/timeline/search";
 
 export type TimeFilter = "all" | "today" | "week" | "month";
-export type ThemeFilter = "all" | "school" | "home" | "celebrations" | "challenges";
+export type ThemeFilter = CategoryFilter;
 
 export const TIME_FILTERS: { id: TimeFilter; label: string }[] = [
   { id: "all", label: "All time" },
@@ -10,13 +12,7 @@ export const TIME_FILTERS: { id: TimeFilter; label: string }[] = [
   { id: "month", label: "This month" },
 ];
 
-export const THEME_FILTERS: { id: ThemeFilter; label: string; emoji: string; tint: string }[] = [
-  { id: "all", label: "Everything", emoji: "✨", tint: "bg-[#FFFCF8]" },
-  { id: "school", label: "School", emoji: "🏫", tint: "bg-[#F3EFFA]" },
-  { id: "home", label: "Home", emoji: "🏠", tint: "bg-[#E8F6F3]" },
-  { id: "celebrations", label: "Celebrations", emoji: "🌟", tint: "bg-[#FBF4E6]" },
-  { id: "challenges", label: "Challenges", emoji: "💛", tint: "bg-[#FBEFEC]" },
-];
+export { CATEGORY_FILTERS as THEME_FILTERS } from "@/lib/timeline/categories";
 
 function isToday(dateStr: string): boolean {
   const d = new Date(dateStr);
@@ -31,39 +27,25 @@ function isWithinDays(dateStr: string, days: number): boolean {
   return d >= cutoff;
 }
 
-function matchesTheme(event: UnifiedTimelineItem, theme: ThemeFilter): boolean {
-  if (theme === "all") return true;
-  const type = event.event_type?.toLowerCase() ?? "";
-  const source = event.source;
-  const text = `${event.title} ${event.description ?? ""}`.toLowerCase();
-
-  if (theme === "school") {
-    return type === "school" || text.includes("school");
-  }
-  if (theme === "home") {
-    return ["sleep", "note", "checkin", "debrief"].includes(type) || source === "checkin" || source === "debrief";
-  }
-  if (theme === "celebrations") {
-    return type === "victory" || text.includes("win") || text.includes("celebrat");
-  }
-  if (theme === "challenges") {
-    return type === "meltdown" || text.includes("challeng") || text.includes("hard") || text.includes("difficult");
-  }
-  return true;
-}
-
 export function filterTimelineEvents(
   events: UnifiedTimelineItem[],
   timeFilter: TimeFilter,
-  themeFilter: ThemeFilter,
+  categoryFilter: CategoryFilter,
+  searchQuery = "",
 ): UnifiedTimelineItem[] {
-  return events.filter((event) => {
+  let filtered = events.filter((event) => {
     if (timeFilter === "today" && !isToday(event.event_date)) return false;
     if (timeFilter === "week" && !isWithinDays(event.event_date, 7)) return false;
     if (timeFilter === "month" && !isWithinDays(event.event_date, 30)) return false;
-    if (!matchesTheme(event, themeFilter)) return false;
+    if (!matchesCategoryFilter(event, categoryFilter)) return false;
     return true;
   });
+
+  if (searchQuery.trim()) {
+    filtered = searchTimelineItems(filtered, searchQuery);
+  }
+
+  return filtered;
 }
 
 export function timeOfDay(dateStr: string): { label: string; emoji: string } {
@@ -74,12 +56,12 @@ export function timeOfDay(dateStr: string): { label: string; emoji: string } {
 }
 
 export function isMemoryMoment(event: UnifiedTimelineItem): boolean {
-  const type = event.event_type?.toLowerCase() ?? "";
   return (
-    type === "victory" ||
-    type === "appointment" ||
+    event.category === "wins" ||
+    event.category === "milestones" ||
+    event.category === "challenges" ||
     event.source === "debrief" ||
-    type === "meltdown"
+    event.event_type === "meltdown"
   );
 }
 

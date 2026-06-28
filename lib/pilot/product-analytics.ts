@@ -1,6 +1,6 @@
 import { createHash } from "crypto";
-import { appendFile, mkdir, readFile } from "fs/promises";
 import path from "path";
+import { appendJsonlLine, readJsonlFile } from "@/lib/server/local-file-log";
 import { readPilotConfig } from "@/lib/pilot/config";
 
 export type ProductEventName =
@@ -22,6 +22,9 @@ export type ProductEvent = {
 };
 
 const ANALYTICS_PATH = path.join(process.cwd(), "data", "product-analytics.jsonl");
+
+const inMemoryEvents: ProductEvent[] = [];
+const IN_MEMORY_CAP = 500;
 
 export function hashId(value: string): string {
   return createHash("sha256").update(value).digest("hex").slice(0, 12);
@@ -46,22 +49,18 @@ export async function trackProductEvent(input: {
     metadata: input.metadata,
   };
 
-  await mkdir(path.dirname(ANALYTICS_PATH), { recursive: true });
-  await appendFile(ANALYTICS_PATH, `${JSON.stringify(entry)}\n`, "utf8");
+  inMemoryEvents.push(entry);
+  if (inMemoryEvents.length > IN_MEMORY_CAP) {
+    inMemoryEvents.splice(0, inMemoryEvents.length - IN_MEMORY_CAP);
+  }
+
+  await appendJsonlLine(ANALYTICS_PATH, entry);
 }
 
 export async function readProductAnalytics(limit = 200): Promise<ProductEvent[]> {
-  try {
-    const raw = await readFile(ANALYTICS_PATH, "utf8");
-    return raw
-      .trim()
-      .split("\n")
-      .filter(Boolean)
-      .slice(-limit)
-      .map((line) => JSON.parse(line) as ProductEvent);
-  } catch {
-    return [];
-  }
+  const fromDisk = await readJsonlFile<ProductEvent>(ANALYTICS_PATH, limit);
+  if (fromDisk.length > 0) return fromDisk;
+  return inMemoryEvents.slice(-limit);
 }
 
 export function summariseAnalytics(events: ProductEvent[]) {

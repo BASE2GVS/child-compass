@@ -1,5 +1,5 @@
-import { readFile, writeFile, mkdir } from "fs/promises";
 import path from "path";
+import { readJsonFile, writeJsonFile } from "@/lib/server/local-file-log";
 
 export type PilotConfig = {
   pilotFeedbackEnabled: boolean;
@@ -16,19 +16,13 @@ const DEFAULT_CONFIG: PilotConfig = {
 const CONFIG_PATH = path.join(process.cwd(), "data", "pilot-config.json");
 
 export async function readPilotConfig(): Promise<PilotConfig> {
-  try {
-    const raw = await readFile(CONFIG_PATH, "utf8");
-    return { ...DEFAULT_CONFIG, ...JSON.parse(raw) };
-  } catch {
-    return { ...DEFAULT_CONFIG };
-  }
+  return readJsonFile<PilotConfig>(CONFIG_PATH, DEFAULT_CONFIG);
 }
 
 export async function writePilotConfig(patch: Partial<PilotConfig>): Promise<PilotConfig> {
   const current = await readPilotConfig();
   const next = { ...current, ...patch };
-  await mkdir(path.dirname(CONFIG_PATH), { recursive: true });
-  await writeFile(CONFIG_PATH, `${JSON.stringify(next, null, 2)}\n`, "utf8");
+  await writeJsonFile(CONFIG_PATH, next);
   return next;
 }
 

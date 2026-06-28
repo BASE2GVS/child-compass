@@ -37,6 +37,11 @@ import { computeRegulationLevel } from "@/lib/ai/debrief-engine";
 import { buildFamilyIntelligence } from "@/lib/intelligence/family-intelligence";
 import { QUERY_LIMITS } from "@/lib/scalability/query-limits";
 import { buildChildIntelligence } from "@/lib/services/child-intelligence";
+import {
+  headlineCompanionInsight,
+  loadCompanionInsights,
+  type CompanionInsight,
+} from "@/lib/intelligence/insight-engine";
 
 export async function getSessionUser() {
   const supabase = await createClient();
@@ -168,106 +173,8 @@ export async function getTimeline(childId: string, limit = 50): Promise<Timeline
 
 export async function getUnifiedTimeline(childId: string, limit = 80): Promise<UnifiedTimelineItem[]> {
   await requireUser();
-  const supabase = await createClient();
-
-  const [events, checkins, debriefs, insights, reports] = await Promise.all([
-    supabase
-      .from("timeline_events")
-      .select("*")
-      .eq("child_id", childId)
-      .order("event_date", { ascending: false })
-      .limit(limit),
-    supabase
-      .from("daily_checkins")
-      .select("*")
-      .eq("child_id", childId)
-      .order("checkin_date", { ascending: false })
-      .limit(30),
-    supabase
-      .from("parent_debriefs")
-      .select("*")
-      .eq("child_id", childId)
-      .order("created_at", { ascending: false })
-      .limit(20),
-    supabase
-      .from("ai_insights")
-      .select("*")
-      .eq("child_id", childId)
-      .order("created_at", { ascending: false })
-      .limit(20),
-    supabase
-      .from("generated_reports")
-      .select("*")
-      .eq("child_id", childId)
-      .order("created_at", { ascending: false })
-      .limit(10),
-  ]);
-
-  const items: UnifiedTimelineItem[] = [];
-
-  for (const e of events.data || []) {
-    items.push({
-      id: `event-${e.id}`,
-      source: "timeline",
-      event_type: e.event_type,
-      title: e.title,
-      description: e.description,
-      event_date: e.event_date,
-      metadata: e.metadata || {},
-    });
-  }
-
-  for (const c of checkins.data || []) {
-    items.push({
-      id: `checkin-${c.id}`,
-      source: "checkin",
-      event_type: "checkin",
-      title: "Daily check-in",
-      description: `Mood ${c.mood}/5 · Sleep ${c.sleep_quality}/5 · Anxiety ${c.anxiety}/5`,
-      event_date: `${c.checkin_date}T12:00:00Z`,
-      metadata: { checkin_id: c.id },
-    });
-  }
-
-  for (const d of debriefs.data || []) {
-    items.push({
-      id: `debrief-${d.id}`,
-      source: "debrief",
-      event_type: "debrief",
-      title: "Parent Debrief™",
-      description: d.likely_trigger || d.parent_message.slice(0, 120),
-      event_date: d.created_at,
-      metadata: { debrief_id: d.id },
-    });
-  }
-
-  for (const i of insights.data || []) {
-    items.push({
-      id: `insight-${i.id}`,
-      source: "insight",
-      event_type: "ai_insight",
-      title: i.title,
-      description: i.content,
-      event_date: i.created_at,
-      metadata: { insight_id: i.id },
-    });
-  }
-
-  for (const r of reports.data || []) {
-    items.push({
-      id: `report-${r.id}`,
-      source: "report",
-      event_type: "report",
-      title: r.title,
-      description: `Report generated: ${r.report_type.replace("_", " ")}`,
-      event_date: r.created_at,
-      metadata: { report_id: r.id, report_type: r.report_type },
-    });
-  }
-
-  return items
-    .sort((a, b) => new Date(b.event_date).getTime() - new Date(a.event_date).getTime())
-    .slice(0, limit);
+  const { fetchUnifiedTimeline } = await import("@/lib/timeline/unified");
+  return fetchUnifiedTimeline(childId, limit);
 }
 
 export async function getDashboardData(searchParams?: { child?: string }) {
@@ -354,6 +261,8 @@ export async function getDashboardData(searchParams?: { child?: string }) {
   ]);
 
   const timeline = await getUnifiedTimeline(activeChild.id, 5);
+  const companionInsights = await loadCompanionInsights(activeChild.id);
+  const companionHeadline = headlineCompanionInsight(companionInsights);
   const childName = activeChild.nickname || activeChild.first_name;
 
   const regulation = checkin
@@ -371,7 +280,7 @@ export async function getDashboardData(searchParams?: { child?: string }) {
 
   const unreadInsights = (insights || []).filter((i: AIInsight) => !i.is_read).length;
 
-  let headlineInsight = insight?.content || null;
+  let headlineInsight = companionHeadline?.displayText || insight?.content || null;
   if (!headlineInsight && weeklyTrend.trend === "improving") {
     headlineInsight = `${childName} had a calmer week than last week.`;
   } else if (!headlineInsight && regulation?.level === "Elevated") {
@@ -400,9 +309,16 @@ export async function getDashboardData(searchParams?: { child?: string }) {
     patterns: (patterns || []) as PatternFinding[],
     unreadInsights,
     headlineInsight,
+    companionHeadline,
+    companionInsights,
     hasDebrief: (debriefSample || []).length > 0,
     journeyPhase,
   };
+}
+
+export async function getCompanionInsights(childId: string): Promise<CompanionInsight[]> {
+  await requireUser();
+  return loadCompanionInsights(childId);
 }
 
 export async function getReportsData(childId: string) {
@@ -648,6 +564,26 @@ export async function getGlobalSearchResults(search: string, childId?: string) {
     };
   }
 
+  const { searchTimelineItems } = await import("@/lib/timeline/search");
+  const { fetchUnifiedTimeline } = await import("@/lib/timeline/unified");
+
+  let unifiedMatches: TimelineEvent[] = [];
+  if (childId) {
+    const items = searchTimelineItems(await fetchUnifiedTimeline(childId, 200), q).slice(0, 8);
+    unifiedMatches = items.map((item) => ({
+      id: item.ref_id ?? item.id,
+      child_id: childId,
+      family_id: "",
+      user_id: "",
+      event_type: item.event_type as TimelineEvent["event_type"],
+      title: item.title,
+      description: item.description,
+      event_date: item.event_date,
+      metadata: item.metadata,
+      created_at: item.event_date,
+    }));
+  }
+
   const timelineQuery = supabase
     .from("timeline_events")
     .select("*")
@@ -664,10 +600,13 @@ export async function getGlobalSearchResults(search: string, childId?: string) {
     supabase.from("parent_debriefs").select("*").ilike("parent_message", `%${q}%`).limit(8),
   ]);
 
+  const mergedTimeline =
+    unifiedMatches.length > 0 ? unifiedMatches : ((timeline.data || []) as TimelineEvent[]);
+
   return {
     children: (children.data || []) as Child[],
     reports: (reports.data || []) as GeneratedReport[],
-    timeline: (timeline.data || []) as TimelineEvent[],
+    timeline: mergedTimeline,
     documents: (documents.data || []) as DocumentRecord[],
     insights: (insights.data || []) as AIInsight[],
     debriefs: (debriefs.data || []) as ParentDebrief[],

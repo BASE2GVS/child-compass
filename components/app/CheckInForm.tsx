@@ -3,7 +3,10 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { saveCheckin } from "@/lib/actions/checkin";
 import EditorialPage from "@/components/editorial/EditorialPage";
+import DayTypeSelector from "@/components/timeline/DayTypeSelector";
 import { Banner, Button } from "@/components/design-system";
+import { inferDayType } from "@/lib/timeline/day-type";
+import type { TimelineDayType } from "@/lib/types/database";
 import EmotionalChoices from "@/components/check-in/EmotionalChoices";
 import PaperTextarea from "@/components/check-in/PaperTextarea";
 import CheckInComplete from "@/components/check-in/CheckInComplete";
@@ -45,6 +48,7 @@ export default function CheckInForm({
   const [wins, setWins] = useState("");
   const [challenges, setChallenges] = useState("");
   const [notes, setNotes] = useState("");
+  const [dayType, setDayType] = useState<TimelineDayType>(inferDayType());
 
   const [stepIndex, setStepIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
@@ -137,6 +141,7 @@ export default function CheckInForm({
     setError(null);
     const result = await saveCheckin({
       childId,
+      dayType,
       sleepQuality,
       mood,
       energy,
@@ -183,6 +188,11 @@ export default function CheckInForm({
             <h2 className="font-display text-2xl font-semibold leading-snug text-[var(--cc-ink)] sm:text-3xl">
               {title}
             </h2>
+            {stepIndex === 0 && (
+              <div className="mt-6">
+                <DayTypeSelector value={dayType} onChange={setDayType} />
+              </div>
+            )}
           </header>
         )}
 

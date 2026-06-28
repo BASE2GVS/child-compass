@@ -50,7 +50,7 @@ export async function uploadDocument(formData: FormData) {
 
   if (dbError) return { error: dbError.message };
 
-  redirect(childId ? `/documents?child=${childId}` : "/documents");
+  redirect(childId ? `/documents-hub?child=${childId}&saved=1` : "/documents-hub?saved=1");
 }
 
 export async function deleteDocument(documentId: string, filePath: string) {

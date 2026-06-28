@@ -94,12 +94,41 @@ export type ChildProfile = {
   updated_at: string;
 };
 
+export type TimelineDayType = "weekday" | "weekend" | "holiday" | "school_holiday";
+
+export type TimelineCategory =
+  | "sleep"
+  | "school"
+  | "health"
+  | "medication"
+  | "behaviour"
+  | "wins"
+  | "challenges"
+  | "observation"
+  | "therapy"
+  | "child_compass"
+  | "documents"
+  | "milestones";
+
+export type TimelineSource =
+  | "timeline"
+  | "checkin"
+  | "debrief"
+  | "insight"
+  | "report"
+  | "health"
+  | "school"
+  | "therapy"
+  | "document"
+  | "coach";
+
 export type DailyCheckin = {
   id: string;
   child_id: string;
   family_id: string;
   user_id: string;
   checkin_date: string;
+  day_type?: TimelineDayType | null;
   sleep_quality: number | null;
   mood: number | null;
   energy: number | null;
@@ -161,12 +190,15 @@ export type TimelineEvent = {
 
 export type UnifiedTimelineItem = {
   id: string;
-  source: "timeline" | "checkin" | "debrief" | "insight" | "report";
+  source: TimelineSource;
+  category: TimelineCategory;
   event_type: string;
   title: string;
   description: string | null;
   event_date: string;
+  day_type?: TimelineDayType | null;
   metadata: Record<string, unknown>;
+  ref_id?: string;
 };
 
 export type AIInsight = {
@@ -403,8 +435,17 @@ export type ChildContext = {
   graphInsights?: string[];
   /** Phase 4 — distilled family understanding (not raw memory dumps) */
   familyInsights?: string[];
+  /** Phase 3 — consolidated family brain understanding for prompts */
+  familyBrainSummary?: string[];
   /** Days between earliest and latest check-in in context */
   dataSpanDays?: number;
+  /** Current rhythm context (weekend/weekday/holiday) */
+  rhythmNote?: string | null;
+  childAgeNote?: string | null;
+  /** Stored insights from ai_insights table */
+  storedInsights?: { title: string; content: string }[];
+  /** Phase 4 — companion insight display texts for coach/prompts */
+  companionInsightTexts?: string[];
 };
 
 export type ReportType =

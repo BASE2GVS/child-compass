@@ -68,17 +68,13 @@ export async function sendCoachMessage(payload: {
     .maybeSingle();
 
   const [checkins, debriefs, patterns] = await Promise.all([
-    getCheckins(payload.childId, 14),
+    getCheckins(payload.childId, 30),
     getDebriefs(payload.childId),
     getPatterns(payload.childId),
   ]);
 
-  const { data: timeline } = await supabase
-    .from("timeline_events")
-    .select("*")
-    .eq("child_id", payload.childId)
-    .order("event_date", { ascending: false })
-    .limit(30);
+  const { loadFamilyBrainInput } = await import("@/lib/intelligence/family-brain");
+  const brainInput = await loadFamilyBrainInput(payload.childId);
 
   const context = assembleChildContext(
     child,
@@ -86,7 +82,8 @@ export async function sendCoachMessage(payload: {
     checkins,
     debriefs,
     patterns,
-    timeline || [],
+    brainInput?.timelineEvents ?? [],
+    brainInput,
   );
 
   try {
@@ -133,21 +130,16 @@ export async function sendCoachMessage(payload: {
         follow_up_questions: response.follow_up_questions,
       });
 
-      await supabase.from("timeline_events").insert({
-        child_id: payload.childId,
-        user_id: user.id,
-        event_type: "debrief",
-        title: "Reflection with Child Compass",
-        description: response.likely_trigger,
-        event_date: new Date().toISOString(),
-      });
-
       if (child.family_id) {
-        await trackProductEvent({
-          event: "debrief_completed",
-          feature: "ask_child_compass_reflection",
-          familyId: child.family_id,
-        });
+        try {
+          await trackProductEvent({
+            event: "debrief_completed",
+            feature: "ask_child_compass_reflection",
+            familyId: child.family_id,
+          });
+        } catch {
+          /* analytics must not block reflection */
+        }
       }
     }
 
@@ -177,24 +169,19 @@ export async function sendCoachMessage(payload: {
       .single();
 
     await incrementUsage(child.family_id, "coach_today");
-    await logAIForChild("coach", payload.childId, response.likely_trigger, response.confidence_level);
 
-    if (child.family_id) {
-      await trackProductEvent({
-        event: "coach_message_sent",
-        feature: "ask_child_compass",
-        familyId: child.family_id,
-      });
+    try {
+      await logAIForChild("coach", payload.childId, response.likely_trigger, response.confidence_level);
+      if (child.family_id) {
+        await trackProductEvent({
+          event: "coach_message_sent",
+          feature: "ask_child_compass",
+          familyId: child.family_id,
+        });
+      }
+    } catch {
+      /* file logging must never fail Talk on serverless */
     }
-
-    await supabase.from("timeline_events").insert({
-      child_id: payload.childId,
-      user_id: user.id,
-      event_type: "ai_insight",
-      title: "Ask Child Compass session",
-      description: response.likely_trigger,
-      event_date: new Date().toISOString(),
-    });
 
     return {
       success: true,
@@ -204,7 +191,12 @@ export async function sendCoachMessage(payload: {
       pipeline: { ...pipeline, persisted: true },
     };
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Coach response failed";
+    const raw = err instanceof Error ? err.message : "Coach response failed";
+    const isFilesystem =
+      /ENOENT|EACCES|EPERM|read-only|mkdir|\/var\/task/i.test(raw);
+    const message = isFilesystem
+      ? "Something went wrong on our side. Please try again."
+      : raw;
     return { error: `Child Compass couldn't complete that response. ${message}` };
   }
 }
@@ -349,8 +341,8 @@ export async function addSchoolHubEntry(formData: FormData) {
     title: formData.get("title") as string,
     content: formData.get("content") as string,
   });
-  if (error) throw new Error(error.message);
-  redirect(`/school?child=${childId}`);
+  if (error) redirect(`/school?child=${childId}&saveError=1`);
+  redirect(`/school?child=${childId}&saved=1`);
 }
 
 export async function addTherapySession(formData: FormData) {
@@ -371,8 +363,8 @@ export async function addTherapySession(formData: FormData) {
     exercises: parseListInput(formData.get("exercises") as string),
     progress: (formData.get("progress") as string) || null,
   });
-  if (error) throw new Error(error.message);
-  redirect(`/therapy?child=${childId}`);
+  if (error) redirect(`/therapy?child=${childId}&saveError=1`);
+  redirect(`/therapy?child=${childId}&saved=1`);
 }
 
 export async function inviteSharedAccess(formData: FormData) {
@@ -400,6 +392,6 @@ export async function inviteSharedAccess(formData: FormData) {
     user_id: user.id,
   });
 
-  if (error) throw new Error(error.message);
-  redirect("/settings");
+  if (error) redirect("/settings?saveError=1");
+  redirect("/settings?saved=1");
 }

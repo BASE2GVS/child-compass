@@ -1,10 +1,10 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { appendFile, mkdir } from "fs/promises";
 import path from "path";
 
 import { isPilotFeedbackActive } from "@/lib/pilot/config";
+import { appendJsonlLine } from "@/lib/server/local-file-log";
 
 function pilotFeedbackEnabled(): boolean {
   return process.env.PILOT_FEEDBACK_ENABLED === "true";
@@ -35,10 +35,8 @@ export async function submitPilotFeedback(formData: FormData): Promise<{ success
     featureRequest,
   };
 
-  const dir = path.join(process.cwd(), "data");
-  await mkdir(dir, { recursive: true });
-  const file = path.join(dir, "pilot-feedback.jsonl");
-  await appendFile(file, `${JSON.stringify(entry)}\n`, "utf8");
+  const file = path.join(process.cwd(), "data", "pilot-feedback.jsonl");
+  await appendJsonlLine(file, entry);
 
   const { trackProductEvent } = await import("@/lib/pilot/product-analytics");
   await trackProductEvent({

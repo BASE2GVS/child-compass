@@ -22,6 +22,11 @@ type TodayEditorialProps = {
   greeting: string;
   checkin: DailyCheckin | null;
   insight: string | null;
+  companionInsight?: {
+    displayText: string;
+    confidenceLabel: string;
+    supportingEvents?: { label: string; date?: string }[];
+  } | null;
   recommendation: string | null;
   nextStep: ContextualNextStep;
   eveningReflection?: EveningReflection;
@@ -38,6 +43,7 @@ export default function TodayEditorial({
   greeting,
   checkin,
   insight,
+  companionInsight,
   recommendation,
   nextStep,
   eveningReflection,
@@ -71,6 +77,7 @@ export default function TodayEditorial({
               photoUrl={childPhotoUrl}
               checkin={checkin}
               insight={insight}
+              companionInsight={companionInsight}
               recommendation={recommendation}
               encouragement={null}
             />

@@ -22,8 +22,8 @@ export const LIBRARY_REPORTS: LibraryReportMeta[] = [
   },
   {
     type: "weekly_summary",
-    label: "Weekly Summary™",
-    description: "Highlights, challenges, and gentle regulation trends from the past week.",
+    label: "Family Summary",
+    description: "A warm narrative from your family's story — progress, challenges, and what helps.",
     emoji: "📖",
     tint: "from-[#E8F6F3]/80 to-[#FFFCF8]",
     tag: "Family",

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { addTimelineEvent } from "@/lib/actions/checkin";
+import { addTimelineEventFromForm } from "@/lib/actions/checkin";
+import FormSaveButton from "@/components/forms/FormSaveButton";
 import { Button, Input, Textarea } from "@/components/design-system";
 import { SecondaryCard } from "@/components/framework/FrameworkCard";
 import { typeScale } from "@/components/design-system/tokens/typography";
@@ -22,17 +23,7 @@ type AddMomentFormProps = {
 
 export default function AddMomentForm({ childId }: AddMomentFormProps) {
   const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
   const [eventType, setEventType] = useState("note");
-  const [loading, setLoading] = useState(false);
-
-  async function handleAdd(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    await addTimelineEvent({ childId, eventType, title, description });
-    setLoading(false);
-  }
 
   if (!open) {
     return (
@@ -49,7 +40,10 @@ export default function AddMomentForm({ childId }: AddMomentFormProps) {
       <h2 className={typeScale.heading}>Add to the story</h2>
       <p className={`mt-2 ${typeScale.caption}`}>Capture a moment that matters for your family.</p>
 
-      <form onSubmit={handleAdd} className="mt-6 space-y-5">
+      <form action={addTimelineEventFromForm} className="mt-6 space-y-5">
+        <input type="hidden" name="childId" value={childId} />
+        <input type="hidden" name="eventType" value={eventType} />
+
         <div>
           <p className={`mb-3 ${typeScale.subheading}`}>What kind of moment?</p>
           <div className="flex flex-wrap gap-2">
@@ -77,9 +71,8 @@ export default function AddMomentForm({ childId }: AddMomentFormProps) {
           </label>
           <Input
             id="moment-title"
+            name="title"
             required
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
             placeholder="A moment worth remembering…"
             className="mt-2"
           />
@@ -91,8 +84,7 @@ export default function AddMomentForm({ childId }: AddMomentFormProps) {
           </label>
           <Textarea
             id="moment-description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            name="description"
             rows={3}
             placeholder="How it felt, what helped…"
             className="mt-2"
@@ -100,9 +92,9 @@ export default function AddMomentForm({ childId }: AddMomentFormProps) {
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <Button type="submit" variant="pill" disabled={loading}>
-            {loading ? "Saving…" : "Save this moment"}
-          </Button>
+          <FormSaveButton variant="pill" savingLabel="Saving…">
+            Save this moment
+          </FormSaveButton>
           <Button type="button" variant="secondary" onClick={() => setOpen(false)}>
             Cancel
           </Button>

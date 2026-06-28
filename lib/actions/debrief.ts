@@ -30,10 +30,13 @@ export async function createDebrief(
     .maybeSingle();
 
   const [checkins, debriefs, patterns] = await Promise.all([
-    getCheckins(childId, 14),
+    getCheckins(childId, 30),
     getDebriefs(childId),
     getPatterns(childId),
   ]);
+
+  const { loadFamilyBrainInput } = await import("@/lib/intelligence/family-brain");
+  const brainInput = await loadFamilyBrainInput(childId);
 
   const { data: timeline } = await supabase
     .from("timeline_events")
@@ -42,7 +45,15 @@ export async function createDebrief(
     .order("event_date", { ascending: false })
     .limit(30);
 
-  const context = assembleChildContext(child, profile, checkins, debriefs, patterns, timeline || []);
+  const context = assembleChildContext(
+    child,
+    profile,
+    checkins,
+    debriefs,
+    patterns,
+    (brainInput?.timelineEvents ?? timeline) || [],
+    brainInput,
+  );
   const response = await generateDebriefResponse(parentMessage, context);
 
   const { data: debrief, error } = await supabase
@@ -68,24 +79,18 @@ export async function createDebrief(
 
   const { data: childRow } = await supabase.from("children").select("family_id").eq("id", childId).single();
 
-  await logAIForChild("debrief", childId, response.likely_trigger, response.confidence_level);
-  if (childRow?.family_id) {
-    await trackProductEvent({
-      event: "debrief_completed",
-      feature: "parent_debrief",
-      familyId: childRow.family_id,
-    });
+  try {
+    await logAIForChild("debrief", childId, response.likely_trigger, response.confidence_level);
+    if (childRow?.family_id) {
+      await trackProductEvent({
+        event: "debrief_completed",
+        feature: "parent_debrief",
+        familyId: childRow.family_id,
+      });
+    }
+  } catch {
+    /* observability must not block debrief save on serverless */
   }
-
-  await supabase.from("timeline_events").insert({
-    child_id: childId,
-    user_id: user.id,
-    event_type: "debrief",
-    title: "Parent Debrief™ completed",
-    description: response.likely_trigger,
-    event_date: new Date().toISOString(),
-    metadata: { debrief_id: debrief.id },
-  });
 
   const { data: userProfile } = await supabase
     .from("profiles")

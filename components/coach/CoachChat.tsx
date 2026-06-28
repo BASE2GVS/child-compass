@@ -6,7 +6,7 @@ import { readParentMoodSync } from "@/lib/companion/use-parent-mood";
 import type { CoachMessage } from "@/lib/types/database";
 import type { Child } from "@/lib/types/database";
 import { Banner } from "@/components/design-system";
-import { FrameworkButton } from "@/components/framework";
+import { FrameworkButton, FrameworkButtonLink } from "@/components/framework";
 import EditorialPage from "@/components/editorial/EditorialPage";
 import { EditorialTitle } from "@/components/editorial/EditorialSection";
 import EditorialParchment from "@/components/editorial/EditorialParchment";
@@ -18,6 +18,8 @@ import { GentleSuccess } from "@/components/first-time";
 import EmptyConversationArt from "@/components/coach/illustrations/EmptyConversationArt";
 import { MessageList, companionTouchForSession } from "@/components/coach/ChatBubbles";
 
+import GentleInsight from "@/components/insights/GentleInsight";
+
 export default function CoachChat({
   childId,
   sessionId,
@@ -26,6 +28,7 @@ export default function CoachChat({
   parentName,
   familyChildren,
   reflectMode = false,
+  openingInsight = null,
 }: {
   childId: string;
   sessionId: string;
@@ -34,6 +37,11 @@ export default function CoachChat({
   parentName?: string | null;
   familyChildren: Child[];
   reflectMode?: boolean;
+  openingInsight?: {
+    displayText: string;
+    confidenceLabel: string;
+    supportingEvents?: { label: string; date?: string }[];
+  } | null;
 }) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(history);
@@ -125,6 +133,11 @@ export default function CoachChat({
         <div className="flex-1 space-y-6 overflow-y-auto px-4 py-6 sm:space-y-8 sm:px-8 sm:py-8">
           {!hasConversation && (
             <div className="flex flex-col items-center py-6 text-center sm:py-10">
+              {openingInsight && (
+                <div className="mb-6 w-full max-w-lg text-left">
+                  <GentleInsight insight={openingInsight} />
+                </div>
+              )}
               {isFirstVisit ? (
                 <>
                   <p className="max-w-md font-display text-xl leading-relaxed text-[var(--cc-ink)] sm:text-2xl">
@@ -203,11 +216,18 @@ export default function CoachChat({
     </section>
   );
 
+  const backLink = (
+    <FrameworkButtonLink href="/today" variant="secondary" className="mb-4 inline-flex">
+      ← Return to Today
+    </FrameworkButtonLink>
+  );
+
   if (hasConversation) {
     return (
       <DashboardBackground>
         <article className="today-editorial w-full pb-10">
           <header className="cc-flow-enter px-2 pb-4 pt-2">
+            {backLink}
             <EditorialTitle id="coach-compact-heading">
               {reflectMode ? "Reflect" : "Talk"}
             </EditorialTitle>
@@ -227,6 +247,7 @@ export default function CoachChat({
       familyChildren={familyChildren}
       activeChildId={childId}
     >
+      {backLink}
       <SuggestedConversations
         childName={childName}
         reflectMode={reflectMode}

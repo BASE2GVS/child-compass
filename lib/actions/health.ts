@@ -29,8 +29,8 @@ export async function addHealthObservation(formData: FormData) {
     value: (formData.get("value") as string) || null,
     observed_date: (formData.get("observedDate") as string) || new Date().toISOString().split("T")[0],
   });
-  if (error) throw new Error(error.message);
-  redirect(`/health?child=${childId}`);
+  if (error) redirect(`/health?child=${childId}&saveError=1`);
+  redirect(`/health?child=${childId}&saved=1`);
 }
 
 export async function addCareTeamObservation(formData: FormData) {

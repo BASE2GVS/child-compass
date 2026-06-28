@@ -1,5 +1,9 @@
 import type { ChildContext } from "@/lib/types/database";
 import { formatKnowledgeForPrompt } from "@/lib/knowledge/engine";
+import {
+  formatBrainForPrompt,
+  type FamilyBrainSnapshot,
+} from "@/lib/intelligence/family-brain";
 
 const DEBRIEF_SYSTEM = `You are Child Compass™, a warm, neurodiversity-affirming parenting assistant.
 Respond ONLY with valid JSON matching this schema:
@@ -37,22 +41,48 @@ export function buildDebriefPrompt(parentMessage: string, context: ChildContext)
 
   const triggerList = context.profile?.known_triggers?.join(", ") || "none recorded";
   const strategies = context.profile?.calming_strategies?.join(", ") || "none recorded";
+  const successStrategies = context.profile?.successful_strategies?.join(", ") || "none recorded";
+
+  const brain = (context as ChildContext & { _familyBrain?: FamilyBrainSnapshot })._familyBrain;
+  const familyBrainBlock = brain
+    ? formatBrainForPrompt(brain, parentMessage)
+    : context.familyBrainSummary?.length
+      ? `Family understanding:\n${context.familyBrainSummary.map((l) => `- ${l}`).join("\n")}`
+      : "";
 
   return `Child: ${name}
-Diagnosis: ${context.child.diagnosis.join(", ") || "not specified"}
+${context.childAgeNote ? `${context.childAgeNote}\n` : ""}${context.rhythmNote ? `${context.rhythmNote}\n` : ""}Diagnosis: ${context.child.diagnosis.join(", ") || "not specified"}
 Support needs: ${context.child.support_needs.join(", ") || "not specified"}
 School: ${context.child.school || "not specified"}
+Interests: ${context.child.interests?.join(", ") || "not specified"}
 Known triggers: ${triggerList}
 Calming strategies: ${strategies}
+Successful strategies: ${successStrategies}
 Strengths: ${context.profile?.strengths?.join(", ") || "not specified"}
 
-Recent check-ins (last 7 days):
+${familyBrainBlock ? `${familyBrainBlock}\n\n` : ""}Recent check-ins (last 7 days):
 ${checkinSummary || "No check-ins yet"}
 
 Detected patterns:
 ${patternSummary || "No patterns detected yet"}
 
-Family memories (ONLY reference these when relevant — never invent history):
+Stored insights:
+${
+  context.storedInsights?.length
+    ? context.storedInsights.map((i) => `- ${i.title}: ${i.content.slice(0, 160)}`).join("\n")
+    : "None yet"
+}
+
+Family insights (distilled — weave naturally, never dump; humble language only):
+${
+  context.companionInsightTexts?.length
+    ? context.companionInsightTexts.slice(0, 6).map((i) => `- ${i}`).join("\n")
+    : context.familyInsights?.length
+      ? context.familyInsights.slice(0, 6).map((i) => `- ${i}`).join("\n")
+      : "Still forming from check-ins and observations."
+}
+
+Family memories (ONLY reference when relevant — never invent history):
 ${memorySummary}
 
 Knowledge graph relationships (from this family's data):

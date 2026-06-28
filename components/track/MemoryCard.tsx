@@ -1,12 +1,12 @@
+import { categoryMeta } from "@/lib/timeline/categories";
 import type { UnifiedTimelineItem } from "@/lib/types/database";
-import { mapEmotionalEvent } from "@/lib/dashboard/briefing";
 
 type MemoryCardProps = {
   event: UnifiedTimelineItem;
 };
 
 export default function MemoryCard({ event }: MemoryCardProps) {
-  const emotional = mapEmotionalEvent(event);
+  const meta = categoryMeta(event.category);
   const date = new Date(event.event_date);
   const dateLabel = date.toLocaleDateString("en-GB", {
     weekday: "long",
@@ -22,7 +22,7 @@ export default function MemoryCard({ event }: MemoryCardProps) {
           className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/80 text-3xl shadow-sm"
           aria-hidden
         >
-          {emotional.emoji}
+          {meta.emoji}
         </div>
         <div className="min-w-0 flex-1">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--cc-teal)]">

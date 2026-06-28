@@ -1,6 +1,6 @@
-import { readFile, writeFile, mkdir } from "fs/promises";
 import path from "path";
 import { knowledgePackV1, KNOWLEDGE_PACK_VERSION } from "@/lib/knowledge/packs/v1/articles";
+import { readJsonFile, writeJsonFile } from "@/lib/server/local-file-log";
 import type { KnowledgeArticle } from "@/lib/knowledge/types";
 
 export type PackStatus = "draft" | "review" | "published" | "archived";
@@ -27,38 +27,27 @@ const DEFAULT_META: KnowledgePackMeta = {
 };
 
 export async function readPackMeta(): Promise<KnowledgePackMeta> {
-  try {
-    const raw = await readFile(META_PATH, "utf8");
-    return { ...DEFAULT_META, ...JSON.parse(raw) };
-  } catch {
-    return DEFAULT_META;
-  }
+  return readJsonFile<KnowledgePackMeta>(META_PATH, DEFAULT_META);
 }
 
 export async function writePackMeta(meta: Partial<KnowledgePackMeta>): Promise<KnowledgePackMeta> {
   const current = await readPackMeta();
   const next = { ...current, ...meta, updatedAt: new Date().toISOString() };
-  await mkdir(path.dirname(META_PATH), { recursive: true });
-  await writeFile(META_PATH, JSON.stringify(next, null, 2), "utf8");
+  await writeJsonFile(META_PATH, next);
   return next;
 }
 
 export async function readPublishedArticles(): Promise<KnowledgeArticle[]> {
   const meta = await readPackMeta();
   if (meta.status === "draft") {
-    try {
-      const raw = await readFile(DRAFT_PATH, "utf8");
-      return JSON.parse(raw) as KnowledgeArticle[];
-    } catch {
-      return knowledgePackV1.articles;
-    }
+    const draft = await readJsonFile<KnowledgeArticle[]>(DRAFT_PATH, knowledgePackV1.articles);
+    return draft.length > 0 ? draft : knowledgePackV1.articles;
   }
   return knowledgePackV1.articles;
 }
 
 export async function saveDraftArticles(articles: KnowledgeArticle[]): Promise<void> {
-  await mkdir(path.dirname(DRAFT_PATH), { recursive: true });
-  await writeFile(DRAFT_PATH, JSON.stringify(articles, null, 2), "utf8");
+  await writeJsonFile(DRAFT_PATH, articles);
   await writePackMeta({ status: "draft" });
 }
 

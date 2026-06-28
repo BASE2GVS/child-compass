@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { getFamilyContext, getProfile, getReportsData } from "@/lib/data/queries";
+import { getFamilyContext, getProfile, getReportsData, getCompanionInsights } from "@/lib/data/queries";
 import { resolveActiveChild } from "@/lib/utils/child-selection";
 import { generateReportContent } from "@/lib/services/report-generator";
-import ReportLayout from "@/components/reports/ReportLayout";
-import PrintButton from "@/components/reports/PrintButton";
+import { loadDocumentInput } from "@/lib/documents";
+import EditableReportDocument from "@/components/reports/EditableReportDocument";
 import { PageHeader, PageShell, ds } from "@/components/design-system";
 
 export const dynamic = "force-dynamic";
@@ -22,7 +22,11 @@ export default async function PDAPassportPage({
   const child = await resolveActiveChild(children, params);
   if (!child) redirect("/onboarding");
 
-  const data = await getReportsData(child.id);
+  const [data, companionInsights, documentInput] = await Promise.all([
+    getReportsData(child.id),
+    getCompanionInsights(child.id),
+    loadDocumentInput(child.id),
+  ]);
   if (!data) redirect("/onboarding");
 
   const content = generateReportContent(
@@ -32,26 +36,29 @@ export default async function PDAPassportPage({
     data.checkins,
     data.debriefs,
     data.patterns,
+    companionInsights,
+    documentInput,
   );
 
   return (
     <PageShell>
       <PageHeader
         eyebrow="Passport"
-        title="PDA Passport™"
-        description="A professional digital booklet — triggers, strategies, emergency contacts, and support needs."
+        title="Child Passport"
+        description="Prepared from your family's profile — edit anything before sharing."
         familyChildren={children}
         activeChildId={child.id}
         actions={
-          <div className="flex flex-wrap items-center gap-3 print:hidden">
-            <PrintButton />
-            <Link href={`/reports/view/pda_passport?child=${child.id}`} className={ds.btnSecondary}>
-              Full view
-            </Link>
-          </div>
+          <Link href={`/documents-hub?child=${child.id}`} className={ds.btnSecondary}>
+            ← Library
+          </Link>
         }
       />
-      <ReportLayout content={content} reportType="pda_passport" />
+      <EditableReportDocument
+        initialContent={content}
+        reportType="pda_passport"
+        childId={child.id}
+      />
     </PageShell>
   );
 }

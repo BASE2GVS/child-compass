@@ -7,6 +7,16 @@ import {
   generateLongitudinalReview,
   type LongitudinalPeriod,
 } from "@/lib/intelligence/longitudinal";
+import {
+  insightDisplayWithSupport,
+  insightsForReport,
+  type CompanionInsight,
+} from "@/lib/intelligence/insight-engine";
+import {
+  isSmartDocumentType,
+  prepareSmartDocument,
+  type DocumentInput,
+} from "@/lib/documents";
 
 export type ReportContent = {
   headline: string;
@@ -22,36 +32,93 @@ export function generateReportContent(
   checkins: DailyCheckin[],
   debriefs: ParentDebrief[],
   patterns: PatternFinding[],
+  companionInsights: CompanionInsight[] = [],
+  documentInput?: DocumentInput | null,
 ): ReportContent {
   const name = child.nickname || child.first_name;
   const generatedAt = new Date().toISOString();
 
+  if (documentInput && isSmartDocumentType(type)) {
+    const content = prepareSmartDocument(type, documentInput, companionInsights);
+    return attachCompanionInsights(content, type, companionInsights);
+  }
+
+  let content: ReportContent;
+
   switch (type) {
     case "teacher_guide":
-      return buildTeacherGuide(name, child, profile, checkins, patterns);
+      content = buildTeacherGuide(name, child, profile, checkins, patterns);
+      break;
     case "pda_passport":
-      return buildPDAPassport(name, child, profile);
+      content = buildPDAPassport(name, child, profile);
+      break;
     case "school_support":
-      return buildSchoolSupport(name, child, profile, patterns);
+      content = buildSchoolSupport(name, child, profile, patterns);
+      break;
     case "weekly_summary":
-      return buildWeeklySummary(name, checkins, patterns, profile, debriefs);
+      content = buildWeeklySummary(name, checkins, patterns, profile, debriefs);
+      break;
     case "monthly_progress":
-      return buildMonthlyProgress(name, checkins, debriefs, patterns);
+      content = buildMonthlyProgress(name, checkins, debriefs, patterns);
+      break;
     case "parent_debrief":
-      return buildDebriefSummary(name, debriefs);
+      content = buildDebriefSummary(name, debriefs);
+      break;
     case "therapist_summary":
-      return buildTherapistSummary(name, checkins, debriefs, patterns);
+      content = buildTherapistSummary(name, checkins, debriefs, patterns);
+      break;
     case "review_30d":
-      return buildLongitudinalReport(name, checkins, patterns, "30d");
+      content = buildLongitudinalReport(name, checkins, patterns, "30d");
+      break;
     case "review_90d":
-      return buildLongitudinalReport(name, checkins, patterns, "90d");
+      content = buildLongitudinalReport(name, checkins, patterns, "90d");
+      break;
     case "review_6mo":
-      return buildLongitudinalReport(name, checkins, patterns, "180d");
+      content = buildLongitudinalReport(name, checkins, patterns, "180d");
+      break;
     case "review_annual":
-      return buildLongitudinalReport(name, checkins, patterns, "365d");
+      content = buildLongitudinalReport(name, checkins, patterns, "365d");
+      break;
     default:
-      return { headline: `${name}'s Report`, sections: [], generatedAt, childName: name };
+      content = { headline: `${name}'s Report`, sections: [], generatedAt, childName: name };
   }
+
+  return attachCompanionInsights(content, type, companionInsights);
+}
+
+function companionInsightSection(
+  insights: CompanionInsight[],
+  reportType: string,
+): { title: string; body: string[] } | null {
+  const relevant = insightsForReport(insights, reportType);
+  if (!relevant.length) return null;
+  return {
+    title: "What we're noticing",
+    body: relevant.map(insightDisplayWithSupport),
+  };
+}
+
+function attachCompanionInsights(
+  content: ReportContent,
+  reportType: string,
+  insights: CompanionInsight[],
+): ReportContent {
+  const insightTypes: ReportType[] = [
+    "teacher_guide",
+    "pda_passport",
+    "school_support",
+    "therapist_summary",
+    "monthly_progress",
+  ];
+  if (!insightTypes.includes(reportType as ReportType)) return content;
+
+  const section = companionInsightSection(insights, reportType);
+  if (!section) return content;
+
+  return {
+    ...content,
+    sections: [content.sections[0], section, ...content.sections.slice(1)].filter(Boolean),
+  };
 }
 
 function buildTeacherGuide(
@@ -411,9 +478,9 @@ export function getReportTitle(type: ReportType, childName: string): string {
   const titles: Record<ReportType, string> = {
     parent_debrief: `Parent Debrief™ Summary — ${childName}`,
     teacher_guide: `Teacher Guide™ — ${childName}`,
-    pda_passport: `PDA Passport™ — ${childName}`,
+    pda_passport: `Child Passport — ${childName}`,
     school_support: `School Support Summary™ — ${childName}`,
-    weekly_summary: `Weekly Summary™ — ${childName}`,
+    weekly_summary: `Family Summary — ${childName}`,
     monthly_progress: `Monthly Progress™ — ${childName}`,
     therapist_summary: `Therapist Summary™ — ${childName}`,
     review_30d: `30-Day Review™ — ${childName}`,

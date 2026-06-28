@@ -7,6 +7,12 @@ import type {
   PatternFinding,
   TimelineEvent,
 } from "@/lib/types/database";
+import type { FamilyBrainInput } from "@/lib/intelligence/family-brain";
+import {
+  buildFamilyBrain,
+  selectBrainContextForMessage,
+  type FamilyBrainSnapshot,
+} from "@/lib/intelligence/family-brain";
 import {
   buildFamilyMemory,
   formatMemoryReference,
@@ -25,21 +31,36 @@ export function assembleChildContext(
   debriefs: ParentDebrief[],
   patterns: PatternFinding[],
   timeline: TimelineEvent[] = [],
+  brainInput?: FamilyBrainInput | null,
 ): ChildContext {
+  const brain: FamilyBrainSnapshot | null = brainInput
+    ? buildFamilyBrain(brainInput)
+    : null;
+
+  const fullProfile = brainInput?.profile ?? profile;
+
   const memories = buildFamilyMemory({
-    profile,
+    profile: fullProfile,
     checkins,
     debriefs,
     timeline,
     patterns,
+    unifiedTimeline: brainInput?.unifiedTimeline,
   });
 
-  const memoryReferences = memories
-    .filter((m) => m.date)
-    .slice(0, 8)
-    .map(formatMemoryReference);
+  const memoryReferences = brain
+    ? brain.memoryLines.slice(0, 8)
+    : memories
+        .filter((m) => m.date)
+        .slice(0, 8)
+        .map(formatMemoryReference);
 
-  const graph = buildFamilyKnowledgeGraph({ checkins, timeline, debriefs, profile });
+  const graph = buildFamilyKnowledgeGraph({
+    checkins,
+    timeline,
+    debriefs,
+    profile: fullProfile,
+  });
   const graphInsights = graph.insights;
 
   const knowledgeArticles = retrieveKnowledge({
@@ -47,6 +68,10 @@ export function assembleChildContext(
     limit: 3,
   });
   const knowledgeGuidance = knowledgeArticles.map((a) => `${a.title}: ${a.guidance[0]}`);
+
+  const recentTimelineSource = brainInput?.unifiedTimeline?.length
+    ? brainInput.unifiedTimeline
+    : null;
 
   const baseContext: ChildContext = {
     child: {
@@ -59,13 +84,13 @@ export function assembleChildContext(
       grade: child.grade,
       interests: child.interests,
     },
-    profile: profile
+    profile: fullProfile
       ? {
-          strengths: profile.strengths,
-          known_triggers: profile.known_triggers,
-          calming_strategies: profile.calming_strategies,
-          challenges: profile.challenges,
-          successful_strategies: profile.successful_strategies,
+          strengths: fullProfile.strengths,
+          known_triggers: fullProfile.known_triggers,
+          calming_strategies: fullProfile.calming_strategies,
+          challenges: fullProfile.challenges,
+          successful_strategies: fullProfile.successful_strategies,
         }
       : null,
     recentCheckins: checkins,
@@ -74,12 +99,19 @@ export function assembleChildContext(
       likely_trigger: d.likely_trigger,
       created_at: d.created_at,
     })),
-    recentTimeline: timeline.slice(0, 12).map((e) => ({
-      date: e.event_date,
-      title: e.title,
-      description: e.description,
-      event_type: e.event_type,
-    })),
+    recentTimeline: recentTimelineSource
+      ? recentTimelineSource.slice(0, 16).map((e) => ({
+          date: e.event_date,
+          title: e.title,
+          description: e.description,
+          event_type: e.event_type,
+        }))
+      : timeline.slice(0, 12).map((e) => ({
+          date: e.event_date,
+          title: e.title,
+          description: e.description,
+          event_type: e.event_type,
+        })),
     patterns: patterns.map((p) => ({
       title: p.title,
       description: p.description,
@@ -89,9 +121,16 @@ export function assembleChildContext(
     memoryReferences,
     knowledgeGuidance,
     graphInsights,
+    rhythmNote: brain?.rhythmNote ?? null,
+    childAgeNote: brain?.childAgeNote ?? null,
+    storedInsights:
+      brainInput?.aiInsights?.slice(0, 6).map((i) => ({ title: i.title, content: i.content })) ?? [],
   };
 
-  const insightItems = buildFamilyInsights(baseContext);
+  const insightItems = brain
+    ? brain.insightItems
+    : buildFamilyInsights(baseContext);
+
   const checkinDates = checkins.map((c) => c.checkin_date).sort();
   const dataSpanDays =
     checkinDates.length >= 2
@@ -105,11 +144,21 @@ export function assembleChildContext(
   return {
     ...baseContext,
     familyInsights: insightItems.map((i) => i.text),
+    companionInsightTexts: brain?.companionInsights.map((i) => i.displayText) ?? insightItems.map((i) => i.text),
+    familyBrainSummary: brain?.understanding ?? [],
     dataSpanDays,
-  };
+    _familyBrain: brain,
+  } as ChildContext & { _familyBrain?: FamilyBrainSnapshot | null };
 }
 
 export function memoryForMessage(context: ChildContext, parentMessage: string): string | null {
+  const brain = (context as ChildContext & { _familyBrain?: FamilyBrainSnapshot })._familyBrain;
+  if (brain) {
+    const selected = selectBrainContextForMessage(brain, parentMessage);
+    if (selected.memoryLines[0]) return selected.memoryLines[0];
+    if (selected.insightLines[0]) return selected.insightLines[0];
+  }
+
   const memories = buildFamilyMemory({
     profile: context.profile
       ? ({
@@ -142,4 +191,19 @@ export function memoryForMessage(context: ChildContext, parentMessage: string): 
     patterns: context.patterns as PatternFinding[],
   });
   return memoryReferenceForContext(memories, parentMessage);
+}
+
+export async function assembleChildContextForChild(childId: string): Promise<ChildContext | null> {
+  const { loadFamilyBrainInput } = await import("@/lib/intelligence/family-brain");
+  const input = await loadFamilyBrainInput(childId);
+  if (!input) return null;
+  return assembleChildContext(
+    input.child,
+    input.profile,
+    input.checkins,
+    input.debriefs,
+    input.patterns,
+    input.timelineEvents,
+    input,
+  );
 }

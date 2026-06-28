@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
-import { getCoachSession, getFamilyContext, getProfile } from "@/lib/data/queries";
+import { getCoachSession, getFamilyContext, getProfile, getCompanionInsights } from "@/lib/data/queries";
+import { headlineCompanionInsight } from "@/lib/intelligence/insight-engine";
 
 import { resolveActiveChild } from "@/lib/utils/child-selection";
 
@@ -38,32 +39,26 @@ export default async function CoachPage({
 
 
 
-  const { session, messages } = await getCoachSession(child.id);
+  const [{ session, messages }, companionInsights] = await Promise.all([
+    getCoachSession(child.id),
+    getCompanionInsights(child.id),
+  ]);
 
   if (!session) redirect("/today");
 
-
+  const openingInsight = headlineCompanionInsight(companionInsights);
 
   return (
-
     <CoachChat
-
       childId={child.id}
-
       childName={child.nickname || child.first_name}
-
       parentName={profile.full_name}
-
       familyChildren={children}
-
       sessionId={session.id}
-
       history={messages}
-
       reflectMode={params.reflect === "1"}
-
+      openingInsight={openingInsight}
     />
-
   );
 
 }

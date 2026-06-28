@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import { CompanionExpandable } from "@/components/companion";
+import FormFeedbackBanner from "@/components/forms/FormFeedbackBanner";
 
 import EditorialPage from "@/components/editorial/EditorialPage";
 
@@ -75,6 +77,10 @@ export default function FamilyLibrary({
       }
 
     >
+
+      <Suspense fallback={null}>
+        <FormFeedbackBanner successMessage="✓ Added to your library" />
+      </Suspense>
 
       <LibraryReportsSection
 

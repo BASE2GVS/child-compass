@@ -13,6 +13,9 @@
     "test:companion": "npx tsx scripts/verify-companion-conversations.ts",
     "test:curious": "npx tsx scripts/verify-curious-conversations.ts",
     "test:family": "npx tsx scripts/verify-family-understanding.ts",
+    "test:brain": "npx tsx scripts/verify-family-brain.ts",
+    "test:insights": "npx tsx scripts/verify-insight-engine.ts",
+    "test:documents": "npx tsx scripts/verify-smart-documents.ts",
     "test:rhythm": "npx tsx scripts/verify-daily-rhythm.ts",
     "test:trust": "npx tsx scripts/verify-trust-conversations.ts",
     "test:life": "npx tsx scripts/verify-companion-life.ts"

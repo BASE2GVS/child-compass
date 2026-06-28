@@ -1,12 +1,14 @@
 "use client";
 
+import { Suspense } from "react";
 import type { Family, FamilyAccessInvite, FamilyMember, Profile } from "@/lib/types/database";
 import { updateFamilySettings, inviteCaregiver, updateNotificationPreferences } from "@/lib/actions/settings";
 import { inviteSharedAccess } from "@/lib/actions/ecosystem";
 import AccountDeletionForm from "@/components/settings/AccountDeletionForm";
+import FormFeedbackBanner from "@/components/forms/FormFeedbackBanner";
+import FormSaveButton from "@/components/forms/FormSaveButton";
 import { actionCopy } from "@/lib/presentation/copy";
 import {
-  Button,
   FormSection,
   GlassCard,
   Input,
@@ -33,6 +35,9 @@ export default function SettingsForms({
 
   return (
     <div className="space-y-8">
+      <Suspense fallback={null}>
+        <FormFeedbackBanner successMessage="✓ Saved" />
+      </Suspense>
       <PremiumCard padding="lg">
         <FormSection title="Family" description="The name and place that anchors your family's compass.">
           <form action={updateFamilySettings} className="space-y-4">
@@ -51,7 +56,7 @@ export default function SettingsForms({
                 <Input id="timezone" name="timezone" defaultValue={family.timezone} />
               </div>
             </div>
-            <Button type="submit">{actionCopy.saveFamily}</Button>
+            <FormSaveButton>{actionCopy.saveFamily}</FormSaveButton>
           </form>
         </FormSection>
       </PremiumCard>
@@ -69,9 +74,9 @@ export default function SettingsForms({
         <form action={inviteCaregiver} className="flex flex-wrap gap-3">
           <input type="hidden" name="familyId" value={family.id} />
           <Input name="email" type="email" placeholder="Caregiver email" className="min-w-[200px] flex-1" required />
-          <Button type="submit" variant="secondary">
+          <FormSaveButton type="submit" variant="secondary">
             Invite
-          </Button>
+          </FormSaveButton>
         </form>
       </PremiumCard>
 
@@ -105,9 +110,9 @@ export default function SettingsForms({
               <input type="checkbox" name="permTherapy" className="h-4 w-4 rounded text-[#14B8A6]" />
               Therapist Hub
             </label>
-            <Button type="submit" className="sm:col-span-2">
+            <FormSaveButton className="sm:col-span-2">
               Send invite
-            </Button>
+            </FormSaveButton>
           </form>
           {invites.length > 0 && (
             <div className="mt-6 space-y-2">
@@ -137,9 +142,9 @@ export default function SettingsForms({
                 <input type="checkbox" name={item.name} defaultChecked={item.checked !== false} className="h-5 w-5 rounded border-[#E8E4DC] text-[#14B8A6]" />
               </label>
             ))}
-            <Button type="submit" className="mt-4">
+            <FormSaveButton className="mt-4">
               Save notification preferences
-            </Button>
+            </FormSaveButton>
           </form>
         </FormSection>
       </PremiumCard>

@@ -23,11 +23,11 @@ const APP_GUIDES: AppGuideEntry[] = [
       "Check-In takes about two minutes each day. It captures sleep, mood, school, and wins — the foundation for personalised guidance.",
   },
   {
-    keywords: ["track", "goals", "habits", "schedules"],
-    title: "Track",
-    path: "/track",
+    keywords: ["track", "timeline", "family story", "history"],
+    title: "Timeline",
+    path: "/timeline",
     explanation:
-      "Track brings together check-ins, timeline, goals, habits, and visual schedules — everything that helps you follow your child's journey.",
+      "Timeline is the living story of your family — check-ins, health notes, school, therapy, wins, and documents in one scrollable journal.",
   },
   {
     keywords: ["school hub", "school page", "teacher"],

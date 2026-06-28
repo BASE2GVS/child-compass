@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { Suspense } from "react";
 
 import { addHealthObservation } from "@/lib/actions/health";
+import FormFeedbackBanner from "@/components/forms/FormFeedbackBanner";
+import FormSaveButton from "@/components/forms/FormSaveButton";
 
 import { CompanionExpandable } from "@/components/companion";
 
@@ -8,7 +11,7 @@ import EditorialPage from "@/components/editorial/EditorialPage";
 
 import { actionCopy } from "@/lib/presentation/copy";
 
-import { Button, Input, Select, Textarea } from "@/components/design-system";
+import { Input, Select, Textarea } from "@/components/design-system";
 
 import type { Child, HealthObservation } from "@/lib/types/database";
 
@@ -103,10 +106,10 @@ export default function HealthExperience({
       familyChildren={familyChildren}
 
       activeChildId={child.id}
-
-      primaryAction={{ label: "Add a note", href: "#health-add" }}
-
     >
+      <Suspense fallback={null}>
+        <FormFeedbackBanner successMessage="Your notes have been updated." />
+      </Suspense>
 
       <CompanionExpandable label="Add a note">
 
@@ -136,11 +139,11 @@ export default function HealthExperience({
 
             <Textarea name="notes" rows={3} placeholder="A few gentle words…" className="cc-fw-form-span-2" />
 
-            <Button type="submit" className="cc-fw-form-span-2">
+            <FormSaveButton className="cc-fw-form-span-2">
 
               {actionCopy.saveObservation}
 
-            </Button>
+            </FormSaveButton>
 
           </form>
 

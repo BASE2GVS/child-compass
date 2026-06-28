@@ -109,24 +109,23 @@ export default function LibraryReportsSection({
     setError(null);
 
     startTransition(async () => {
-
-      const result = await generateReport(childId, type);
-
-      if (result?.error) {
-
-        setError(result.error);
-
+      try {
+        const result = await generateReport(childId, type);
+        if (result?.error) {
+          setError(result.error);
+          return;
+        }
+        if (result?.report) {
+          const isFirst = sorted.length === 0;
+          window.location.href = `/reports/${result.report.id}?child=${childId}${isFirst ? "&first=1" : ""}`;
+          return;
+        }
+        setError("We couldn't prepare that summary just now. Please try again.");
+      } catch {
+        setError("We couldn't prepare that summary just now. Please try again.");
+      } finally {
         setGenerating(null);
-
-        return;
-
       }
-
-      if (result?.report) {
-        const isFirst = sorted.length === 0;
-        window.location.href = `/reports/${result.report.id}?child=${childId}${isFirst ? "&first=1" : ""}`;
-      }
-
     });
 
   }

@@ -1,5 +1,5 @@
-import { readFile } from "fs/promises";
 import path from "path";
+import { readJsonlFile } from "@/lib/server/local-file-log";
 import { readPilotConfig } from "@/lib/pilot/config";
 import { readProductAnalytics, summariseAnalytics } from "@/lib/pilot/product-analytics";
 import { readAILogs } from "@/lib/pilot/ai-logger";
@@ -9,13 +9,9 @@ export async function buildDiagnostics() {
   const analytics = await readProductAnalytics(500);
   const aiLogs = await readAILogs(100);
 
-  let pilotFeedbackLines = 0;
-  try {
-    const fb = await readFile(path.join(process.cwd(), "data", "pilot-feedback.jsonl"), "utf8");
-    pilotFeedbackLines = fb.trim().split("\n").filter(Boolean).length;
-  } catch {
-    pilotFeedbackLines = 0;
-  }
+  const pilotFeedbackLines = (
+    await readJsonlFile<unknown>(path.join(process.cwd(), "data", "pilot-feedback.jsonl"), 10_000)
+  ).length;
 
   return {
     generatedAt: new Date().toISOString(),

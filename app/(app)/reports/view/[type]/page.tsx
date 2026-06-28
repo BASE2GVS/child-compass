@@ -1,8 +1,10 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { getFamilyContext, getProfile, getReportsData } from "@/lib/data/queries";
+import { getFamilyContext, getProfile, getReportsData, getCompanionInsights } from "@/lib/data/queries";
 import { resolveActiveChild } from "@/lib/utils/child-selection";
 import { generateReportContent } from "@/lib/services/report-generator";
+import { isSmartDocumentType, loadDocumentInput } from "@/lib/documents";
+import EditableReportDocument from "@/components/reports/EditableReportDocument";
 import ReportLayout from "@/components/reports/ReportLayout";
 import PrintButton from "@/components/reports/PrintButton";
 import type { ReportType } from "@/lib/types/database";
@@ -41,7 +43,11 @@ export default async function ReportPreviewPage({
   const child = await resolveActiveChild(children, { child: childParam });
   if (!child) redirect("/onboarding");
 
-  const data = await getReportsData(child.id);
+  const [data, companionInsights, documentInput] = await Promise.all([
+    getReportsData(child.id),
+    getCompanionInsights(child.id),
+    isSmartDocumentType(type) ? loadDocumentInput(child.id) : Promise.resolve(null),
+  ]);
   if (!data) redirect("/reports");
 
   const content = generateReportContent(
@@ -51,9 +57,12 @@ export default async function ReportPreviewPage({
     data.checkins,
     data.debriefs,
     data.patterns,
+    companionInsights,
+    documentInput,
   );
 
   const qs = `?child=${child.id}`;
+  const isSmartDoc = isSmartDocumentType(type);
 
   return (
     <div className="space-y-6">
@@ -61,9 +70,17 @@ export default async function ReportPreviewPage({
         <Link href={`/documents-hub${qs}`} className="text-sm font-semibold text-[var(--cc-teal)] hover:underline">
           ← Back to library
         </Link>
-        <PrintButton />
+        {!isSmartDoc && <PrintButton />}
       </div>
-      <ReportLayout content={content} reportType={type} />
+      {isSmartDoc ? (
+        <EditableReportDocument
+          initialContent={content}
+          reportType={type as ReportType}
+          childId={child.id}
+        />
+      ) : (
+        <ReportLayout content={content} reportType={type} />
+      )}
     </div>
   );
 }

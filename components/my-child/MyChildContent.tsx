@@ -28,22 +28,22 @@ import { compareWeeklyRegulation } from "@/lib/ai/debrief-engine";
 import { buildDashboardRecommendation } from "@/lib/ai/insight-generator";
 
 import type {
-
   AIInsight,
-
   Child,
-
   ChildIntelligenceSnapshot,
-
   ChildProfile,
-
   DailyCheckin,
-
   PatternFinding,
-
   UnifiedTimelineItem,
-
 } from "@/lib/types/database";
+import type { CompanionInsight } from "@/lib/intelligence/insight-engine";
+
+const INSIGHT_EMOJI: Record<CompanionInsight["type"], string> = {
+  noticing: "💛",
+  positive: "🌱",
+  watching: "👀",
+  strategy: "✨",
+};
 
 
 
@@ -86,6 +86,7 @@ type MyChildContentProps = {
   patterns: PatternFinding[];
 
   timeline: UnifiedTimelineItem[];
+  companionInsights?: CompanionInsight[];
   parentName?: string | null;
 };
 
@@ -99,6 +100,7 @@ export default function MyChildContent({
   insights,
   patterns,
   timeline,
+  companionInsights = [],
   parentName,
 }: MyChildContentProps) {
 
@@ -135,31 +137,24 @@ export default function MyChildContent({
 
 
   const learningCards = [
-
-    ...insights.slice(0, 3).map((insight, i) => ({
-
+    ...companionInsights.slice(0, 4).map((insight, i) => ({
       id: insight.id,
-
+      text: insight.displayText,
+      emoji: INSIGHT_EMOJI[insight.type] ?? LEARNING_EMOJIS[i % LEARNING_EMOJIS.length],
+      tint: insight.type === "positive" ? "bg-[#E8F6F3]/70" : LEARNING_TINTS[i % LEARNING_TINTS.length],
+    })),
+    ...insights.slice(0, 2).map((insight, i) => ({
+      id: insight.id,
       text: insight.content.length > 140 ? `${insight.title}. ${insight.content.slice(0, 140)}…` : insight.content,
-
       emoji: LEARNING_EMOJIS[i % LEARNING_EMOJIS.length],
-
       tint: LEARNING_TINTS[i % LEARNING_TINTS.length],
-
     })),
-
-    ...weeklyLearnings.slice(0, 3).map((item, i) => ({
-
+    ...weeklyLearnings.slice(0, 2).map((item, i) => ({
       id: `learning-${i}`,
-
       text: item.text,
-
       emoji: item.positive ? "🌱" : "💛",
-
       tint: item.positive ? "bg-[#E8F6F3]/70" : "bg-[#FBEFEC]/50",
-
     })),
-
   ].slice(0, 5);
 
 
@@ -192,7 +187,8 @@ export default function MyChildContent({
 
 
 
-  const headlineInsight = summary.aiSummary;
+  const headlineCompanion = companionInsights[0] ?? null;
+  const headlineInsight = headlineCompanion?.displayText ?? summary.aiSummary;
 
   const encouragement = weeklyTrend.message || dailyEncouragement();
 
@@ -221,7 +217,8 @@ export default function MyChildContent({
         childName={displayName}
         photoUrl={child.photo_url}
         checkin={checkin}
-        insight={headlineInsight}
+        insight={headlineCompanion ? null : headlineInsight}
+        companionInsight={headlineCompanion}
         recommendation={recommendation || summary.todayRecommendation}
         encouragement={encouragement}
       />

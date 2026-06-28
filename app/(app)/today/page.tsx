@@ -115,6 +115,7 @@ export default async function TodayPage({
         familyChildren={data.children}
 
         headlineInsight={data.headlineInsight}
+        companionHeadline={data.companionHeadline}
 
         recommendation={data.recommendation}
 

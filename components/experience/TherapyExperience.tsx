@@ -1,4 +1,8 @@
+import { Suspense } from "react";
+
 import { addTherapySession } from "@/lib/actions/ecosystem";
+import FormFeedbackBanner from "@/components/forms/FormFeedbackBanner";
+import FormSaveButton from "@/components/forms/FormSaveButton";
 
 import { CompanionExpandable } from "@/components/companion";
 
@@ -6,7 +10,7 @@ import EditorialPage from "@/components/editorial/EditorialPage";
 
 import { StatusBadge } from "@/components/design-system";
 
-import { Button, Input, Textarea } from "@/components/design-system";
+import { Input, Textarea } from "@/components/design-system";
 
 import type { Child, TherapySession } from "@/lib/types/database";
 
@@ -64,6 +68,10 @@ export default function TherapyExperience({
 
     >
 
+      <Suspense fallback={null}>
+        <FormFeedbackBanner successMessage="Your notes have been updated." />
+      </Suspense>
+
       {insight && (
 
         <p className="text-lg leading-relaxed text-[var(--cc-ink-soft)]">{insight}</p>
@@ -102,11 +110,11 @@ export default function TherapyExperience({
 
             </CompanionExpandable>
 
-            <Button type="submit" className="cc-fw-form-span-2">
+            <FormSaveButton className="cc-fw-form-span-2">
 
               Save session
 
-            </Button>
+            </FormSaveButton>
 
           </form>
 

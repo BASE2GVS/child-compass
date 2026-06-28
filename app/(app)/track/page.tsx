@@ -1,48 +1,18 @@
 import { redirect } from "next/navigation";
 
-import { getFamilyContext, getProfile, getUnifiedTimeline } from "@/lib/data/queries";
-
-import { resolveActiveChild } from "@/lib/utils/child-selection";
-
-import TrackJournal from "@/components/track/TrackJournal";
-
-
-
 export const dynamic = "force-dynamic";
 
-
-
-export default async function TrackHubPage({
-
+/** Track merged into Timeline — one living family story */
+export default async function TrackPage({
   searchParams,
-
 }: {
-
-  searchParams: Promise<{ child?: string }>;
-
+  searchParams: Promise<{ child?: string; saved?: string; saveError?: string }>;
 }) {
-
   const params = await searchParams;
-
-  const profile = await getProfile();
-
-  if (!profile?.onboarding_completed) redirect("/onboarding");
-
-
-
-  const { children } = await getFamilyContext();
-
-  const child = await resolveActiveChild(children, params);
-
-  if (!child) redirect("/onboarding");
-
-
-
-  const events = await getUnifiedTimeline(child.id);
-
-
-
-  return <TrackJournal events={events} child={child} familyChildren={children} parentName={profile.full_name} />;
-
+  const qs = new URLSearchParams();
+  if (params.child) qs.set("child", params.child);
+  if (params.saved) qs.set("saved", params.saved);
+  if (params.saveError) qs.set("saveError", params.saveError);
+  const query = qs.toString();
+  redirect(`/timeline${query ? `?${query}` : ""}`);
 }
-

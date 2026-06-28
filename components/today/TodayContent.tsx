@@ -11,33 +11,26 @@ import { buildContextualNextStep } from "@/lib/companion/contextual-next-step";
 import { getDayPhase } from "@/lib/companion/daily-rhythm";
 
 import type {
-
   Child,
-
   CoachMessage,
-
   DailyCheckin,
-
   PatternFinding,
-
 } from "@/lib/types/database";
 
-
+type CompanionInsightDisplay = {
+  displayText: string;
+  confidenceLabel: string;
+  supportingEvents?: { label: string; date?: string }[];
+};
 
 type TodayContentProps = {
-
   parentName: string;
-
   childName: string;
-
   childId: string;
-
   childPhotoUrl: string | null;
-
   familyChildren: Child[];
-
   headlineInsight: string | null;
-
+  companionHeadline?: CompanionInsightDisplay | null;
   recommendation: string | null;
 
   weeklyTrend: { trend: string; message: string } | null;
@@ -92,6 +85,8 @@ export default function TodayContent({
   familyChildren,
 
   headlineInsight,
+
+  companionHeadline,
 
   recommendation,
 
@@ -205,6 +200,7 @@ export default function TodayContent({
         greeting={greeting}
         checkin={checkin}
         insight={childInsight}
+        companionInsight={companionHeadline}
         recommendation={childRecommendation}
         nextStep={nextStep}
         eveningReflection={phase === "evening" ? eveningReflection : undefined}

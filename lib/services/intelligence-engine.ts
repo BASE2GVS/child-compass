@@ -115,21 +115,6 @@ async function runIntelligenceAnalysisCore(childId: string, familyId: string) {
         confidence: insight.confidence,
         is_read: false,
       });
-
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      if (user) {
-        await supabase.from("timeline_events").insert({
-          child_id: childId,
-          user_id: user.id,
-          event_type: "ai_insight",
-          title: insight.title,
-          description: insight.content,
-          event_date: new Date().toISOString(),
-        });
-      }
     }
   }
 
