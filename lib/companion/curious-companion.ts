@@ -14,6 +14,7 @@ import { buildConversationContinuity } from "@/lib/companion/conversation-memory
 import { inferParentUnderstanding } from "@/lib/companion/parent-understanding";
 import { buildRelationshipDepth } from "@/lib/companion/growing-relationship";
 import { buildFamilyStoryMoment } from "@/lib/companion/family-story";
+import { buildRelationshipSignal } from "@/lib/companion/relationship-intelligence";
 import { needsPresenceFirst } from "@/lib/companion/emotional-presence";
 import { shapeWithBeliefs } from "@/lib/companion/family-beliefs";
 import {
@@ -148,6 +149,7 @@ export type CuriousEnrichment = {
   parentUnderstanding: string | null;
   relationshipDepth: string | null;
   familyStory: string | null;
+  relationshipSignal: string | null;
   presenceOnly: boolean;
   trust: TrustEnrichment;
   boundaryNote: string | null;
@@ -196,7 +198,12 @@ export function buildCuriousEnrichment(
     parentMood: options?.parentMood ?? null,
     conversationHistory,
   });
-  if (presenceOnly) parentNeed = "presence_only";
+  if (
+    presenceOnly &&
+    !["problem_solving", "new_ideas", "preparation"].includes(parentNeed)
+  ) {
+    parentNeed = "presence_only";
+  }
 
   const conversationStyle = selectConversationStyle(parentNeed, {
     lowConfidence: false,
@@ -228,6 +235,11 @@ export function buildCuriousEnrichment(
     isBrief || presenceOnly || storySeed % 5 !== 0
       ? null
       : buildFamilyStoryMoment(context);
+
+  const relationshipSignal =
+    isBrief || presenceOnly || trust.deferAdvice || !memoryVisible
+      ? null
+      : buildRelationshipSignal(context, parentMessage, conversationHistory);
 
   const crossDayContinuity =
     isBrief || presenceOnly || !memoryVisible
@@ -286,6 +298,7 @@ export function buildCuriousEnrichment(
     parentUnderstanding,
     relationshipDepth,
     familyStory,
+    relationshipSignal,
     presenceOnly,
     trust,
     boundaryNote: trust.boundaryNote,
@@ -347,6 +360,7 @@ export function applyCuriousEnrichment(
   }
   if (weaveMemory && enrichment.parentUnderstanding) emotionalParts.push(enrichment.parentUnderstanding);
   if (weaveMemory && enrichment.familyUnderstanding) emotionalParts.push(enrichment.familyUnderstanding);
+  if (weaveMemory && enrichment.relationshipSignal) emotionalParts.push(enrichment.relationshipSignal);
   if (
     (weaveMemory || enrichment.conversationStyle.need === "celebration") &&
     enrichment.positiveChange &&

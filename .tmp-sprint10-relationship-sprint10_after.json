@@ -1,0 +1,840 @@
+{
+  "label": "sprint10_after",
+  "timestamp": "2026-06-29T19:08:31.542Z",
+  "journeys": 50,
+  "daysPerJourney": 30,
+  "totalConversations": 1500,
+  "averages": {
+    "emotionalContinuity": 7.291,
+    "memoryRelevance": 5.216,
+    "trustGrowth": 8,
+    "hopeGrowth": 7.46,
+    "conversationConsistency": 8.386,
+    "companionFamiliarity": 6.326,
+    "overallRelationship": 7.137
+  },
+  "byJourney": [
+    {
+      "journeyId": "journey-1",
+      "overall": 7.154,
+      "firstWeek": 7.04,
+      "finalWeek": 7.421,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-2",
+      "overall": 7.155,
+      "firstWeek": 7.01,
+      "finalWeek": 7.387,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.5
+    },
+    {
+      "journeyId": "journey-3",
+      "overall": 7.134,
+      "firstWeek": 7.01,
+      "finalWeek": 7.289,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-4",
+      "overall": 7.139,
+      "firstWeek": 7.017,
+      "finalWeek": 7.334,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-5",
+      "overall": 7.137,
+      "firstWeek": 7.01,
+      "finalWeek": 7.399,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-6",
+      "overall": 7.118,
+      "firstWeek": 6.976,
+      "finalWeek": 7.32,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-7",
+      "overall": 7.154,
+      "firstWeek": 7.04,
+      "finalWeek": 7.421,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-8",
+      "overall": 7.155,
+      "firstWeek": 7.01,
+      "finalWeek": 7.387,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.5
+    },
+    {
+      "journeyId": "journey-9",
+      "overall": 7.134,
+      "firstWeek": 7.01,
+      "finalWeek": 7.289,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-10",
+      "overall": 7.139,
+      "firstWeek": 7.017,
+      "finalWeek": 7.334,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-11",
+      "overall": 7.137,
+      "firstWeek": 7.01,
+      "finalWeek": 7.399,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-12",
+      "overall": 7.098,
+      "firstWeek": 6.889,
+      "finalWeek": 7.32,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-13",
+      "overall": 7.139,
+      "firstWeek": 7.04,
+      "finalWeek": 7.421,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-14",
+      "overall": 7.155,
+      "firstWeek": 7.01,
+      "finalWeek": 7.387,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.5
+    },
+    {
+      "journeyId": "journey-15",
+      "overall": 7.134,
+      "firstWeek": 7.01,
+      "finalWeek": 7.289,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-16",
+      "overall": 7.139,
+      "firstWeek": 7.017,
+      "finalWeek": 7.334,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-17",
+      "overall": 7.137,
+      "firstWeek": 7.01,
+      "finalWeek": 7.399,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-18",
+      "overall": 7.118,
+      "firstWeek": 6.976,
+      "finalWeek": 7.32,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-19",
+      "overall": 7.139,
+      "firstWeek": 7.04,
+      "finalWeek": 7.421,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-20",
+      "overall": 7.155,
+      "firstWeek": 7.01,
+      "finalWeek": 7.387,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.5
+    },
+    {
+      "journeyId": "journey-21",
+      "overall": 7.134,
+      "firstWeek": 7.01,
+      "finalWeek": 7.289,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-22",
+      "overall": 7.139,
+      "firstWeek": 7.017,
+      "finalWeek": 7.334,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-23",
+      "overall": 7.137,
+      "firstWeek": 7.01,
+      "finalWeek": 7.399,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-24",
+      "overall": 7.118,
+      "firstWeek": 6.976,
+      "finalWeek": 7.32,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-25",
+      "overall": 7.139,
+      "firstWeek": 7.04,
+      "finalWeek": 7.421,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-26",
+      "overall": 7.155,
+      "firstWeek": 7.01,
+      "finalWeek": 7.387,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.5
+    },
+    {
+      "journeyId": "journey-27",
+      "overall": 7.134,
+      "firstWeek": 7.01,
+      "finalWeek": 7.289,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-28",
+      "overall": 7.139,
+      "firstWeek": 7.017,
+      "finalWeek": 7.334,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-29",
+      "overall": 7.137,
+      "firstWeek": 7.01,
+      "finalWeek": 7.399,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-30",
+      "overall": 7.098,
+      "firstWeek": 6.889,
+      "finalWeek": 7.32,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-31",
+      "overall": 7.139,
+      "firstWeek": 7.04,
+      "finalWeek": 7.421,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-32",
+      "overall": 7.155,
+      "firstWeek": 7.01,
+      "finalWeek": 7.387,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.5
+    },
+    {
+      "journeyId": "journey-33",
+      "overall": 7.134,
+      "firstWeek": 7.01,
+      "finalWeek": 7.289,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-34",
+      "overall": 7.139,
+      "firstWeek": 7.017,
+      "finalWeek": 7.334,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-35",
+      "overall": 7.137,
+      "firstWeek": 7.01,
+      "finalWeek": 7.399,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-36",
+      "overall": 7.118,
+      "firstWeek": 6.976,
+      "finalWeek": 7.32,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-37",
+      "overall": 7.139,
+      "firstWeek": 7.04,
+      "finalWeek": 7.421,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-38",
+      "overall": 7.155,
+      "firstWeek": 7.01,
+      "finalWeek": 7.387,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.5
+    },
+    {
+      "journeyId": "journey-39",
+      "overall": 7.134,
+      "firstWeek": 7.01,
+      "finalWeek": 7.289,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-40",
+      "overall": 7.139,
+      "firstWeek": 7.017,
+      "finalWeek": 7.334,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-41",
+      "overall": 7.137,
+      "firstWeek": 7.01,
+      "finalWeek": 7.399,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-42",
+      "overall": 7.098,
+      "firstWeek": 6.889,
+      "finalWeek": 7.32,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-43",
+      "overall": 7.139,
+      "firstWeek": 7.04,
+      "finalWeek": 7.421,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-44",
+      "overall": 7.155,
+      "firstWeek": 7.01,
+      "finalWeek": 7.387,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.5
+    },
+    {
+      "journeyId": "journey-45",
+      "overall": 7.134,
+      "firstWeek": 7.01,
+      "finalWeek": 7.289,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-46",
+      "overall": 7.139,
+      "firstWeek": 7.017,
+      "finalWeek": 7.334,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-47",
+      "overall": 7.137,
+      "firstWeek": 7.01,
+      "finalWeek": 7.399,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.643
+    },
+    {
+      "journeyId": "journey-48",
+      "overall": 7.118,
+      "firstWeek": 6.976,
+      "finalWeek": 7.32,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-49",
+      "overall": 7.139,
+      "firstWeek": 7.04,
+      "finalWeek": 7.421,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.286
+    },
+    {
+      "journeyId": "journey-50",
+      "overall": 7.155,
+      "firstWeek": 7.01,
+      "finalWeek": 7.387,
+      "trustFinalWeek": 8,
+      "hopeFinalWeek": 7.5
+    }
+  ],
+  "lowest20": [
+    {
+      "journeyId": "journey-12",
+      "day": 2,
+      "overall": 6.55,
+      "message": "School drop-off blew up again and I'm spiraling about tomorrow.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-30",
+      "day": 2,
+      "overall": 6.55,
+      "message": "School drop-off blew up again and I'm spiraling about tomorrow.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-42",
+      "day": 2,
+      "overall": 6.55,
+      "message": "School drop-off blew up again and I'm spiraling about tomorrow.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-1",
+      "day": 6,
+      "overall": 6.71,
+      "message": "Morning was chaos again and I feel like I'm failing Amyy before school.",
+      "response": "The guilt you're carrying sounds heavy — and it tells me how much you care. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.\n\nWhen you're depleted, everything feels harder — including supporting Amyy.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-1",
+      "day": 12,
+      "overall": 6.71,
+      "message": "Another hard morning. We had a better day last week, but today slid again and I need one gentle step.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\n\" — The more we talk, the more I understand what helps Amyy and what helps you You often worry before the hard parts of the day — that care comes from love, not weakness. I can see a subtle easing in the anxiety load compared with recent days. Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-2",
+      "day": 5,
+      "overall": 6.71,
+      "message": "Morning was chaos again and I feel like I'm failing Noah before school.",
+      "response": "The guilt you're carrying sounds heavy — and it tells me how much you care. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.\n\nWhen you're depleted, everything feels harder — including supporting Noah.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-2",
+      "day": 11,
+      "overall": 6.71,
+      "message": "Another hard morning. We had a better day last week, but today slid again and I need one gentle step.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\n\" — The more we talk, the more I understand what helps Noah and what helps you You often worry before the hard parts of the day — that care comes from love, not weakness. I can see a subtle easing in the anxiety load compared with recent days. Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-3",
+      "day": 4,
+      "overall": 6.71,
+      "message": "Morning was chaos again and I feel like I'm failing Mia before school.",
+      "response": "The guilt you're carrying sounds heavy — and it tells me how much you care. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.\n\nWhen you're depleted, everything feels harder — including supporting Mia.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-3",
+      "day": 10,
+      "overall": 6.71,
+      "message": "Morning was chaos again and I feel like I'm failing Mia before school.",
+      "response": "The guilt you're carrying sounds heavy — and it tells me how much you care. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.\n\nWhen you're depleted, everything feels harder — including supporting Mia.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-3",
+      "day": 11,
+      "overall": 6.71,
+      "message": "School drop-off blew up again and I'm spiraling about tomorrow.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\n\" — The more we talk, the more I understand what helps Mia and what helps you You often worry before the hard parts of the day — that care comes from love, not weakness. I can see a subtle easing in the anxiety load compared with recent days. Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-4",
+      "day": 3,
+      "overall": 6.71,
+      "message": "Morning was chaos again and I feel like I'm failing Leo before school.",
+      "response": "The guilt you're carrying sounds heavy — and it tells me how much you care. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.\n\nWhen you're depleted, everything feels harder — including supporting Leo.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-4",
+      "day": 9,
+      "overall": 6.71,
+      "message": "Morning was chaos again and I feel like I'm failing Leo before school.",
+      "response": "The guilt you're carrying sounds heavy — and it tells me how much you care. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.\n\nWhen you're depleted, everything feels harder — including supporting Leo.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-5",
+      "day": 2,
+      "overall": 6.71,
+      "message": "Morning was chaos again and I feel like I'm failing Avay before school.",
+      "response": "The guilt you're carrying sounds heavy — and it tells me how much you care. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.\n\nWhen you're depleted, everything feels harder — including supporting Avay.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-5",
+      "day": 8,
+      "overall": 6.71,
+      "message": "Morning was chaos again and I feel like I'm failing Avay before school.",
+      "response": "The guilt you're carrying sounds heavy — and it tells me how much you care. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.\n\nWhen you're depleted, everything feels harder — including supporting Avay.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-5",
+      "day": 20,
+      "overall": 6.71,
+      "message": "Another hard morning. We had a better day last week, but today slid again and I need one gentle step.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\n\" — The more we talk, the more I understand what helps Avay and what helps you You often worry before the hard parts of the day — that care comes from love, not weakness. I can see a subtle easing in the anxiety load compared with recent days. Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-6",
+      "day": 1,
+      "overall": 6.71,
+      "message": "Morning was chaos again and I feel like I'm failing Eli before school.",
+      "response": "The guilt you're carrying sounds heavy — and it tells me how much you care. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.\n\nWhen you're depleted, everything feels harder — including supporting Eli.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-6",
+      "day": 7,
+      "overall": 6.71,
+      "message": "Morning was chaos again and I feel like I'm failing Eli before school.",
+      "response": "The guilt you're carrying sounds heavy — and it tells me how much you care. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.\n\nWhen you're depleted, everything feels harder — including supporting Eli.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-6",
+      "day": 19,
+      "overall": 6.71,
+      "message": "Another hard morning. We had a better day last week, but today slid again and I need one gentle step.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\n\" — The more we talk, the more I understand what helps Eli and what helps you You often worry before the hard parts of the day — that care comes from love, not weakness. I can see a subtle easing in the anxiety load compared with recent days. Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-7",
+      "day": 6,
+      "overall": 6.71,
+      "message": "Morning was chaos again and I feel like I'm failing Ruby before school.",
+      "response": "The guilt you're carrying sounds heavy — and it tells me how much you care. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.\n\nWhen you're depleted, everything feels harder — including supporting Ruby.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    },
+    {
+      "journeyId": "journey-7",
+      "day": 12,
+      "overall": 6.71,
+      "message": "Another hard morning. We had a better day last week, but today slid again and I need one gentle step.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\n\" — The more we talk, the more I understand what helps Ruby and what helps you You often worry before the hard parts of the day — that care comes from love, not weakness. I can see a subtle easing in the anxiety load compared with recent days. Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong.",
+      "weakest": [
+        [
+          "memoryRelevance",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          5
+        ],
+        [
+          "hopeGrowth",
+          6
+        ]
+      ]
+    }
+  ]
+}

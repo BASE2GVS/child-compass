@@ -111,7 +111,11 @@ function repairFragments(text: string, childName: string): string {
     .replace(/\bWe've\s+(?=[A-Z])/g, "")
     .replace(/\bWe're\s+(?=[A-Z])/g, "")
     .replace(new RegExp(`\\b${nameEsc}\\s+${nameEsc}\\b`, "gi"), childName)
+    .replace(new RegExp(`\\b${nameEsc}'s\\s+${nameEsc}\\b`, "gi"), `${childName}`)
+    .replace(new RegExp(`\\b${nameEsc}'s\\s+${nameEsc}'s\\b`, "gi"), `${childName}'s`)
+    .replace(new RegExp(`\\b${nameEsc}'s\\s*$`, "gi"), childName)
     .replace(new RegExp(`\\b${nameEsc}\\s+With\\b`, "gi"), "")
+    .replace(/\b[A-Z][a-z]+'s\s+[A-Z][a-z]+'s\b/g, "")
     .replace(/\.\s*\./g, ".")
     .replace(/\s{2,}/g, " ")
     .trim();
@@ -124,6 +128,8 @@ function dropBrokenSentences(text: string): string {
     if (t.length < 12) return false;
     if (/^We've\s/i.test(t) && t.split(/\s+/).length < 6) return false;
     if (/^Amy\s+Amy/i.test(t)) return false;
+    if (/\bAmy's\s+Amy\b/i.test(t)) return false;
+    if (/\bThere may be more than one explanation\s*[—-]?\s*It makes me wonder if\s+\w+'s\s+\w+/i.test(t)) return false;
     return true;
   });
   return kept.join(" ").trim();
@@ -161,9 +167,17 @@ function wordCount(text: string): number {
   return text.split(/\s+/).filter(Boolean).length;
 }
 
-function feelingToMood(feeling?: ParentFeeling | null): OpeningMood {
+function messageIsCelebratory(message: string): boolean {
+  return /\b(win|proud|amazing|great day|went well|breakthrough|calm evening|success|fantastic)\b/i.test(
+    message,
+  );
+}
+
+function feelingToMood(feeling: ParentFeeling | null | undefined, parentMessage: string): OpeningMood {
   if (!feeling) return "neutral";
-  if (feeling === "proud" || feeling === "hopeful") return "celebration";
+  if ((feeling === "proud" || feeling === "hopeful") && messageIsCelebratory(parentMessage)) {
+    return "celebration";
+  }
   if (
     ["exhausted", "overwhelmed", "heartbroken", "frustrated", "guilty", "upset", "lonely"].includes(
       feeling,
@@ -261,7 +275,7 @@ export function applyCompanionVoice(text: string, options: VoiceOptions): string
 
   const seed =
     options.parentMessage + priorAssistant.map((t) => t.slice(0, 20)).join("") + text.length;
-  const mood = feelingToMood(options.parentFeeling);
+  const mood = feelingToMood(options.parentFeeling, options.parentMessage);
   const maxWords = options.maxWords ?? 220;
 
   let result = stripAiLanguage(text);

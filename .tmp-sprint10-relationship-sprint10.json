@@ -1,0 +1,35 @@
+{
+  "label": "sprint10",
+  "timestamp": "2026-06-29T19:08:31.576Z",
+  "journeys": 50,
+  "daysPerJourney": 30,
+  "beforeFile": ".tmp-sprint10-relationship-sprint10_before.json",
+  "afterFile": ".tmp-sprint10-relationship-sprint10_after.json",
+  "before": {
+    "emotionalContinuity": 7.335,
+    "memoryRelevance": 5.216,
+    "trustGrowth": 8,
+    "hopeGrowth": 7.46,
+    "conversationConsistency": 8.364,
+    "companionFamiliarity": 5.67,
+    "overallRelationship": 7.044
+  },
+  "after": {
+    "emotionalContinuity": 7.291,
+    "memoryRelevance": 5.216,
+    "trustGrowth": 8,
+    "hopeGrowth": 7.46,
+    "conversationConsistency": 8.386,
+    "companionFamiliarity": 6.326,
+    "overallRelationship": 7.137
+  },
+  "delta": {
+    "emotionalContinuity": -0.044,
+    "memoryRelevance": 0,
+    "trustGrowth": 0,
+    "hopeGrowth": 0,
+    "conversationConsistency": 0.022,
+    "companionFamiliarity": 0.656,
+    "overallRelationship": 0.093
+  }
+}

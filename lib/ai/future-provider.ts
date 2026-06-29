@@ -102,9 +102,23 @@ export class LocalIntelligenceProvider implements LLMProvider {
 }
 
 let cachedProvider: LLMProvider | null = null;
+let cachedConfigSignature: string | null = null;
+
+function envSignature(): string {
+  return [
+    process.env.OPENAI_API_KEY || "",
+    process.env.OPENAI_MODEL || "",
+    process.env.AZURE_OPENAI_ENDPOINT || "",
+    process.env.AZURE_OPENAI_API_KEY || "",
+    process.env.AZURE_OPENAI_DEPLOYMENT || "",
+  ].join("|");
+}
 
 export function getLLMProvider(): LLMProvider {
-  if (cachedProvider) return cachedProvider;
+  const signature = envSignature();
+  if (cachedProvider && cachedConfigSignature === signature) return cachedProvider;
+
+  cachedConfigSignature = signature;
 
   const openaiKey = process.env.OPENAI_API_KEY;
   if (openaiKey) {

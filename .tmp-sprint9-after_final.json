@@ -1,0 +1,698 @@
+{
+  "label": "after_final",
+  "timestamp": "2026-06-29T17:31:23.299Z",
+  "total": 500,
+  "averages": {
+    "presence": 7.982,
+    "recognition": 7.01,
+    "understanding": 6.984,
+    "agency": 5.256,
+    "hope": 5.772,
+    "naturalness": 7.5,
+    "emotionalTiming": 8.976,
+    "conversationFlow": 8.36,
+    "trust": 8.498,
+    "overall": 7.392
+  },
+  "hardFailRate": 0,
+  "byCategory": [
+    {
+      "category": "Everyday parenting",
+      "count": 50,
+      "overall": 7.321,
+      "trust": 8.434,
+      "hope": 5.36,
+      "hardFails": 0
+    },
+    {
+      "category": "PDA",
+      "count": 20,
+      "overall": 7.534,
+      "trust": 8.56,
+      "hope": 6.2,
+      "hardFails": 0
+    },
+    {
+      "category": "Autism",
+      "count": 30,
+      "overall": 7.642,
+      "trust": 8.42,
+      "hope": 6.6,
+      "hardFails": 0
+    },
+    {
+      "category": "ADHD",
+      "count": 25,
+      "overall": 7.538,
+      "trust": 8.42,
+      "hope": 6.2,
+      "hardFails": 0
+    },
+    {
+      "category": "Meltdowns",
+      "count": 30,
+      "overall": 7.318,
+      "trust": 8.56,
+      "hope": 5.8,
+      "hardFails": 0
+    },
+    {
+      "category": "Shutdowns",
+      "count": 20,
+      "overall": 7.386,
+      "trust": 8.42,
+      "hope": 5.8,
+      "hardFails": 0
+    },
+    {
+      "category": "School",
+      "count": 30,
+      "overall": 7.206,
+      "trust": 8.653,
+      "hope": 5.133,
+      "hardFails": 0
+    },
+    {
+      "category": "Sleep",
+      "count": 25,
+      "overall": 7.3,
+      "trust": 8.532,
+      "hope": 5.48,
+      "hardFails": 0
+    },
+    {
+      "category": "Food",
+      "count": 15,
+      "overall": 7.666,
+      "trust": 8.42,
+      "hope": 6.6,
+      "hardFails": 0
+    },
+    {
+      "category": "Haircuts",
+      "count": 8,
+      "overall": 7.625,
+      "trust": 8.525,
+      "hope": 6.5,
+      "hardFails": 0
+    },
+    {
+      "category": "Dentist",
+      "count": 8,
+      "overall": 7.17,
+      "trust": 8.7,
+      "hope": 5,
+      "hardFails": 0
+    },
+    {
+      "category": "Grandparents",
+      "count": 15,
+      "overall": 7.386,
+      "trust": 8.42,
+      "hope": 5.8,
+      "hardFails": 0
+    },
+    {
+      "category": "Marriage",
+      "count": 18,
+      "overall": 7.453,
+      "trust": 8.7,
+      "hope": 5.333,
+      "hardFails": 0
+    },
+    {
+      "category": "Sibling conflict",
+      "count": 20,
+      "overall": 7.278,
+      "trust": 8.56,
+      "hope": 5.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Burnout",
+      "count": 25,
+      "overall": 7.71,
+      "trust": 8,
+      "hope": 7,
+      "hardFails": 0
+    },
+    {
+      "category": "Celebrations",
+      "count": 18,
+      "overall": 7.072,
+      "trust": 8.7,
+      "hope": 5.667,
+      "hardFails": 0
+    },
+    {
+      "category": "Success",
+      "count": 18,
+      "overall": 7.41,
+      "trust": 8.389,
+      "hope": 5.889,
+      "hardFails": 0
+    },
+    {
+      "category": "Grief",
+      "count": 15,
+      "overall": 7.314,
+      "trust": 8.7,
+      "hope": 5,
+      "hardFails": 0
+    },
+    {
+      "category": "Medication",
+      "count": 10,
+      "overall": 7.662,
+      "trust": 8.56,
+      "hope": 6.6,
+      "hardFails": 0
+    },
+    {
+      "category": "Therapy",
+      "count": 10,
+      "overall": 7.41,
+      "trust": 8.42,
+      "hope": 5.8,
+      "hardFails": 0
+    },
+    {
+      "category": "Transitions",
+      "count": 20,
+      "overall": 7.278,
+      "trust": 8.56,
+      "hope": 5.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Anxiety",
+      "count": 20,
+      "overall": 7.17,
+      "trust": 8.7,
+      "hope": 5,
+      "hardFails": 0
+    },
+    {
+      "category": "Shopping",
+      "count": 10,
+      "overall": 7.386,
+      "trust": 8.42,
+      "hope": 5.8,
+      "hardFails": 0
+    },
+    {
+      "category": "Travel",
+      "count": 10,
+      "overall": 7.19,
+      "trust": 8.7,
+      "hope": 5.2,
+      "hardFails": 0
+    },
+    {
+      "category": "Public outings",
+      "count": 18,
+      "overall": 7.436,
+      "trust": 8.428,
+      "hope": 5.889,
+      "hardFails": 0
+    },
+    {
+      "category": "Unexpected wins",
+      "count": 6,
+      "overall": 7.35,
+      "trust": 8.467,
+      "hope": 5.667,
+      "hardFails": 0
+    },
+    {
+      "category": "Unexpected setbacks",
+      "count": 6,
+      "overall": 7.567,
+      "trust": 8.35,
+      "hope": 6.333,
+      "hardFails": 0
+    }
+  ],
+  "lowest20": [
+    {
+      "id": "celebrations_001",
+      "category": "Celebrations",
+      "message": "Today actually went well.",
+      "overall": 6.73,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "I'm really glad you told me.\n\nThat's wonderful to hear.\n\nIf it helps, one small thing for tomorrow is: Prepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "celebrations_006",
+      "category": "Celebrations",
+      "message": "Today actually went well.",
+      "overall": 6.73,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "That's wonderful to hear.\n\nThat's wonderful to hear.\n\nIf it helps, one small thing for tomorrow is: Prepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "celebrations_011",
+      "category": "Celebrations",
+      "message": "Today actually went well.",
+      "overall": 6.73,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "I smiled reading that.\n\nThat's wonderful to hear.\n\nIf it helps, one small thing for tomorrow is: Prepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "celebrations_016",
+      "category": "Celebrations",
+      "message": "Today actually went well.",
+      "overall": 6.73,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "I'm really glad you told me.\n\nThat's wonderful to hear.\n\nIf it helps, one small thing for tomorrow is: Prepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "everyday_parenting_004",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.08,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_009",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.08,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_014",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.08,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_019",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.08,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_024",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.08,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_029",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.08,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_034",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.08,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_039",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.08,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_044",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.08,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_049",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.08,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_001",
+      "category": "Everyday parenting",
+      "message": "Today felt chaotic from breakfast onward.",
+      "overall": 7.17,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger.\n\nIt makes sense that this is weighing on you.\n\nKnowing your family a little better each time we talk, Amy's anxiety was already elevated (4/5"
+    },
+    {
+      "id": "everyday_parenting_002",
+      "category": "Everyday parenting",
+      "message": "I'm trying to keep things steady but everything feels messy. Tonight feels heavy.",
+      "overall": 7.17,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger.\n\nIt makes sense that this is weighing on you.\n\nKnowing your family a little better each time we talk,. Amy's anxiety was already elevated (4/5"
+    },
+    {
+      "id": "everyday_parenting_005",
+      "category": "Everyday parenting",
+      "message": "How do we get through evenings without everyone exploding? I want one gentle next step.",
+      "overall": 7.17,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger.\n\nIt makes sense that this is weighing on you."
+    },
+    {
+      "id": "everyday_parenting_007",
+      "category": "Everyday parenting",
+      "message": "I'm trying to keep things steady but everything feels messy. Tonight feels heavy.",
+      "overall": 7.17,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger.\n\nIt makes sense that this is weighing on you.\n\nAmy's anxiety was already elevated (4/5"
+    },
+    {
+      "id": "everyday_parenting_010",
+      "category": "Everyday parenting",
+      "message": "How do we get through evenings without everyone exploding? I want one gentle next step.",
+      "overall": 7.17,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger.\n\nIt makes sense that this is weighing on you."
+    },
+    {
+      "id": "everyday_parenting_012",
+      "category": "Everyday parenting",
+      "message": "I'm trying to keep things steady but everything feels messy. Tonight feels heavy.",
+      "overall": 7.17,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "recognition",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger.\n\nIt makes sense that this is weighing on you.\n\nAmy's anxiety was already elevated (4/5"
+    }
+  ]
+}

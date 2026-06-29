@@ -54,7 +54,29 @@ function weaveAdviceNaturally(advice: string): string {
 
   }
 
-  return `One thought — ${trimmed.charAt(0).toLowerCase()}${trimmed.slice(1).replace(/\.$/, "")}.`;
+  return `One small thing that might help is ${trimmed.charAt(0).toLowerCase()}${trimmed.slice(1).replace(/\.$/, "")}.`;
+
+}
+
+function toOneGentleStep(text: string): string | null {
+
+  const trimmed = text.trim();
+
+  if (!trimmed) return null;
+
+  const firstSentence = trimmed.split(/(?<=[.!?])\s+/)[0]?.trim() || trimmed;
+
+  const softened = firstSentence
+    .replace(/^A gentle next step\s*/i, "")
+    .replace(/^Try\s*/i, "")
+    .replace(/^Start\s*/i, "")
+    .replace(/^You should\s*/i, "")
+    .replace(/^You need to\s*/i, "")
+    .trim();
+
+  if (!softened) return null;
+
+  return weaveAdviceNaturally(softened);
 
 }
 
@@ -166,7 +188,11 @@ export function formatNaturalReply(
 
 
 
-  if (enrichment?.presenceOnly || enrichment?.trust.emotionalHolding) {
+  const forcePresenceOnly =
+    (enrichment?.presenceOnly || enrichment?.trust.emotionalHolding) &&
+    !["problem_solving", "new_ideas", "preparation"].includes(style.need);
+
+  if (forcePresenceOnly) {
 
     const parts = prependParentAcknowledgment(
 
@@ -296,6 +322,28 @@ export function formatNaturalReply(
 
     if (behaviour && behaviour !== emotional) paragraphs.push(behaviour);
 
+    if (
+      need === "emotional_support" &&
+      !enrichment?.trust.deferAdvice &&
+      response.suggested_response?.trim()
+    ) {
+
+      const oneStep = toOneGentleStep(response.suggested_response);
+
+      if (oneStep) paragraphs.push(sanitizeForNaturalConversation(oneStep));
+
+      if (response.tomorrow_plan?.trim()) {
+
+        const groundedClose = sanitizeForNaturalConversation(
+          warmTone(`Perhaps tomorrow, if it feels manageable, ${response.tomorrow_plan.replace(/^A gentle next step\s*/i, "").replace(/^to\s+/i, "")}`),
+        );
+
+        if (groundedClose && paragraphs.length < style.maxParagraphs) paragraphs.push(groundedClose);
+
+      }
+
+    }
+
     if (style.includeFollowUp && question) paragraphs.push(question);
 
     return humanizeParentText(
@@ -310,11 +358,25 @@ export function formatNaturalReply(
 
   if (need === "celebration") {
 
+    paragraphs.push("That sounds like a real win for both of you.");
+
     const ackParts = parentAckParts(enrichment);
 
     if (ackParts.length) {
 
-      return humanizeParentText(ackParts.slice(0, 2).join("\n\n"));
+      const out = [...paragraphs, ...ackParts.slice(0, 1)];
+
+      if (response.tomorrow_plan?.trim()) {
+
+        out.push(
+          sanitizeForNaturalConversation(
+            warmTone(`Perhaps tomorrow, if it feels manageable, ${response.tomorrow_plan.replace(/^A gentle next step\s*/i, "").replace(/^to\s+/i, "")}`),
+          ),
+        );
+
+      }
+
+      return humanizeParentText(out.slice(0, 3).join("\n\n"));
 
     }
 
@@ -326,7 +388,17 @@ export function formatNaturalReply(
 
     }
 
-    return humanizeParentText(paragraphs.slice(0, 2).join("\n\n"));
+    if (response.tomorrow_plan?.trim()) {
+
+      paragraphs.push(
+        sanitizeForNaturalConversation(
+          warmTone(`Perhaps tomorrow, if it feels manageable, ${response.tomorrow_plan.replace(/^A gentle next step\s*/i, "").replace(/^to\s+/i, "")}`),
+        ),
+      );
+
+    }
+
+    return humanizeParentText(paragraphs.slice(0, 3).join("\n\n"));
 
   }
 

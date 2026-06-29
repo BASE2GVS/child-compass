@@ -1,0 +1,698 @@
+{
+  "label": "before",
+  "timestamp": "2026-06-29T17:22:50.749Z",
+  "total": 500,
+  "averages": {
+    "presence": 7.958,
+    "recognition": 6.984,
+    "understanding": 5.892,
+    "agency": 6.192,
+    "hope": 6.468,
+    "naturalness": 7.497,
+    "emotionalTiming": 8.958,
+    "conversationFlow": 8.11,
+    "trust": 8.174,
+    "overall": 7.393
+  },
+  "hardFailRate": 0,
+  "byCategory": [
+    {
+      "category": "Everyday parenting",
+      "count": 50,
+      "overall": 7.438,
+      "trust": 8.28,
+      "hope": 6.44,
+      "hardFails": 0
+    },
+    {
+      "category": "PDA",
+      "count": 20,
+      "overall": 7.374,
+      "trust": 8,
+      "hope": 6.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Autism",
+      "count": 30,
+      "overall": 7.632,
+      "trust": 8.14,
+      "hope": 7.2,
+      "hardFails": 0
+    },
+    {
+      "category": "ADHD",
+      "count": 25,
+      "overall": 7.39,
+      "trust": 8.28,
+      "hope": 6.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Meltdowns",
+      "count": 30,
+      "overall": 7.37,
+      "trust": 8.14,
+      "hope": 6.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Shutdowns",
+      "count": 20,
+      "overall": 7.55,
+      "trust": 8.14,
+      "hope": 7,
+      "hardFails": 0
+    },
+    {
+      "category": "School",
+      "count": 30,
+      "overall": 7.501,
+      "trust": 8.14,
+      "hope": 6.867,
+      "hardFails": 0
+    },
+    {
+      "category": "Sleep",
+      "count": 25,
+      "overall": 7.34,
+      "trust": 8.14,
+      "hope": 6.36,
+      "hardFails": 0
+    },
+    {
+      "category": "Food",
+      "count": 15,
+      "overall": 7.442,
+      "trust": 8.28,
+      "hope": 6.6,
+      "hardFails": 0
+    },
+    {
+      "category": "Haircuts",
+      "count": 8,
+      "overall": 7.42,
+      "trust": 8,
+      "hope": 6.75,
+      "hardFails": 0
+    },
+    {
+      "category": "Dentist",
+      "count": 8,
+      "overall": 7.575,
+      "trust": 8.35,
+      "hope": 7.25,
+      "hardFails": 0
+    },
+    {
+      "category": "Grandparents",
+      "count": 15,
+      "overall": 7.22,
+      "trust": 8.14,
+      "hope": 6,
+      "hardFails": 0
+    },
+    {
+      "category": "Marriage",
+      "count": 18,
+      "overall": 7.301,
+      "trust": 8.233,
+      "hope": 6.778,
+      "hardFails": 0
+    },
+    {
+      "category": "Sibling conflict",
+      "count": 20,
+      "overall": 7.588,
+      "trust": 8.42,
+      "hope": 7,
+      "hardFails": 0
+    },
+    {
+      "category": "Burnout",
+      "count": 25,
+      "overall": 7.08,
+      "trust": 8,
+      "hope": 5,
+      "hardFails": 0
+    },
+    {
+      "category": "Celebrations",
+      "count": 18,
+      "overall": 7.174,
+      "trust": 8.156,
+      "hope": 6.667,
+      "hardFails": 0
+    },
+    {
+      "category": "Success",
+      "count": 18,
+      "overall": 7.319,
+      "trust": 8,
+      "hope": 6.111,
+      "hardFails": 0
+    },
+    {
+      "category": "Grief",
+      "count": 15,
+      "overall": 7.089,
+      "trust": 8.14,
+      "hope": 5.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Medication",
+      "count": 10,
+      "overall": 7.28,
+      "trust": 8,
+      "hope": 6.1,
+      "hardFails": 0
+    },
+    {
+      "category": "Therapy",
+      "count": 10,
+      "overall": 7.202,
+      "trust": 8.28,
+      "hope": 5.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Transitions",
+      "count": 20,
+      "overall": 7.527,
+      "trust": 8.28,
+      "hope": 6.9,
+      "hardFails": 0
+    },
+    {
+      "category": "Anxiety",
+      "count": 20,
+      "overall": 7.499,
+      "trust": 8.28,
+      "hope": 6.95,
+      "hardFails": 0
+    },
+    {
+      "category": "Shopping",
+      "count": 10,
+      "overall": 7.462,
+      "trust": 8.14,
+      "hope": 6.6,
+      "hardFails": 0
+    },
+    {
+      "category": "Travel",
+      "count": 10,
+      "overall": 7.468,
+      "trust": 8.28,
+      "hope": 6.8,
+      "hardFails": 0
+    },
+    {
+      "category": "Public outings",
+      "count": 18,
+      "overall": 7.347,
+      "trust": 8,
+      "hope": 6.111,
+      "hardFails": 0
+    },
+    {
+      "category": "Unexpected wins",
+      "count": 6,
+      "overall": 7.443,
+      "trust": 8.233,
+      "hope": 6.5,
+      "hardFails": 0
+    },
+    {
+      "category": "Unexpected setbacks",
+      "count": 6,
+      "overall": 7.355,
+      "trust": 8.117,
+      "hope": 6.167,
+      "hardFails": 0
+    }
+  ],
+  "lowest20": [
+    {
+      "id": "celebrations_001",
+      "category": "Celebrations",
+      "message": "Today actually went well.",
+      "overall": 5.85,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+presence",
+      "response": "That's wonderful to hear.\n\nThese moments are worth noticing."
+    },
+    {
+      "id": "celebrations_006",
+      "category": "Celebrations",
+      "message": "Today actually went well.",
+      "overall": 5.85,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+presence",
+      "response": "That's wonderful to hear.\n\nThese moments are worth noticing."
+    },
+    {
+      "id": "celebrations_011",
+      "category": "Celebrations",
+      "message": "Today actually went well.",
+      "overall": 5.85,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+presence",
+      "response": "That's wonderful to hear.\n\nThese moments are worth noticing."
+    },
+    {
+      "id": "celebrations_016",
+      "category": "Celebrations",
+      "message": "Today actually went well.",
+      "overall": 5.85,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+presence",
+      "response": "That's wonderful to hear.\n\nThese moments are worth noticing."
+    },
+    {
+      "id": "marriage_004",
+      "category": "Marriage",
+      "message": "I need a calmer way to talk with my partner. Please keep this simple.",
+      "overall": 6.51,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "That's wonderful to hear.\n\nThese moments are worth noticing.\n\nAmy's anxiety was already elevated (4/5\n\nThere may be more than one explanation — It makes me wonder if Amy's Amy Tomorrow may ask a little more emotional energy from Amy — only a gentle thought, not a prediction."
+    },
+    {
+      "id": "marriage_009",
+      "category": "Marriage",
+      "message": "I need a calmer way to talk with my partner. Please keep this simple.",
+      "overall": 6.51,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "That's wonderful to hear.\n\nThese moments are worth noticing.\n\nThere may be more than one explanation — It makes me wonder if Amy's Amy Tomorrow may ask a little more emotional energy from Amy — only a gentle thought, not a prediction."
+    },
+    {
+      "id": "marriage_014",
+      "category": "Marriage",
+      "message": "I need a calmer way to talk with my partner. Please keep this simple.",
+      "overall": 6.51,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "That's wonderful to hear.\n\nThese moments are worth noticing.\n\nThere may be more than one explanation — It makes me wonder if Amy's Amy Tomorrow may ask a little more emotional energy from Amy — only a gentle thought, not a prediction."
+    },
+    {
+      "id": "meltdowns_001",
+      "category": "Meltdowns",
+      "message": "The meltdown was huge and I feel shaken.",
+      "overall": 6.88,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "hope",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+understanding",
+      "response": "That sounds exhausting.\n\nThose moments can leave you completely drained.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "id": "meltdowns_006",
+      "category": "Meltdowns",
+      "message": "The meltdown was huge and I feel shaken.",
+      "overall": 6.88,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "hope",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+understanding",
+      "response": "That sounds exhausting.\n\nThose moments can leave you completely drained.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "id": "meltdowns_011",
+      "category": "Meltdowns",
+      "message": "The meltdown was huge and I feel shaken.",
+      "overall": 6.88,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "hope",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+understanding",
+      "response": "That sounds exhausting.\n\nThose moments can leave you completely drained.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "id": "meltdowns_016",
+      "category": "Meltdowns",
+      "message": "The meltdown was huge and I feel shaken.",
+      "overall": 6.88,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "hope",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+understanding",
+      "response": "That sounds exhausting.\n\nThose moments can leave you completely drained.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "id": "meltdowns_021",
+      "category": "Meltdowns",
+      "message": "The meltdown was huge and I feel shaken.",
+      "overall": 6.88,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "hope",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+understanding",
+      "response": "That sounds exhausting.\n\nThose moments can leave you completely drained.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "id": "meltdowns_026",
+      "category": "Meltdowns",
+      "message": "The meltdown was huge and I feel shaken.",
+      "overall": 6.88,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "hope",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+understanding",
+      "response": "That sounds exhausting.\n\nThose moments can leave you completely drained.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "id": "sleep_005",
+      "category": "Sleep",
+      "message": "No one slept and I'm at my limit. I want one gentle next step.",
+      "overall": 6.88,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "hope",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+understanding",
+      "response": "That sounds lonely.\n\nYou shouldn't have to carry this feeling on your own."
+    },
+    {
+      "id": "sleep_010",
+      "category": "Sleep",
+      "message": "No one slept and I'm at my limit. I want one gentle next step.",
+      "overall": 6.88,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "hope",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+understanding",
+      "response": "That sounds lonely.\n\nYou shouldn't have to carry this feeling on your own."
+    },
+    {
+      "id": "sleep_015",
+      "category": "Sleep",
+      "message": "No one slept and I'm at my limit. I want one gentle next step.",
+      "overall": 6.88,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "hope",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+understanding",
+      "response": "That sounds lonely.\n\nYou shouldn't have to carry this feeling on your own."
+    },
+    {
+      "id": "sleep_020",
+      "category": "Sleep",
+      "message": "No one slept and I'm at my limit. I want one gentle next step.",
+      "overall": 6.88,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "hope",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+understanding",
+      "response": "That sounds lonely.\n\nYou shouldn't have to carry this feeling on your own."
+    },
+    {
+      "id": "sleep_025",
+      "category": "Sleep",
+      "message": "No one slept and I'm at my limit. I want one gentle next step.",
+      "overall": 6.88,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "hope",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+understanding",
+      "response": "That sounds lonely.\n\nYou shouldn't have to carry this feeling on your own."
+    },
+    {
+      "id": "grandparents_005",
+      "category": "Grandparents",
+      "message": "I feel alone in family criticism. I want one gentle next step.",
+      "overall": 6.88,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "hope",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+understanding",
+      "response": "That sounds lonely.\n\nYou shouldn't have to carry this feeling on your own.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "id": "grandparents_010",
+      "category": "Grandparents",
+      "message": "I feel alone in family criticism. I want one gentle next step.",
+      "overall": 6.88,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "hope",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+understanding",
+      "response": "That sounds lonely.\n\nYou shouldn't have to carry this feeling on your own.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    }
+  ]
+}

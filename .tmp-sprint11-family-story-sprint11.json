@@ -1,0 +1,49 @@
+{
+  "label": "sprint11",
+  "timestamp": "2026-06-29T19:57:13.332Z",
+  "journeys": 50,
+  "daysPerJourney": 90,
+  "beforeFile": ".tmp-sprint11-family-story-sprint11_before.json",
+  "afterFile": ".tmp-sprint11-family-story-sprint11_after.json",
+  "before": {
+    "storyCoherence": 5.244,
+    "narrativeContinuity": 4.816,
+    "memoryUsefulness": 8.454,
+    "relationshipDepth": 5.457,
+    "parentRecognition": 7.5,
+    "companionFamiliarity": 5.327,
+    "overallRelationshipScore": 6.067
+  },
+  "after": {
+    "storyCoherence": 8.937,
+    "narrativeContinuity": 7.612,
+    "memoryUsefulness": 8.441,
+    "relationshipDepth": 5.457,
+    "parentRecognition": 7.5,
+    "companionFamiliarity": 6.827,
+    "overallRelationshipScore": 7.507
+  },
+  "beforeJourneyValidationRates": {
+    "chapterEvolves": 1,
+    "avoidsStaleRepetition": 0,
+    "recognisesTurningPoints": 1,
+    "preservesMeaningfulProgress": 0.5,
+    "reflectsSetbacksWithoutDefiningFamily": 0
+  },
+  "afterJourneyValidationRates": {
+    "chapterEvolves": 1,
+    "avoidsStaleRepetition": 0.36,
+    "recognisesTurningPoints": 1,
+    "preservesMeaningfulProgress": 1,
+    "reflectsSetbacksWithoutDefiningFamily": 1
+  },
+  "delta": {
+    "storyCoherence": 3.693,
+    "narrativeContinuity": 2.796,
+    "memoryUsefulness": -0.013,
+    "relationshipDepth": 0,
+    "parentRecognition": 0,
+    "companionFamiliarity": 1.5,
+    "overallRelationshipScore": 1.44
+  }
+}

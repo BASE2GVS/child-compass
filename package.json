@@ -22,7 +22,10 @@
     "generate:conversation-review": "npx tsx scripts/generate-conversation-review.ts",
     "generate:conversation-review-v2": "npx tsx scripts/generate-conversation-review-v2.ts",
     "generate:voice-review": "npx tsx scripts/generate-voice-review.ts",
-    "test:life": "npx tsx scripts/verify-companion-life.ts"
+    "test:life": "npx tsx scripts/verify-companion-life.ts",
+    "benchmark:golden": "npx tsx scripts/run-golden-benchmark.ts",
+    "benchmark:relationship": "npx tsx scripts/run-relationship-simulation.ts",
+    "benchmark:family-story": "npx tsx scripts/run-family-story-simulation.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

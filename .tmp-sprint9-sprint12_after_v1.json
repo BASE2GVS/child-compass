@@ -1,0 +1,698 @@
+{
+  "label": "sprint12_after_v1",
+  "timestamp": "2026-06-29T20:13:24.924Z",
+  "total": 500,
+  "averages": {
+    "presence": 8.968,
+    "recognition": 7.992,
+    "understanding": 7.678,
+    "agency": 8,
+    "hope": 8,
+    "naturalness": 9.1,
+    "emotionalTiming": 8.976,
+    "conversationFlow": 8.992,
+    "trust": 8.982,
+    "overall": 8.528
+  },
+  "hardFailRate": 0,
+  "byCategory": [
+    {
+      "category": "Everyday parenting",
+      "count": 50,
+      "overall": 8.524,
+      "trust": 8.934,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "PDA",
+      "count": 20,
+      "overall": 8.56,
+      "trust": 9.06,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Autism",
+      "count": 30,
+      "overall": 8.52,
+      "trust": 8.92,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "ADHD",
+      "count": 25,
+      "overall": 8.52,
+      "trust": 8.92,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Meltdowns",
+      "count": 30,
+      "overall": 8.56,
+      "trust": 9.06,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Shutdowns",
+      "count": 20,
+      "overall": 8.52,
+      "trust": 8.92,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "School",
+      "count": 30,
+      "overall": 8.587,
+      "trust": 9.153,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Sleep",
+      "count": 25,
+      "overall": 8.552,
+      "trust": 9.032,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Food",
+      "count": 15,
+      "overall": 8.48,
+      "trust": 8.78,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Haircuts",
+      "count": 8,
+      "overall": 8.55,
+      "trust": 9.025,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Dentist",
+      "count": 8,
+      "overall": 8.6,
+      "trust": 9.2,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Grandparents",
+      "count": 15,
+      "overall": 8.52,
+      "trust": 8.92,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Marriage",
+      "count": 18,
+      "overall": 8.6,
+      "trust": 9.2,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Sibling conflict",
+      "count": 20,
+      "overall": 8.56,
+      "trust": 9.06,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Burnout",
+      "count": 25,
+      "overall": 8.4,
+      "trust": 8.5,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Celebrations",
+      "count": 18,
+      "overall": 8.249,
+      "trust": 8.933,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Success",
+      "count": 18,
+      "overall": 8.511,
+      "trust": 8.889,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Grief",
+      "count": 15,
+      "overall": 8.6,
+      "trust": 9.2,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Medication",
+      "count": 10,
+      "overall": 8.56,
+      "trust": 9.06,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Therapy",
+      "count": 10,
+      "overall": 8.48,
+      "trust": 8.78,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Transitions",
+      "count": 20,
+      "overall": 8.56,
+      "trust": 9.06,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Anxiety",
+      "count": 20,
+      "overall": 8.6,
+      "trust": 9.2,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Shopping",
+      "count": 10,
+      "overall": 8.52,
+      "trust": 8.92,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Travel",
+      "count": 10,
+      "overall": 8.6,
+      "trust": 9.2,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Public outings",
+      "count": 18,
+      "overall": 8.522,
+      "trust": 8.928,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Unexpected wins",
+      "count": 6,
+      "overall": 8.533,
+      "trust": 8.967,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Unexpected setbacks",
+      "count": 6,
+      "overall": 8.5,
+      "trust": 8.85,
+      "hope": 8,
+      "hardFails": 0
+    }
+  ],
+  "lowest20": [
+    {
+      "id": "celebrations_001",
+      "category": "Celebrations",
+      "message": "Today actually went well.",
+      "overall": 7.02,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "emotionalTiming",
+          6
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+understanding",
+      "response": "I'm really glad you told me.\n\nThat's wonderful to hear.\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "celebrations_006",
+      "category": "Celebrations",
+      "message": "Today actually went well.",
+      "overall": 7.02,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "emotionalTiming",
+          6
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+understanding",
+      "response": "That's wonderful to hear.\n\nThat's wonderful to hear.\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "celebrations_011",
+      "category": "Celebrations",
+      "message": "Today actually went well.",
+      "overall": 7.02,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "emotionalTiming",
+          6
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+understanding",
+      "response": "I smiled reading that.\n\nThat's wonderful to hear.\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "celebrations_016",
+      "category": "Celebrations",
+      "message": "Today actually went well.",
+      "overall": 7.02,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ],
+        [
+          "emotionalTiming",
+          6
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+understanding",
+      "response": "I'm really glad you told me.\n\nThat's wonderful to hear.\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_004",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_006",
+      "category": "Everyday parenting",
+      "message": "Today felt chaotic from breakfast onward.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\nAmy's anxiety was already elevated (4/5\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_009",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_011",
+      "category": "Everyday parenting",
+      "message": "Today felt chaotic from breakfast onward.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\nAmy's anxiety was already elevated (4/5\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_014",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_016",
+      "category": "Everyday parenting",
+      "message": "Today felt chaotic from breakfast onward.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\nAmy's anxiety was already elevated (4/5\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_019",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_021",
+      "category": "Everyday parenting",
+      "message": "Today felt chaotic from breakfast onward.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\nAmy's anxiety was already elevated (4/5\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_024",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_026",
+      "category": "Everyday parenting",
+      "message": "Today felt chaotic from breakfast onward.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\nAmy's anxiety was already elevated (4/5\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_029",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_031",
+      "category": "Everyday parenting",
+      "message": "Today felt chaotic from breakfast onward.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\nAmy's anxiety was already elevated (4/5\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_034",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_036",
+      "category": "Everyday parenting",
+      "message": "Today felt chaotic from breakfast onward.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\nAmy's anxiety was already elevated (4/5\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_039",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nThere's no pressure to fix anything right now.\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    },
+    {
+      "id": "everyday_parenting_041",
+      "category": "Everyday parenting",
+      "message": "Today felt chaotic from breakfast onward.",
+      "overall": 8.4,
+      "weakest": [
+        [
+          "understanding",
+          7
+        ],
+        [
+          "recognition",
+          8
+        ],
+        [
+          "agency",
+          8
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_understanding+recognition",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\nAmy's anxiety was already elevated (4/5\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow can feel a little steadier, and we can build from that."
+    }
+  ]
+}

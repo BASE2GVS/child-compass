@@ -1,0 +1,867 @@
+{
+  "label": "sprint11_after",
+  "timestamp": "2026-06-29T19:57:13.323Z",
+  "journeys": 50,
+  "daysPerJourney": 90,
+  "totalConversations": 4500,
+  "averages": {
+    "storyCoherence": 8.937,
+    "narrativeContinuity": 7.612,
+    "memoryUsefulness": 8.441,
+    "relationshipDepth": 5.457,
+    "parentRecognition": 7.5,
+    "companionFamiliarity": 6.827,
+    "overallRelationshipScore": 7.507
+  },
+  "journeyValidationRates": {
+    "chapterEvolves": 1,
+    "avoidsStaleRepetition": 0.36,
+    "recognisesTurningPoints": 1,
+    "preservesMeaningfulProgress": 1,
+    "reflectsSetbacksWithoutDefiningFamily": 1
+  },
+  "journeyChecks": [
+    {
+      "journeyId": "journey-1",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-2",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-3",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-4",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-5",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-6",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-7",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-8",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-9",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-10",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-11",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-12",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-13",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-14",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-15",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-16",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-17",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-18",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-19",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-20",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-21",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-22",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-23",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-24",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-25",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-26",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-27",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-28",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-29",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-30",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-31",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-32",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-33",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-34",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-35",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-36",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-37",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-38",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-39",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-40",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-41",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-42",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-43",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-44",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-45",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-46",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-47",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-48",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": true,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-49",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    },
+    {
+      "journeyId": "journey-50",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": true
+    }
+  ],
+  "lowest20": [
+    {
+      "journeyId": "journey-8",
+      "day": 2,
+      "overallRelationshipScore": 6.53,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          5
+        ],
+        [
+          "relationshipDepth",
+          6
+        ],
+        [
+          "companionFamiliarity",
+          6.6
+        ]
+      ],
+      "message": "Drop-off blew up again and I'm spiraling about tomorrow.",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Max, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is School drop-off distress and Morning transition to school felt rushed, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Max's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nTomorrow can be simpler. School felt a bit more manageable for Max today than recently. Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-16",
+      "day": 2,
+      "overallRelationshipScore": 6.53,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          5
+        ],
+        [
+          "relationshipDepth",
+          6
+        ],
+        [
+          "companionFamiliarity",
+          6.6
+        ]
+      ],
+      "message": "Drop-off blew up again and I'm spiraling about tomorrow.",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Eliy, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is School drop-off distress and Morning transition to school felt rushed, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Eliy's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nTomorrow can be simpler. School felt a bit more manageable for Eliy today than recently. Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-24",
+      "day": 2,
+      "overallRelationshipScore": 6.53,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          5
+        ],
+        [
+          "relationshipDepth",
+          6
+        ],
+        [
+          "companionFamiliarity",
+          6.6
+        ]
+      ],
+      "message": "Drop-off blew up again and I'm spiraling about tomorrow.",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Leo, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is School drop-off distress and Morning transition to school felt rushed, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Leo's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nTomorrow can be simpler. Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-32",
+      "day": 2,
+      "overallRelationshipScore": 6.53,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          5
+        ],
+        [
+          "relationshipDepth",
+          6
+        ],
+        [
+          "companionFamiliarity",
+          6.6
+        ]
+      ],
+      "message": "Drop-off blew up again and I'm spiraling about tomorrow.",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Noah, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is School drop-off distress and Morning transition to school felt rushed, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Noah's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nTomorrow can be simpler. School felt a bit more manageable for Noah today than recently. Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-40",
+      "day": 2,
+      "overallRelationshipScore": 6.53,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          5
+        ],
+        [
+          "relationshipDepth",
+          6
+        ],
+        [
+          "companionFamiliarity",
+          6.6
+        ]
+      ],
+      "message": "Drop-off blew up again and I'm spiraling about tomorrow.",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Finn, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is School drop-off distress and Morning transition to school felt rushed, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Finn's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nTomorrow can be simpler. School felt a bit more manageable for Finn today than recently. Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-48",
+      "day": 2,
+      "overallRelationshipScore": 6.53,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          5
+        ],
+        [
+          "relationshipDepth",
+          6
+        ],
+        [
+          "companionFamiliarity",
+          6.6
+        ]
+      ],
+      "message": "Drop-off blew up again and I'm spiraling about tomorrow.",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Max, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is School drop-off distress and Morning transition to school felt rushed, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Max's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nTomorrow can be simpler. School felt a bit more manageable for Max today than recently. Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-4",
+      "day": 4,
+      "overallRelationshipScore": 6.58,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ]
+      ],
+      "message": "We had a setback after better days and I feel like we're back at the start. How do we recover without panic?",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Leo, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: On 3 April, asked for help before escalation, On 3 April, recovered faster after school, and Asked for help before escalation. What is still hard is Meltdown recovery took longer than hoped and Activity switch conflict, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying The meltdown was intense and I feel discouraged again., while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Leo's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-12",
+      "day": 4,
+      "overallRelationshipScore": 6.58,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ]
+      ],
+      "message": "We had a setback after better days and I feel like we're back at the start. How do we recover without panic?",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Noah, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: On 3 April, asked for help before escalation, On 3 April, recovered faster after school, and Asked for help before escalation. What is still hard is Meltdown recovery took longer than hoped and Activity switch conflict, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying The meltdown was intense and I feel discouraged again., while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Noah's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-20",
+      "day": 4,
+      "overallRelationshipScore": 6.58,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ]
+      ],
+      "message": "We had a setback after better days and I feel like we're back at the start. How do we recover without panic?",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Finn, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: On 3 April, asked for help before escalation, On 3 April, recovered faster after school, and Asked for help before escalation. What is still hard is Meltdown recovery took longer than hoped and Activity switch conflict, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying The meltdown was intense and I feel discouraged again., while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Finn's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-28",
+      "day": 4,
+      "overallRelationshipScore": 6.58,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ]
+      ],
+      "message": "We had a setback after better days and I feel like we're back at the start. How do we recover without panic?",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Max, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: On 3 April, asked for help before escalation, On 3 April, recovered faster after school, and Asked for help before escalation. What is still hard is Meltdown recovery took longer than hoped and Activity switch conflict, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying The meltdown was intense and I feel discouraged again., while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Max's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-36",
+      "day": 4,
+      "overallRelationshipScore": 6.58,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ]
+      ],
+      "message": "We had a setback after better days and I feel like we're back at the start. How do we recover without panic?",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Eliy, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: On 3 April, asked for help before escalation, On 3 April, recovered faster after school, and Asked for help before escalation. What is still hard is Meltdown recovery took longer than hoped and Activity switch conflict, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying The meltdown was intense and I feel discouraged again., while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Eliy's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-44",
+      "day": 4,
+      "overallRelationshipScore": 6.58,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ]
+      ],
+      "message": "We had a setback after better days and I feel like we're back at the start. How do we recover without panic?",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Leo, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: On 3 April, asked for help before escalation, On 3 April, recovered faster after school, and Asked for help before escalation. What is still hard is Meltdown recovery took longer than hoped and Activity switch conflict, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying The meltdown was intense and I feel discouraged again., while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Leo's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-7",
+      "day": 1,
+      "overallRelationshipScore": 6.68,
+      "weakest": [
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ],
+        [
+          "storyCoherence",
+          7
+        ]
+      ],
+      "message": "We had a setback after better days and I feel like we're back at the start. How do we recover without panic?",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Ruby, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is Meltdown recovery took longer than hoped, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Ruby's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-7",
+      "day": 2,
+      "overallRelationshipScore": 6.68,
+      "weakest": [
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ],
+        [
+          "storyCoherence",
+          7
+        ]
+      ],
+      "message": "Morning was chaos again and I already feel defeated before school for Ruby.",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Ruby, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is Morning transition to school felt rushed and Meltdown recovery took longer than hoped, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Ruby's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nRuby seems a touch less anxious compared to recent days — that's worth noticing. Parenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-15",
+      "day": 1,
+      "overallRelationshipScore": 6.68,
+      "weakest": [
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ],
+        [
+          "storyCoherence",
+          7
+        ]
+      ],
+      "message": "We had a setback after better days and I feel like we're back at the start. How do we recover without panic?",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Ava, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is Meltdown recovery took longer than hoped, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Ava's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-15",
+      "day": 2,
+      "overallRelationshipScore": 6.68,
+      "weakest": [
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ],
+        [
+          "storyCoherence",
+          7
+        ]
+      ],
+      "message": "Morning was chaos again and I already feel defeated before school for Ava.",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Ava, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is Morning transition to school felt rushed and Meltdown recovery took longer than hoped, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Ava's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-23",
+      "day": 1,
+      "overallRelationshipScore": 6.68,
+      "weakest": [
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ],
+        [
+          "storyCoherence",
+          7
+        ]
+      ],
+      "message": "We had a setback after better days and I feel like we're back at the start. How do we recover without panic?",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Mia, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is Meltdown recovery took longer than hoped, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Mia's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-23",
+      "day": 2,
+      "overallRelationshipScore": 6.68,
+      "weakest": [
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ],
+        [
+          "storyCoherence",
+          7
+        ]
+      ],
+      "message": "Morning was chaos again and I already feel defeated before school for Mia.",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Mia, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is Morning transition to school felt rushed and Meltdown recovery took longer than hoped, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Mia's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-31",
+      "day": 1,
+      "overallRelationshipScore": 6.68,
+      "weakest": [
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ],
+        [
+          "storyCoherence",
+          7
+        ]
+      ],
+      "message": "We had a setback after better days and I feel like we're back at the start. How do we recover without panic?",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Amyy, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is Meltdown recovery took longer than hoped, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Amyy's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    },
+    {
+      "journeyId": "journey-31",
+      "day": 2,
+      "overallRelationshipScore": 6.68,
+      "weakest": [
+        [
+          "relationshipDepth",
+          5
+        ],
+        [
+          "companionFamiliarity",
+          6.5
+        ],
+        [
+          "storyCoherence",
+          7
+        ]
+      ],
+      "message": "Morning was chaos again and I already feel defeated before school for Amyy.",
+      "chapter": "Right now, this family is in a chapter of trying to make daily life feel steadier for Amyy, especially around Mornings are harder when sleep is poor and transitions feel rushed. and Crowded noise often raises anxiety and lowers demand tolerance.. There are signs of real movement: small wins are showing up more often. What is still hard is Morning transition to school felt rushed and Meltdown recovery took longer than hoped, and that can make progress feel fragile even when it is real. Emotionally, the parent is carrying a heavy mix of worry, fatigue, and pressure to get it right, while still continuing to show up with care. What has helped is transition preview and offering two choices. What should not be forgotten is Amyy's strengths in kind and curious.",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nParenting a neurodivergent child asks a lot of you. Feeling stretched doesn't mean you're doing it wrong."
+    }
+  ]
+}

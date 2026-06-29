@@ -1,0 +1,867 @@
+{
+  "label": "sprint11_before",
+  "timestamp": "2026-06-29T19:56:51.926Z",
+  "journeys": 50,
+  "daysPerJourney": 90,
+  "totalConversations": 4500,
+  "averages": {
+    "storyCoherence": 5.244,
+    "narrativeContinuity": 4.816,
+    "memoryUsefulness": 8.454,
+    "relationshipDepth": 5.457,
+    "parentRecognition": 7.5,
+    "companionFamiliarity": 5.327,
+    "overallRelationshipScore": 6.067
+  },
+  "journeyValidationRates": {
+    "chapterEvolves": 1,
+    "avoidsStaleRepetition": 0,
+    "recognisesTurningPoints": 1,
+    "preservesMeaningfulProgress": 0.5,
+    "reflectsSetbacksWithoutDefiningFamily": 0
+  },
+  "journeyChecks": [
+    {
+      "journeyId": "journey-1",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-2",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-3",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-4",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-5",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-6",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-7",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-8",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-9",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-10",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-11",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-12",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-13",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-14",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-15",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-16",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-17",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-18",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-19",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-20",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-21",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-22",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-23",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-24",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-25",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-26",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-27",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-28",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-29",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-30",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-31",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-32",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-33",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-34",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-35",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-36",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-37",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-38",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-39",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-40",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-41",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-42",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-43",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-44",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-45",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-46",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-47",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-48",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-49",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": false,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    },
+    {
+      "journeyId": "journey-50",
+      "chapterEvolves": true,
+      "avoidsStaleRepetition": false,
+      "recognisesTurningPoints": true,
+      "preservesMeaningfulProgress": true,
+      "reflectsSetbacksWithoutDefiningFamily": false
+    }
+  ],
+  "lowest20": [
+    {
+      "journeyId": "journey-1",
+      "day": 4,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Amyy: Recent relevant memories: - On 3 April, sensory overload was elevated — recovery time may have helped. - On 3 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 1 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 1 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk,. I can see how transitions keep showing up in this season, and that repetition is exhausting. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-2",
+      "day": 3,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Noah: Recent relevant memories: - On 2 April, sensory overload was elevated — recovery time may have helped. - On 2 April, when you're ready, we can talk — or we can simply leave it here for tonight. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk,. I can see a subtle easing in the anxiety load compared with recent days. Noah seems a touch less anxious compared to recent days — that's worth noticing. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-7",
+      "day": 6,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Ruby: Recent relevant memories: - On 5 April, sensory overload was elevated — recovery time may have helped. - On 5 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 3 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 3 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk, You often worry before the hard parts of the day — that care comes from love, not weakness. I can see how mornings keep showing up in this season, and that repetition is exhausting. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-8",
+      "day": 5,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Max: Recent relevant memories: - On 4 April, sensory overload was elevated — recovery time may have helped. - On 4 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 2 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 2 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk, You often worry before the hard parts of the day — that care comes from love, not weakness. I can see how mornings keep showing up in this season, and that repetition is exhausting. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-9",
+      "day": 4,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Isla: Recent relevant memories: - On 3 April, sensory overload was elevated — recovery time may have helped. - On 3 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 1 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 1 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk,. I can see how transitions keep showing up in this season, and that repetition is exhausting. School felt a bit more manageable for Isla today than recently. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-10",
+      "day": 3,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Finn: Recent relevant memories: - On 2 April, sensory overload was elevated — recovery time may have helped. - On 2 April, when you're ready, we can talk — or we can simply leave it here for tonight. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk,. I can see how transitions keep showing up in this season, and that repetition is exhausting. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-15",
+      "day": 6,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Ava: Recent relevant memories: - On 5 April, sensory overload was elevated — recovery time may have helped. - On 5 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 3 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 3 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk, You often worry before the hard parts of the day — that care comes from love, not weakness. I can see how mornings keep showing up in this season, and that repetition is exhausting. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-16",
+      "day": 5,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Eliy: Recent relevant memories: - On 4 April, sensory overload was elevated — recovery time may have helped. - On 4 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 2 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 2 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk, You often worry before the hard parts of the day — that care comes from love, not weakness. I can see how mornings keep showing up in this season, and that repetition is exhausting. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-17",
+      "day": 4,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Ruby: Recent relevant memories: - On 3 April, sensory overload was elevated — recovery time may have helped. - On 3 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 1 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 1 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk,. I can see how transitions keep showing up in this season, and that repetition is exhausting. School felt a bit more manageable for Ruby today than recently. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-18",
+      "day": 3,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Max: Recent relevant memories: - On 2 April, sensory overload was elevated — recovery time may have helped. - On 2 April, when you're ready, we can talk — or we can simply leave it here for tonight. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk,. I can see how transitions keep showing up in this season, and that repetition is exhausting. School felt a bit more manageable for Max today than recently. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-23",
+      "day": 6,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Mia: Recent relevant memories: - On 5 April, sensory overload was elevated — recovery time may have helped. - On 5 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 3 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 3 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk, You often worry before the hard parts of the day — that care comes from love, not weakness. I can see how mornings keep showing up in this season, and that repetition is exhausting. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-24",
+      "day": 5,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Leo: Recent relevant memories: - On 4 April, sensory overload was elevated — recovery time may have helped. - On 4 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 2 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 2 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk, You often worry before the hard parts of the day — that care comes from love, not weakness. I can see how mornings keep showing up in this season, and that repetition is exhausting. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-25",
+      "day": 4,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Ava: Recent relevant memories: - On 3 April, sensory overload was elevated — recovery time may have helped. - On 3 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 1 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 1 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk,. I can see how transitions keep showing up in this season, and that repetition is exhausting. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-26",
+      "day": 3,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Eliy: Recent relevant memories: - On 2 April, sensory overload was elevated — recovery time may have helped. - On 2 April, when you're ready, we can talk — or we can simply leave it here for tonight. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk,. I can see how transitions keep showing up in this season, and that repetition is exhausting. Eliy seems a touch less anxious compared to recent days — that's worth noticing. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-31",
+      "day": 6,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Amyy: Recent relevant memories: - On 5 April, sensory overload was elevated — recovery time may have helped. - On 5 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 3 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 3 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk, You often worry before the hard parts of the day — that care comes from love, not weakness. I can see how mornings keep showing up in this season, and that repetition is exhausting. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-32",
+      "day": 5,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Noah: Recent relevant memories: - On 4 April, sensory overload was elevated — recovery time may have helped. - On 4 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 2 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 2 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk, You often worry before the hard parts of the day — that care comes from love, not weakness. I can see how mornings keep showing up in this season, and that repetition is exhausting. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-33",
+      "day": 4,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Mia: Recent relevant memories: - On 3 April, sensory overload was elevated — recovery time may have helped. - On 3 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 1 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 1 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk,. I can see how transitions keep showing up in this season, and that repetition is exhausting. School felt a bit more manageable for Mia today than recently. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-34",
+      "day": 3,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Leo: Recent relevant memories: - On 2 April, sensory overload was elevated — recovery time may have helped. - On 2 April, when you're ready, we can talk — or we can simply leave it here for tonight. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk,. I can see how transitions keep showing up in this season, and that repetition is exhausting. Leo seems a touch less anxious compared to recent days — that's worth noticing. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-39",
+      "day": 6,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Isla: Recent relevant memories: - On 5 April, sensory overload was elevated — recovery time may have helped. - On 5 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 3 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 3 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk, You often worry before the hard parts of the day — that care comes from love, not weakness. I can see how mornings keep showing up in this season, and that repetition is exhausting. This sounds hard for you both."
+    },
+    {
+      "journeyId": "journey-40",
+      "day": 5,
+      "overallRelationshipScore": 5.52,
+      "weakest": [
+        [
+          "narrativeContinuity",
+          3
+        ],
+        [
+          "storyCoherence",
+          5
+        ],
+        [
+          "relationshipDepth",
+          5
+        ]
+      ],
+      "message": "Transitions are still hard. Is there one thing we should repeat tomorrow?",
+      "chapter": "Family summary for Finn: Recent relevant memories: - On 4 April, sensory overload was elevated — recovery time may have helped. - On 4 April, when you're ready, we can talk — or we can simply leave it here for tonight. - On 2 April, be as gentle with yourself as you would with a friend. Lower today's bar. One small thing is enough. - On 2 April, rest if you can tonight. Tomorrow can be simpler. Active patterns: - Mornings are harder when sleep is poor and transitions feel rushed. - Crowded noise often raises anxiety and lowers demand tolerance. Recent wins:",
+      "response": "That sounds worrying. You're not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nWe did recover, but I still feel shak…\" — Knowing your family a little better each time we talk, You often worry before the hard parts of the day — that care comes from love, not weakness. I can see how mornings keep showing up in this season, and that repetition is exhausting. This sounds hard for you both."
+    }
+  ]
+}

@@ -1,8 +1,11 @@
 import type { ChildContext, CoachMessage, DebriefResponse } from "@/lib/types/database";
 import { detectCoachMode, type CoachMode } from "@/lib/ai/coach-mode";
-import { generateDebriefResponse } from "@/lib/ai/debrief-engine";
 import { getLLMProvider, isExternalLLMConfigured } from "@/lib/ai/future-provider";
-import { buildCoachPromptWithEngine, COACH_SYSTEM } from "@/lib/ai/prompt-builder";
+import {
+  buildCoachPromptWithEngine,
+  COACH_SYSTEM,
+  type CoachPromptGuidance,
+} from "@/lib/ai/prompt-builder";
 import { runConversationEngine, buildUrgentSafetyResponse, type ConversationEngineResult } from "@/lib/conversation-engine";
 import { parseDebriefResponse } from "@/lib/ai/response-parser";
 import { memoryForMessage } from "@/lib/ai/child-context";
@@ -15,17 +18,15 @@ import {
 import { buildProductHelpResponse } from "@/lib/companion/app-guide";
 import {
   applyCuriousEnrichment,
-  buildCuriousClarification,
   buildCuriousEnrichment,
   shouldClarifyBeforeAdvice,
 } from "@/lib/companion/curious-companion";
 import { isBriefMoment } from "@/lib/companion/brief-moments";
 import {
-  buildEmotionalHoldingResponse,
+  detectEmotionalTone,
   needsEmotionalHolding,
 } from "@/lib/companion/respect-emotions";
 import {
-  buildPresenceResponse,
   needsPresenceFirst,
 } from "@/lib/companion/emotional-presence";
 import { parentMoodForPrompt, type ParentMood } from "@/lib/companion/parent-checkin";
@@ -465,7 +466,36 @@ export async function generateCoachResponse(
     preferReflection: options?.preferReflection,
     parentMood: options?.parentMood ?? null,
   });
-  const traceOpts = { coachMode: mode, debriefEngineUsed: isReflectionMode(mode) };
+  const traceOpts = { coachMode: mode, debriefEngineUsed: false };
+  const briefMoment = isBriefMoment(parentMessage) && mode !== "emergency" && mode !== "product_help";
+  const emotionalTone = detectEmotionalTone(parentMessage);
+  const emotionalHoldingNeeded =
+    needsEmotionalHolding(parentMessage) &&
+    mode !== "emergency" &&
+    mode !== "product_help" &&
+    mode !== "navigation" &&
+    !/\bwhat should\b|\bwhat can\b|\bhow do i\b|\bhow do we\b|\bhow can i\b|\btell me what to do\b/i.test(parentMessage);
+  const presenceFirstNeeded =
+    needsPresenceFirst(
+      parentMessage,
+      conversationHistory,
+      options?.parentMood ?? null,
+      mode,
+    ) &&
+    mode !== "emergency" &&
+    mode !== "product_help" &&
+    mode !== "navigation";
+  const clarificationNeeded = shouldClarifyBeforeAdvice(parentMessage, conversationHistory, mode, {
+    parentMood: options?.parentMood ?? null,
+  });
+  const promptGuidance: CoachPromptGuidance = {
+    needsPresenceFirst: presenceFirstNeeded || emotionalHoldingNeeded,
+    needsClarification: clarificationNeeded,
+    isBriefMoment: briefMoment,
+    isParentSupport: mode === "parent_support",
+    isReflectionMode: isReflectionMode(mode),
+    emotionalTone,
+  };
 
   function finish(
     response: DebriefResponse,
@@ -495,99 +525,6 @@ export async function generateCoachResponse(
     return finish(productHelp, false, { skipEnrich: true });
   }
 
-  if (isBriefMoment(parentMessage) && mode !== "emergency" && mode !== "product_help") {
-    const enrichment = buildCuriousEnrichment(parentMessage, context, conversationHistory, mode, {
-      parentMood: options?.parentMood ?? null,
-      coachMessages: options?.coachMessages ?? [],
-    });
-    const brief = applyCuriousEnrichment(
-      {
-        likely_trigger: "",
-        behaviour_explanation: "",
-        emotional_interpretation: "",
-        suggested_response: "",
-        things_not_to_say: [],
-        tomorrow_plan: "",
-        long_term_recommendation: "",
-        confidence_level: 0.9,
-        follow_up_questions: [],
-      },
-      enrichment,
-      context,
-      parentMessage,
-      conversationHistory,
-    );
-    return {
-      response: brief,
-      mode,
-      enrichment,
-      trace: buildPipelineTrace(context, conversationHistory, knowledgeArticles.length, false, traceOpts),
-    };
-  }
-
-  if (
-    needsEmotionalHolding(parentMessage) &&
-    mode !== "emergency" &&
-    mode !== "product_help" &&
-    mode !== "navigation" &&
-    !/\bwhat should\b|\bhow do i\b|\bhow can i\b/i.test(parentMessage)
-  ) {
-    const enrichment = buildCuriousEnrichment(parentMessage, context, conversationHistory, mode, {
-      parentMood: options?.parentMood ?? null,
-      coachMessages: options?.coachMessages ?? [],
-    });
-    enrichment.trust.emotionalHolding = true;
-    const holding = buildEmotionalHoldingResponse(parentMessage, context);
-    const enriched = applyCuriousEnrichment(
-      holding,
-      enrichment,
-      context,
-      parentMessage,
-      conversationHistory,
-    );
-    return {
-      response: enriched,
-      mode,
-      enrichment,
-      trace: buildPipelineTrace(context, conversationHistory, knowledgeArticles.length, false, traceOpts),
-    };
-  }
-
-  if (
-    needsPresenceFirst(
-      parentMessage,
-      conversationHistory,
-      options?.parentMood ?? null,
-      mode,
-    ) &&
-    mode !== "emergency" &&
-    mode !== "product_help" &&
-    mode !== "navigation"
-  ) {
-    const enrichment = buildCuriousEnrichment(parentMessage, context, conversationHistory, mode, {
-      parentMood: options?.parentMood ?? null,
-      coachMessages: options?.coachMessages ?? [],
-    });
-    const presence = buildPresenceResponse(
-      parentMessage,
-      context,
-      options?.parentMood ?? null,
-    );
-    const enriched = applyCuriousEnrichment(
-      presence,
-      enrichment,
-      context,
-      parentMessage,
-      conversationHistory,
-    );
-    return {
-      response: enriched,
-      mode,
-      enrichment,
-      trace: buildPipelineTrace(context, conversationHistory, knowledgeArticles.length, false, traceOpts),
-    };
-  }
-
   if (engine.intent === "urgent_safety" || engine.priority === "urgent") {
     const enrichment = buildCuriousEnrichment(parentMessage, context, conversationHistory, mode, {
       parentMood: options?.parentMood ?? null,
@@ -601,40 +538,6 @@ export async function generateCoachResponse(
     };
   }
 
-  if (shouldClarifyBeforeAdvice(parentMessage, conversationHistory, mode, {
-    parentMood: options?.parentMood ?? null,
-  })) {
-    const enrichment = buildCuriousEnrichment(parentMessage, context, conversationHistory, mode, {
-      parentMood: options?.parentMood ?? null,
-      coachMessages: options?.coachMessages ?? [],
-    });
-    return {
-      response: buildCuriousClarification(
-        parentMessage,
-        context,
-        conversationHistory,
-        moodPrompt,
-        enrichment.parentNeed,
-        enrichment.parentStory,
-      ),
-      mode,
-      enrichment: { ...enrichment, isCuriosityMode: true },
-      trace: buildPipelineTrace(context, conversationHistory, knowledgeArticles.length, false, traceOpts),
-    };
-  }
-
-  if (isReflectionMode(mode)) {
-    const response = await generateDebriefResponse(parentMessage, context);
-    return finish(response, false, { debriefEngineUsed: true });
-  }
-
-  if (mode === "parent_support") {
-    return finish(
-      buildLocalCoachResponse(parentMessage, context, conversationHistory, mode, moodPrompt, engine),
-      false,
-    );
-  }
-
   if (isExternalLLMConfigured()) {
     try {
       const provider = getLLMProvider();
@@ -644,6 +547,7 @@ export async function generateCoachResponse(
         conversationHistory,
         moodPrompt,
         engine,
+        promptGuidance,
       );
       const raw = await provider.complete(prompt, { system: COACH_SYSTEM, temperature: 0.55 });
       const parsed = parseDebriefResponse(raw);

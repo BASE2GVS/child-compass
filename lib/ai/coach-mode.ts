@@ -141,7 +141,36 @@ const PARENTING_CONTEXT_SIGNALS = [
   "she won't",
   "they won't",
 ];
-const NAVIGATION_SIGNALS = ["take me to", "go to", "show me", "open ", "navigate to"];
+const APP_NAVIGATION_TERMS = [
+  "settings",
+  "timeline",
+  "passport",
+  "documents",
+  "document",
+  "check-in",
+  "check-ins",
+  "checkin",
+  "checkins",
+  "health",
+  "tracker",
+  "therapy",
+  "school",
+  "dashboard",
+  "profile",
+  "today",
+  "reports",
+  "report",
+  "teacher guide",
+  "teacher-guide",
+  "documents hub",
+  "documents-hub",
+  "my child",
+  "compass",
+  "school hub",
+  "school-hub",
+  "home",
+];
+const NAVIGATION_SIGNALS = ["take me to", "go to", "show me", "open", "navigate to"];
 const PARENT_SIGNALS = [
   "i feel",
   "i'm exhausted",
@@ -161,6 +190,29 @@ function containsAny(text: string, keywords: string[]) {
   return keywords.some((k) => text.includes(k));
 }
 
+function extractAppNavigationTarget(message: string): string | null {
+  const lower = message.toLowerCase().trim();
+  const match = lower.match(/\b(?:take me to|go to|show me|open|navigate to)\s+(?:the\s+)?([a-z0-9-]+(?:\s+[a-z0-9-]+)*)/i);
+  if (!match) return null;
+
+  const target = match[1].trim().replace(/[.?!,;:]+$/g, "").replace(/^the\s+/i, "");
+  if (!target) return null;
+
+  const remainder = lower.slice(match.index! + match[0].length).trim();
+  if (remainder && !/^[.?!,;:]+$/.test(remainder)) {
+    return null;
+  }
+
+  return target;
+}
+
+function hasExactAppNavigationTarget(message: string): boolean {
+  const target = extractAppNavigationTarget(message);
+  if (!target) return false;
+
+  return APP_NAVIGATION_TERMS.includes(target);
+}
+
 import type { ParentMood } from "@/lib/companion/parent-checkin";
 
 export function detectCoachMode(
@@ -171,7 +223,12 @@ export function detectCoachMode(
 
   if (containsAny(lower, EMERGENCY_SIGNALS)) return "emergency";
   if (options?.preferReflection) return "behaviour_reflection";
-  if (containsAny(lower, NAVIGATION_SIGNALS)) return "navigation";
+
+  const hasNavigationSignal = containsAny(lower, NAVIGATION_SIGNALS);
+  const hasAppNavigationTarget = hasExactAppNavigationTarget(message);
+  if (hasNavigationSignal && hasAppNavigationTarget) {
+    return "navigation";
+  }
 
   const isProductHelpRequest =
     containsAny(lower, PRODUCT_ONLY_PHRASES) ||

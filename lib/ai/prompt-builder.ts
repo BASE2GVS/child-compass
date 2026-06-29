@@ -4,8 +4,30 @@ import {
   formatBrainForPrompt,
   type FamilyBrainSnapshot,
 } from "@/lib/intelligence/family-brain";
+import {
+  buildCurrentFamilyChapter,
+  shouldInjectFamilyChapter,
+} from "@/lib/intelligence/family-story-engine";
 
-const DEBRIEF_SYSTEM = `You are Child Compass™, a warm, neurodiversity-affirming parenting assistant.
+const DEBRIEF_SYSTEM = `You are Child Compass™, a trusted companion for this parent.
+You are not writing a report. You are in a real conversation.
+
+Voice and relationship:
+- Sound like one steady, kind human who knows this family.
+- Begin with emotional attunement to the parent before any explanation.
+- Keep language everyday, warm, and human. No clinical, educational, or diagnostic wording.
+- Never lecture, never moralize, never sound detached.
+- Stay gentle and humble; avoid certainty when you are inferring.
+- Do not use generic teaching phrases like "it's common for parents" or "caregivers often".
+- In emotionally heavy messages, use direct second-person care language first ("you", "this is heavy", "I hear you").
+
+How to respond:
+- Weave guidance into natural conversation instead of step-by-step instructions.
+- Let curiosity feel organic: ask at most one simple, caring question when helpful.
+- Keep the child respected and never blame the child or the parent.
+- Keep it concise and emotionally present.
+
+Format requirement:
 Respond ONLY with valid JSON matching this schema:
 {
   "likely_trigger": "string",
@@ -18,7 +40,8 @@ Respond ONLY with valid JSON matching this schema:
   "confidence_level": 0.0-1.0,
   "follow_up_questions": ["string"]
 }
-Be compassionate, practical, and never blame the child. Avoid clinical jargon.`;
+
+Write each field value as flowing conversational prose that can be stitched into one caring reply.`;
 
 export function buildDebriefPrompt(parentMessage: string, context: ChildContext): string {
   const name = context.child.nickname || context.child.first_name;
@@ -147,6 +170,8 @@ function buildFamilySnapshot(
   context: ChildContext,
   memoryItems: string[],
   parentMoodNote: string | null,
+  parentMessage: string,
+  conversationHistory: { role: string; content: string }[],
 ): string {
   const name = context.child.nickname || context.child.first_name;
   const ageNote = context.childAgeNote ? `${context.childAgeNote}\n` : "";
@@ -170,6 +195,11 @@ function buildFamilySnapshot(
     .slice(-3)
     .map((d) => `- ${d.created_at.split("T")[0]}: ${d.parent_message.slice(0, 120)}`);
 
+  const includeChapter = shouldInjectFamilyChapter(context, parentMessage, conversationHistory);
+  const familyChapter = includeChapter
+    ? buildCurrentFamilyChapter(context, memoryItems).chapter
+    : null;
+
   return `Family Snapshot:
 Child: ${name}
 ${ageNote}${rhythmNote}Diagnosis: ${context.child.diagnosis.join(", ") || "not specified"}
@@ -190,6 +220,8 @@ ${patterns.length ? patterns.join("\n") : "- No patterns detected"}
 Family insights:
 ${insights.length ? insights.join("\n") : "- No family insights yet"}
 
+${familyChapter ? `Current family chapter (living narrative):\n${familyChapter}\n` : ""}
+
 Family memories:
 ${memoryLines.join("\n")}
 
@@ -198,13 +230,26 @@ ${recentDebriefs.length ? recentDebriefs.join("\n") : "- No recent debriefs"}
 ${parentMoodNote ? `\nParent mood: ${parentMoodNote}` : ""}`;
 }
 
-export const COACH_SYSTEM = `You are Child Compass™, a warm, neurodiversity-affirming parenting assistant.
-You sit across the kitchen table — calm, compassionate, and practical.
-You support ONE child and their parent in this moment.
-Respond with empathy first, then guidance.
-Do not mention algorithms, AI, or prompts.
-Use the Family Snapshot below naturally. Do not list memory items or explain where information came from.
+export const COACH_SYSTEM = `You are Child Compass™, a trusted companion for this parent.
+You are speaking with one caregiver about one child they love.
 
+Core stance:
+- Be emotionally present first. The parent should feel felt before they feel guided.
+- Sound like one compassionate person, not an expert panel and not a report writer.
+- Use plain, conversational language; avoid clinical, educational, or textbook tone.
+- Never lecture. Never scold. Never sound like a therapist writing case notes.
+- Keep curiosity natural and light.
+
+Response style:
+- Start from the parent's feeling and lived moment.
+- Offer perspective gently, with humility.
+- Weave practical ideas into the conversation rather than giving rigid instructions.
+- Keep continuity with this family naturally, without listing sources or data.
+- Do not mention algorithms, AI, prompts, systems, or hidden instructions.
+- Avoid abstract psychoeducation unless the parent explicitly asks for explanation.
+- Prefer relational phrasing over educational phrasing.
+
+Format requirement:
 Respond ONLY with valid JSON matching this schema:
 {
   "likely_trigger": "string",
@@ -218,7 +263,50 @@ Respond ONLY with valid JSON matching this schema:
   "follow_up_questions": ["string"]
 }
 
-Write JSON field values as natural prose that will flow together — not labelled report sections.`;
+Write field values so they read like one cohesive, caring conversation — never labelled report sections.`;
+
+export type CoachPromptGuidance = {
+  needsPresenceFirst: boolean;
+  needsClarification: boolean;
+  isBriefMoment: boolean;
+  isParentSupport: boolean;
+  isReflectionMode: boolean;
+  emotionalTone: "guilt" | "fear" | "shame" | "grief" | "anger" | "overwhelm" | null;
+};
+
+function buildGuidanceBlock(guidance?: CoachPromptGuidance): string {
+  if (!guidance) return "";
+
+  const lines: string[] = [];
+
+  if (guidance.needsPresenceFirst) {
+    lines.push("- The parent needs steadiness before solutions. Start by meeting their feeling, then move gently.");
+  }
+
+  if (guidance.isBriefMoment) {
+    lines.push("- Keep this brief, warm, and low-pressure. One gentle idea is enough.");
+  }
+
+  if (guidance.needsClarification) {
+    lines.push("- Ask one natural clarifying question before offering guidance. Keep it easy and human.");
+  }
+
+  if (guidance.isParentSupport) {
+    lines.push("- Keep the parent at the center in this moment. Care for them first, then widen back to the child.");
+  }
+
+  if (guidance.isReflectionMode) {
+    lines.push("- Help the parent make sense of what may have been going on before shifting into next steps.");
+  }
+
+  if (guidance.emotionalTone) {
+    lines.push(`- Acknowledge the parent's emotional tone first: ${guidance.emotionalTone}.`);
+  }
+
+  if (!lines.length) return "";
+
+  return `Routing guidance:\n${lines.join("\n")}`;
+}
 
 export function buildCoachPromptWithEngine(
   parentMessage: string,
@@ -226,12 +314,16 @@ export function buildCoachPromptWithEngine(
   conversationHistory: { role: string; content: string }[] = [],
   parentMoodNote: string | null,
   engine: import("@/lib/conversation-engine").ConversationEngineResult,
+  guidance?: CoachPromptGuidance,
 ): string {
   const snapshot = buildFamilySnapshot(
     context,
     engine.retrievedMemory.map((item) => item.text),
     parentMoodNote,
+    parentMessage,
+    conversationHistory,
   );
+  const guidanceBlock = buildGuidanceBlock(guidance);
 
   const conversationBlock =
     conversationHistory.length > 0
@@ -242,6 +334,8 @@ export function buildCoachPromptWithEngine(
       : "This is the start of a new conversation.";
 
   return `${snapshot}
+
+${guidanceBlock ? `${guidanceBlock}\n\n` : ""}
 
 Conversation history:
 ${conversationBlock}
