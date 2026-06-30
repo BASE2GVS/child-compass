@@ -4,7 +4,17 @@ import { HopeArt } from "@/components/illustrations/CompanionArtFamily";
 
 export default function AuthShell({ children }: { children: ReactNode }) {
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--cc-bg)] px-4 py-10 sm:py-14">
+    <div className="cc-auth-shell relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-10 sm:py-14">
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/background/login-background.webp"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          decoding="async"
+        />
+      </div>
+      <div className="cc-auth-overlay pointer-events-none absolute inset-0" aria-hidden />
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[var(--cc-amber)]/15 blur-3xl" />
         <div className="absolute -bottom-24 -left-16 h-80 w-80 rounded-full bg-[var(--cc-teal-wash)]/50 blur-3xl" />

@@ -98,6 +98,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.cc-auth-shell {
+  background: #eaf4ff;
+}
+
+.cc-auth-overlay {
+  background: linear-gradient(140deg, rgba(246, 251, 255, 0.86) 0%, rgba(244, 250, 255, 0.8) 48%, rgba(239, 248, 255, 0.77) 100%);
+}
+
+.cc-auth-card {
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 14px 48px rgba(16, 42, 67, 0.16), 0 6px 22px rgba(47, 128, 237, 0.09);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
 /* ─── App shell ─── */
 .cc-shell-environment img {
   object-fit: cover;
@@ -127,6 +144,18 @@ body {
   margin-left: auto;
   margin-right: auto;
   padding: var(--cc-shell-padding-y) var(--cc-shell-padding-x);
+}
+
+.cc-shell-main {
+  position: relative;
+}
+
+.cc-shell-main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(246, 251, 255, 0.42) 0%, rgba(248, 252, 255, 0.25) 45%, rgba(246, 252, 250, 0.3) 100%);
 }
 
 /* ─── Application Framework (Sprint 2) ─── */

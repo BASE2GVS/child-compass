@@ -1,0 +1,165 @@
+{
+  "baseUrl": "http://localhost:3001",
+  "runDir": "C:\\Users\\humres\\child-compass\\screenshots\\visual-refresh-verification\\2026-06-30T19-32-30-343Z",
+  "screenshots": [
+    "C:\\Users\\humres\\child-compass\\screenshots\\visual-refresh-verification\\2026-06-30T19-32-30-343Z\\landing-desktop-1440.png",
+    "C:\\Users\\humres\\child-compass\\screenshots\\visual-refresh-verification\\2026-06-30T19-32-30-343Z\\login-desktop-1440.png",
+    "C:\\Users\\humres\\child-compass\\screenshots\\visual-refresh-verification\\2026-06-30T19-32-30-343Z\\register-desktop-1440.png",
+    "C:\\Users\\humres\\child-compass\\screenshots\\visual-refresh-verification\\2026-06-30T19-32-30-343Z\\landing-tablet-768.png",
+    "C:\\Users\\humres\\child-compass\\screenshots\\visual-refresh-verification\\2026-06-30T19-32-30-343Z\\login-tablet-768.png",
+    "C:\\Users\\humres\\child-compass\\screenshots\\visual-refresh-verification\\2026-06-30T19-32-30-343Z\\register-tablet-768.png",
+    "C:\\Users\\humres\\child-compass\\screenshots\\visual-refresh-verification\\2026-06-30T19-32-30-343Z\\landing-mobile-390.png",
+    "C:\\Users\\humres\\child-compass\\screenshots\\visual-refresh-verification\\2026-06-30T19-32-30-343Z\\login-mobile-390.png",
+    "C:\\Users\\humres\\child-compass\\screenshots\\visual-refresh-verification\\2026-06-30T19-32-30-343Z\\register-mobile-390.png",
+    "C:\\Users\\humres\\child-compass\\screenshots\\visual-refresh-verification\\2026-06-30T19-32-30-343Z\\login-dark-desktop-1440.png",
+    "C:\\Users\\humres\\child-compass\\screenshots\\visual-refresh-verification\\2026-06-30T19-32-30-343Z\\first-authenticated-desktop-1440.png",
+    "C:\\Users\\humres\\child-compass\\screenshots\\visual-refresh-verification\\2026-06-30T19-32-30-343Z\\first-authenticated-mobile-390.png"
+  ],
+  "checks": [
+    {
+      "label": "landing-1440",
+      "cls": 0,
+      "noHorizontalOverflow": true,
+      "heroImageVisible": true
+    },
+    {
+      "label": "login-1440",
+      "cls": 0,
+      "noHorizontalOverflow": true,
+      "authBackgroundVisible": true,
+      "authCardVisible": true,
+      "buttonStyleConsistent": true
+    },
+    {
+      "label": "register-1440",
+      "cls": 0,
+      "noHorizontalOverflow": true,
+      "authBackgroundVisible": true,
+      "authCardVisible": true,
+      "buttonStyleConsistent": true
+    },
+    {
+      "label": "landing-768",
+      "cls": 0,
+      "noHorizontalOverflow": true,
+      "heroImageVisible": true
+    },
+    {
+      "label": "login-768",
+      "cls": 0,
+      "noHorizontalOverflow": true,
+      "authBackgroundVisible": true,
+      "authCardVisible": true,
+      "buttonStyleConsistent": true
+    },
+    {
+      "label": "register-768",
+      "cls": 0,
+      "noHorizontalOverflow": true,
+      "authBackgroundVisible": true,
+      "authCardVisible": true,
+      "buttonStyleConsistent": true
+    },
+    {
+      "label": "landing-390",
+      "cls": 0,
+      "noHorizontalOverflow": true,
+      "heroImageVisible": true
+    },
+    {
+      "label": "login-390",
+      "cls": 0,
+      "noHorizontalOverflow": true,
+      "authBackgroundVisible": true,
+      "authCardVisible": true,
+      "buttonStyleConsistent": true
+    },
+    {
+      "label": "register-390",
+      "cls": 0,
+      "noHorizontalOverflow": true,
+      "authBackgroundVisible": true,
+      "authCardVisible": true,
+      "buttonStyleConsistent": true
+    },
+    {
+      "label": "login-dark-1440",
+      "cls": 0,
+      "noHorizontalOverflow": true,
+      "authBackgroundVisible": true,
+      "authCardVisible": true,
+      "buttonStyleConsistent": true
+    },
+    {
+      "label": "first-authenticated-1440",
+      "cls": 0,
+      "noHorizontalOverflow": true
+    },
+    {
+      "label": "first-authenticated-390",
+      "cls": 0,
+      "noHorizontalOverflow": true
+    }
+  ],
+  "authFlow": {
+    "unauthRedirectsToLogin": true,
+    "unauthRedirectUrl": "http://localhost:3001/login?redirect=%2Ftoday",
+    "registerResultUrl": "http://localhost:3001/onboarding",
+    "loginResultUrl": "http://localhost:3001/onboarding"
+  },
+  "diagnostics": {
+    "console": [
+      {
+        "type": "warning",
+        "text": "Deprecated API for given entry type."
+      },
+      {
+        "type": "warning",
+        "text": "Deprecated API for given entry type."
+      },
+      {
+        "type": "warning",
+        "text": "Deprecated API for given entry type."
+      },
+      {
+        "type": "warning",
+        "text": "Deprecated API for given entry type."
+      },
+      {
+        "type": "warning",
+        "text": "Deprecated API for given entry type."
+      },
+      {
+        "type": "warning",
+        "text": "Deprecated API for given entry type."
+      },
+      {
+        "type": "warning",
+        "text": "Deprecated API for given entry type."
+      },
+      {
+        "type": "warning",
+        "text": "Deprecated API for given entry type."
+      },
+      {
+        "type": "warning",
+        "text": "Deprecated API for given entry type."
+      },
+      {
+        "type": "warning",
+        "text": "Deprecated API for given entry type."
+      },
+      {
+        "type": "warning",
+        "text": "Deprecated API for given entry type."
+      },
+      {
+        "type": "warning",
+        "text": "Deprecated API for given entry type."
+      }
+    ],
+    "consoleErrors": [],
+    "hydrationWarnings": [],
+    "pageErrors": []
+  }
+}

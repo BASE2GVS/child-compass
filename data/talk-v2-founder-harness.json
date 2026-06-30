@@ -1,0 +1,118 @@
+{
+  "conversations": [
+    {
+      "id": "b8d65371-7bf5-4017-a861-1120189021d3",
+      "sessionId": "founder-talk-v2-b8d65371-7bf5-4017-a861-1120189021d3",
+      "childId": "voice-qa-sleep",
+      "scenario": "Sleep: multi-turn continuity",
+      "label": "Sleep: multi-turn continuity (voice-qa-sleep)",
+      "createdAt": "2026-06-30T20:04:49.627Z",
+      "updatedAt": "2026-06-30T20:04:49.627Z",
+      "turns": [
+        {
+          "id": "83113f7b-0ca9-45c4-8c94-550a3a6e9251",
+          "requestId": "f1b7782f-7430-4a0e-9b6c-ca601dd21f8c",
+          "message": "Bedtime is taking over an hour every night. What should I change first?",
+          "result": {
+            "version": "1.0.0",
+            "status": "error",
+            "error": "Child not found"
+          },
+          "telemetry": {
+            "requestId": "f1b7782f-7430-4a0e-9b6c-ca601dd21f8c",
+            "timingsMs": {
+              "authentication": 213,
+              "safety": 0,
+              "context": 0,
+              "prompt": 0,
+              "provider": 0,
+              "validation": 0,
+              "persistence": 0
+            },
+            "events": [
+              {
+                "stage": "authentication",
+                "status": "ok"
+              },
+              {
+                "stage": "entitlement",
+                "status": "failed",
+                "error": "Child not found"
+              }
+            ]
+          },
+          "createdAt": "2026-06-30T20:04:49.627Z"
+        }
+      ]
+    },
+    {
+      "id": "234d1eff-0b04-4281-9f86-b1b237a55a4d",
+      "sessionId": "founder-talk-v2-234d1eff-0b04-4281-9f86-b1b237a55a4d",
+      "childId": "217ab5c7-135a-4e01-83c9-473a7ae88707",
+      "scenario": "Sleep: multi-turn continuity",
+      "label": "Sleep: multi-turn continuity (217ab5c7-135a-4e01-83c9-473a7ae88707)",
+      "createdAt": "2026-06-30T20:13:01.356Z",
+      "updatedAt": "2026-06-30T20:13:01.356Z",
+      "turns": [
+        {
+          "id": "c200570b-3860-4f71-b0bf-8fb7b9968227",
+          "requestId": "a1543897-aad1-43db-9ffd-12860f902e13",
+          "message": "Bedtime is taking over an hour every night. What should I change first?",
+          "result": {
+            "version": "1.0.0",
+            "status": "error",
+            "error": "Talk V2 repository is not configured"
+          },
+          "telemetry": {
+            "requestId": "a1543897-aad1-43db-9ffd-12860f902e13",
+            "timingsMs": {
+              "authentication": 205,
+              "safety": 0,
+              "context": 870,
+              "prompt": 1,
+              "provider": 3179,
+              "validation": 1,
+              "persistence": 0
+            },
+            "events": [
+              {
+                "stage": "authentication",
+                "status": "ok"
+              },
+              {
+                "stage": "entitlement",
+                "status": "ok"
+              },
+              {
+                "stage": "safety",
+                "status": "ok"
+              },
+              {
+                "stage": "context",
+                "status": "ok"
+              },
+              {
+                "stage": "prompt",
+                "status": "ok"
+              },
+              {
+                "stage": "provider",
+                "status": "ok"
+              },
+              {
+                "stage": "validation",
+                "status": "ok"
+              },
+              {
+                "stage": "persistence",
+                "status": "failed",
+                "error": "PERSISTENCE_FAILURE"
+              }
+            ]
+          },
+          "createdAt": "2026-06-30T20:13:01.356Z"
+        }
+      ]
+    }
+  ]
+}

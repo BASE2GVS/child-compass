@@ -22,7 +22,7 @@ export default function LoginForm({ redirectTo }: { redirectTo?: string }) {
   }
 
   return (
-    <AppCard padding="lg" className="cc-card-lift shadow-[0_12px_40px_rgba(45,42,38,0.06)]">
+    <AppCard padding="lg" className="cc-auth-card cc-card-lift">
       <div className="mb-6 text-center">
         <h1 className="font-display text-2xl font-semibold text-[var(--cc-ink)]">Welcome back</h1>
       </div>
@@ -46,7 +46,11 @@ export default function LoginForm({ redirectTo }: { redirectTo?: string }) {
           <p className="rounded-2xl bg-[var(--cc-danger-wash)] px-4 py-3 text-sm text-[var(--cc-danger)]">{error}</p>
         )}
 
-        <button type="submit" disabled={loading} className={`w-full ${ds.btnPrimary} cc-btn-alive`}>
+        <button
+          type="submit"
+          disabled={loading}
+          className="cc-btn-alive w-full rounded-full bg-[#2F80ED] px-6 py-3.5 text-base font-semibold text-white shadow-[0_10px_22px_rgba(47,128,237,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1F6FD8] disabled:opacity-60"
+        >
           {loading ? "Opening your companion…" : "Sign in"}
         </button>
       </form>
