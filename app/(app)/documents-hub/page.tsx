@@ -1,18 +1,12 @@
-import { redirect } from "next/navigation";
-
 import {
 
   getDocuments,
 
-  getFamilyContext,
-
   getGeneratedReports,
-
-  getProfile,
 
 } from "@/lib/data/queries";
 
-import { resolveActiveChild } from "@/lib/utils/child-selection";
+import { loadJourneyPageContext, type JourneySearchParams } from "@/lib/journey/page-context";
 
 import FamilyLibrary from "@/components/library/FamilyLibrary";
 
@@ -28,33 +22,17 @@ export default async function DocumentsHubPage({
 
 }: {
 
-  searchParams: Promise<{ child?: string }>;
+  searchParams: Promise<JourneySearchParams>;
 
 }) {
+  const context = await loadJourneyPageContext(searchParams);
 
-  const params = await searchParams;
-
-  const profile = await getProfile();
-
-  if (!profile?.onboarding_completed) redirect("/onboarding");
-
-
-
-  const { family, children } = await getFamilyContext();
-
-  const child = await resolveActiveChild(children, params);
-
-  if (!child || !family) redirect("/onboarding");
-
-
-
-  const [documents, generatedReports] = await Promise.all([
-
-    getDocuments(child.id),
-
-    getGeneratedReports(child.id),
-
-  ]);
+  const [documents, generatedReports] = context.dataSourceMode === "example-family"
+    ? [[], []]
+    : await Promise.all([
+        getDocuments(context.child.id),
+        getGeneratedReports(context.child.id),
+      ]);
 
 
 
@@ -62,17 +40,19 @@ export default async function DocumentsHubPage({
 
     <FamilyLibrary
 
-      child={child}
+      child={context.child}
 
-      familyChildren={children}
+      familyChildren={context.children}
 
-      familyId={family.id}
+      familyId={context.child.family_id}
 
       documents={documents}
 
       generatedReports={generatedReports}
 
-      parentName={profile.full_name}
+      parentName={context.profile.full_name}
+
+      exampleFamilyId={context.exampleFamilyId}
 
     />
 

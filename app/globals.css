@@ -2,6 +2,15 @@
 
 /* ─── Child Compass 3.0 Emotional Design System ─── */
 :root {
+  /* Brand Experience Refresh palette */
+  --cc-brand-primary-blue: #2f80ed;
+  --cc-brand-sky-blue: #60a5fa;
+  --cc-brand-soft-sky: #dbeafe;
+  --cc-brand-cloud-white: #f8fafc;
+  --cc-brand-success-green: #34d399;
+  --cc-brand-warm-sun: #fbbf24;
+  --cc-brand-primary-text: #102a43;
+
   /* Backgrounds */
   --cc-bg: #faf8f4;
   --cc-cream-100: #faf8f4;

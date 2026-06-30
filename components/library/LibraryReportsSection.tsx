@@ -32,6 +32,8 @@ type LibraryReportsSectionProps = {
 
   childId: string;
 
+  exampleFamilyId?: string | null;
+
   generatedReports: GeneratedReport[];
 
   childName: string;
@@ -39,6 +41,13 @@ type LibraryReportsSectionProps = {
   isEmpty: boolean;
 
 };
+
+const PROFESSIONAL_PREVIEWS: Array<{ label: string; path: string }> = [
+  { label: "Occupational Therapist Summary™", path: "occupational_therapist" },
+  { label: "Speech Therapist Summary™", path: "speech_therapist" },
+  { label: "Psychologist Summary™", path: "psychologist" },
+  { label: "Pediatrician Summary™", path: "pediatrician" },
+];
 
 
 
@@ -72,6 +81,8 @@ export default function LibraryReportsSection({
 
   childId,
 
+  exampleFamilyId,
+
   generatedReports,
 
   childName,
@@ -85,6 +96,8 @@ export default function LibraryReportsSection({
   const [generating, setGenerating] = useState<ReportType | null>(null);
 
   const [error, setError] = useState<string | null>(null);
+
+  const query = exampleFamilyId ? `?child=${childId}&example=${exampleFamilyId}` : `?child=${childId}`;
 
 
 
@@ -117,7 +130,7 @@ export default function LibraryReportsSection({
         }
         if (result?.report) {
           const isFirst = sorted.length === 0;
-          window.location.href = `/reports/${result.report.id}?child=${childId}${isFirst ? "&first=1" : ""}`;
+          window.location.href = `/reports/${result.report.id}${query}${isFirst ? "&first=1" : ""}`;
           return;
         }
         setError("We couldn't prepare that summary just now. Please try again.");
@@ -127,7 +140,6 @@ export default function LibraryReportsSection({
         setGenerating(null);
       }
     });
-
   }
 
 
@@ -146,7 +158,7 @@ export default function LibraryReportsSection({
 
         </p>
 
-        <FrameworkButtonLink href={`/check-in?child=${childId}&first=1`} variant="pill">
+        <FrameworkButtonLink href={`/check-in${query}&first=1`} variant="pill">
 
           Start today&apos;s check-in
 
@@ -226,9 +238,9 @@ export default function LibraryReportsSection({
 
             const href = latest
 
-              ? `/reports/${latest.id}?child=${childId}`
+              ? `/reports/${latest.id}${query}`
 
-              : `/reports/view/${report.type}?child=${childId}`;
+              : `/reports/view/${report.type}${query}`;
 
 
 
@@ -275,6 +287,36 @@ export default function LibraryReportsSection({
             );
 
           })}
+
+        </ul>
+
+      </CompanionExpandable>
+
+      <CompanionExpandable label="Professional previews">
+
+        <ul className="mt-4 divide-y divide-[var(--cc-border-soft)]/60">
+
+          {PROFESSIONAL_PREVIEWS.map((item) => (
+
+            <li key={item.path} className="flex flex-wrap items-center justify-between gap-3 py-4">
+
+              <div>
+
+                <p className="font-medium text-[var(--cc-ink)]">{item.label}</p>
+
+                <p className="text-xs text-[var(--cc-ink-faint)]">Preview from recorded journey facts</p>
+
+              </div>
+
+              <FrameworkButtonLink href={`/reports/view/${item.path}${query}`} variant="secondary">
+
+                View
+
+              </FrameworkButtonLink>
+
+            </li>
+
+          ))}
 
         </ul>
 

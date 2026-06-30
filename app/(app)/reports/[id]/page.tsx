@@ -15,10 +15,10 @@ export default async function ReportDetailPage({
   searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ child?: string; first?: string }>;
+  searchParams: Promise<{ child?: string; first?: string; example?: string }>;
 }) {
   const { id } = await params;
-  const { child: childParam, first: firstParam } = await searchParams;
+  const { child: childParam, first: firstParam, example: exampleParam } = await searchParams;
   const profile = await getProfile();
   if (!profile?.onboarding_completed) redirect("/onboarding");
 
@@ -32,7 +32,10 @@ export default async function ReportDetailPage({
   if (!report) notFound();
 
   const content = report.content as ReportContent;
-  const qs = childParam ? `?child=${childParam}` : "";
+  const query = new URLSearchParams();
+  if (childParam) query.set("child", childParam);
+  if (exampleParam) query.set("example", exampleParam);
+  const qs = query.toString() ? `?${query.toString()}` : "";
 
   return (
     <div className="space-y-6">

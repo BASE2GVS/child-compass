@@ -41,7 +41,7 @@ export default function Navbar({ authSlot }: { authSlot?: ReactNode }) {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--cc-border-soft)]/80 bg-[var(--cc-bg)]/92 backdrop-blur-lg">
+    <header className="sticky top-0 z-50 border-b border-[#DBEAFE]/70 bg-[#F8FAFC]/92 backdrop-blur-lg">
       <nav className="mx-auto grid max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 py-4 lg:px-8 lg:py-5">
         <div className="flex items-center">
           <a href="#hero" className="block transition-opacity hover:opacity-80">
@@ -56,7 +56,7 @@ export default function Navbar({ authSlot }: { authSlot?: ReactNode }) {
               <a
                 href={link.href}
                 className={`text-sm font-medium transition-colors ${
-                  active === link.id ? "text-[var(--cc-teal-deep)]" : "text-[var(--cc-ink)] hover:text-[var(--cc-teal-deep)]"
+                  active === link.id ? "text-[#2F80ED]" : "text-[#102A43] hover:text-[#2F80ED]"
                 }`}
               >
                 {link.label}
@@ -69,9 +69,9 @@ export default function Navbar({ authSlot }: { authSlot?: ReactNode }) {
           {authSlot}
           <Link
             href="/register"
-            className="cc-btn-alive rounded-full bg-[var(--cc-teal)] px-6 py-3 text-sm font-semibold text-white shadow-[0_6px_20px_var(--cc-teal-glow)] transition-all hover:bg-[var(--cc-teal-deep)] hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+            className="cc-btn-alive rounded-full bg-[#2F80ED] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_18px_rgba(47,128,237,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1F6FD8] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
           >
-            Start Free Trial
+            🌱 Start Your Journey
           </Link>
         </div>
       </nav>

@@ -54,7 +54,7 @@ export default function RegisterForm() {
           <p className="rounded-2xl bg-[var(--cc-danger-wash)] px-4 py-3 text-sm text-[var(--cc-danger)]">{error}</p>
         )}
 
-        <button type="submit" disabled={loading} className={`w-full ${ds.btnPrimary} cc-btn-alive`}>
+        <button type="submit" data-testid="register-submit" disabled={loading} className={`w-full ${ds.btnPrimary} cc-btn-alive`}>
           {loading ? "Creating your space…" : "Create account"}
         </button>
       </form>

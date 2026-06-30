@@ -107,6 +107,13 @@ export const PRIMARY_NAV: ParentNavItem[] = [
 /** Secondary destinations — calm list, not a software map */
 
 export const MORE_NAV: ParentNavItem[] = [
+  {
+    href: "/journey",
+    label: "Journey",
+    shortLabel: "Journey",
+    icon: "M13 10V3L4 14h7v7l9-11h-7z",
+    description: "Your family's living history",
+  },
 
   {
 

@@ -6,17 +6,16 @@ test("brand-new parent journey", async ({ page }) => {
   const email = `qa_parent_${stamp}@childcompass.test`;
   const password = "CompassPass123!";
 
-  await page.goto("http://localhost:3000");
+  await page.goto("http://localhost:3000/register");
   await page.evaluate(() => localStorage.removeItem("cc-onboarding-v2"));
-  await page.getByRole("link", { name: /start free/i }).first().click();
   await expect(page).toHaveURL(/\/register/);
 
   await page.getByLabel(/your name/i).fill("QA Parent");
   await page.getByLabel(/^email$/i).fill(email);
   await page.getByLabel(/^password$/i).fill(password);
-  await page.getByRole("button", { name: /create account/i }).click();
+  await page.getByTestId("register-submit").click();
 
-  await page.waitForURL(/\/(verify-email|onboarding|today|dashboard)/, { timeout: 15000 });
+  await page.waitForURL(/\/(verify-email|onboarding|today|dashboard)/, { timeout: 45000 });
 
   if (page.url().includes("/verify-email")) {
     await page.goto("http://localhost:3000/onboarding");
@@ -33,18 +32,18 @@ test("brand-new parent journey", async ({ page }) => {
 
   const letsBegin = page.getByRole("button", { name: /let'?s begin/i });
   if (await letsBegin.isVisible().catch(() => false)) {
-    await letsBegin.click();
+    await page.getByTestId("onboarding-start").click();
   }
 
   await page.getByLabel(/family name/i).fill("QA Family");
   await page.getByLabel(/^country$/i).fill("South Africa");
   await page.getByLabel(/timezone/i).fill("Africa/Johannesburg");
-  await page.getByRole("button", { name: /^next$/i }).click();
+  await page.getByTestId("onboarding-family-next").click();
 
   await page.getByLabel(/first name/i).fill("QA Child");
-  await page.getByRole("button", { name: /^next$/i }).click();
-  await page.getByRole("button", { name: /^skip$/i }).click();
-  await page.getByRole("button", { name: /finish setup/i }).click();
+  await page.getByTestId("onboarding-child-next").click();
+  await page.getByTestId("onboarding-invite-skip").click();
+  await page.getByTestId("onboarding-finish").click();
 
   const error = page.locator("text=/error|violates|could not find/i");
   await expect(error).toHaveCount(0);

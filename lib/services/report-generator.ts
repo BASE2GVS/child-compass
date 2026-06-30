@@ -86,6 +86,58 @@ export function generateReportContent(
   return attachCompanionInsights(content, type, companionInsights);
 }
 
+export type ProfessionalAudience = "occupational_therapist" | "speech_therapist" | "psychologist" | "pediatrician";
+
+export function generateProfessionalReportContent(
+  audience: ProfessionalAudience,
+  child: Child,
+  profile: ChildProfile | null,
+  checkins: DailyCheckin[],
+  debriefs: ParentDebrief[],
+  patterns: PatternFinding[],
+): ReportContent {
+  const name = child.nickname || child.first_name;
+  const base = buildTherapistSummary(name, checkins, debriefs, patterns);
+
+  const focusLine: Record<ProfessionalAudience, string> = {
+    occupational_therapist: "Focus: participation, sensory load, transitions, daily routines.",
+    speech_therapist: "Focus: communication load, expressive/receptive demands, social language contexts.",
+    psychologist: "Focus: emotional regulation, anxiety patterns, coping strategies, family stressors.",
+    pediatrician: "Focus: overall wellbeing, sleep, appetite, appointments, and broader health patterns.",
+  };
+
+  const audienceTitle: Record<ProfessionalAudience, string> = {
+    occupational_therapist: `Occupational Therapy Summary™ — ${name}`,
+    speech_therapist: `Speech Therapy Summary™ — ${name}`,
+    psychologist: `Psychology Summary™ — ${name}`,
+    pediatrician: `Pediatrician Summary™ — ${name}`,
+  };
+
+  const profileFacts: string[] = [];
+  if (child.diagnosis?.length) profileFacts.push(`Diagnosis profile: ${child.diagnosis.join(", ")}`);
+  if (child.support_needs?.length) profileFacts.push(`Support needs: ${child.support_needs.join(", ")}`);
+  if (profile?.known_triggers?.length) profileFacts.push(`Known triggers: ${profile.known_triggers.slice(0, 4).join("; ")}`);
+  if (profile?.calming_strategies?.length) profileFacts.push(`Calming strategies: ${profile.calming_strategies.slice(0, 4).join("; ")}`);
+  if (profile?.successful_strategies?.length) profileFacts.push(`Successful strategies: ${profile.successful_strategies.slice(0, 4).join("; ")}`);
+
+  return {
+    ...base,
+    headline: audienceTitle[audience],
+    generatedAt: new Date().toISOString(),
+    sections: [
+      {
+        title: "Audience focus",
+        body: [focusLine[audience]],
+      },
+      {
+        title: "Grounded profile context",
+        body: profileFacts.length ? profileFacts : ["Profile context is limited; this report uses only recorded journey data."],
+      },
+      ...base.sections,
+    ],
+  };
+}
+
 function companionInsightSection(
   insights: CompanionInsight[],
   reportType: string,

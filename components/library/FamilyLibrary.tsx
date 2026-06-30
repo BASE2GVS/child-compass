@@ -28,6 +28,8 @@ type FamilyLibraryProps = {
 
   parentName?: string | null;
 
+  exampleFamilyId?: string | null;
+
 };
 
 
@@ -46,11 +48,15 @@ export default function FamilyLibrary({
 
   parentName,
 
+  exampleFamilyId,
+
 }: FamilyLibraryProps) {
 
   const childName = child.nickname || child.first_name;
 
   const isEmpty = documents.length === 0 && generatedReports.length === 0;
+
+  const query = exampleFamilyId ? `?child=${child.id}&example=${exampleFamilyId}` : `?child=${child.id}`;
 
 
 
@@ -72,7 +78,7 @@ export default function FamilyLibrary({
 
       primaryAction={
         isEmpty
-          ? { label: "Do today's check-in", href: `/check-in?child=${child.id}` }
+          ? { label: "Do today's check-in", href: `/check-in${query}` }
           : { label: "Share a summary", href: "#featured-summary" }
       }
 
@@ -85,6 +91,8 @@ export default function FamilyLibrary({
       <LibraryReportsSection
 
         childId={child.id}
+
+        exampleFamilyId={exampleFamilyId}
 
         generatedReports={generatedReports}
 

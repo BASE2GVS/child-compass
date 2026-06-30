@@ -208,7 +208,7 @@ export default function OnboardingWizard() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="mx-auto max-w-2xl pb-28 sm:pb-32 lg:pb-0">
       <div className="mb-3 flex items-center justify-between">
         <p className="text-xs font-semibold uppercase tracking-wider text-[var(--cc-ink-faint)]">
           Step {step + 1} of {STEPS.length}
@@ -240,6 +240,7 @@ export default function OnboardingWizard() {
             <button
               type="button"
               onClick={next}
+              data-testid="onboarding-start"
               className="mt-10 rounded-full bg-[var(--cc-teal)] px-10 py-3.5 text-base font-semibold text-white hover:bg-[var(--cc-teal-deep)]"
             >
               Let&apos;s begin
@@ -266,7 +267,13 @@ export default function OnboardingWizard() {
               <button type="button" onClick={prev} className="flex-1 rounded-2xl border border-[var(--cc-border)] py-3.5 text-sm font-semibold text-[var(--cc-ink-muted)]">
                 Previous
               </button>
-              <button type="button" onClick={next} disabled={!familyName} className="flex-1 rounded-2xl bg-[var(--cc-teal)] py-3.5 text-sm font-semibold text-white disabled:opacity-50">
+              <button
+                type="button"
+                onClick={next}
+                disabled={!familyName}
+                data-testid="onboarding-family-next"
+                className="flex-1 rounded-2xl bg-[var(--cc-teal)] py-3.5 text-sm font-semibold text-white disabled:opacity-50"
+              >
                 Next
               </button>
             </div>
@@ -352,7 +359,13 @@ export default function OnboardingWizard() {
               <button type="button" onClick={prev} className="flex-1 rounded-2xl border border-[var(--cc-border)] py-3.5 text-sm font-semibold text-[var(--cc-ink-muted)]">
                 Previous
               </button>
-              <button type="button" onClick={next} disabled={!firstName} className="flex-1 rounded-2xl bg-[var(--cc-teal)] py-3.5 text-sm font-semibold text-white disabled:opacity-50">
+              <button
+                type="button"
+                onClick={next}
+                disabled={!firstName}
+                data-testid="onboarding-child-next"
+                className="flex-1 rounded-2xl bg-[var(--cc-teal)] py-3.5 text-sm font-semibold text-white disabled:opacity-50"
+              >
                 Next
               </button>
             </div>
@@ -368,7 +381,7 @@ export default function OnboardingWizard() {
               <input type="email" className={inputClass} value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="partner@example.com" />
             </div>
             <div className="flex gap-3">
-              <button type="button" onClick={next} className="flex-1 rounded-2xl border border-[var(--cc-border)] py-3.5 text-sm font-semibold text-[var(--cc-ink-muted)]">
+              <button type="button" onClick={next} data-testid="onboarding-invite-skip" className="flex-1 rounded-2xl border border-[var(--cc-border)] py-3.5 text-sm font-semibold text-[var(--cc-ink-muted)]">
                 Skip
               </button>
               <button type="button" onClick={next} className="flex-1 rounded-2xl bg-[var(--cc-teal)] py-3.5 text-sm font-semibold text-white">
@@ -393,6 +406,7 @@ export default function OnboardingWizard() {
                 type="button"
                 onClick={handleFinish}
                 disabled={loading}
+                data-testid="onboarding-finish"
                 className="flex-1 rounded-2xl bg-[var(--cc-teal)] py-3.5 text-sm font-semibold text-white hover:bg-[var(--cc-teal-deep)] disabled:opacity-60"
               >
                 {loading ? "Setting up…" : "Finish Setup"}
