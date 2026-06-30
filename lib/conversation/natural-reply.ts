@@ -27,6 +27,7 @@ import {
 import { sanitizeForNaturalConversation } from "@/lib/conversation/sanitize-reply";
 
 import { needsProfessionalHelp } from "@/lib/conversation/safety";
+import { isExternalLLMConfigured } from "@/lib/ai/future-provider";
 
 
 
@@ -48,13 +49,13 @@ function weaveAdviceNaturally(advice: string): string {
 
   if (trimmed.endsWith("?")) return trimmed;
 
-  if (/^(you might|it may|perhaps|one thought|what if)/i.test(trimmed)) {
+  if (/^(you might|it may|perhaps|one thought|what if|one small thing)/i.test(trimmed)) {
 
     return trimmed;
 
   }
 
-  return `One small thing that might help is ${trimmed.charAt(0).toLowerCase()}${trimmed.slice(1).replace(/\.$/, "")}.`;
+  return trimmed;
 
 }
 
@@ -66,13 +67,7 @@ function toOneGentleStep(text: string): string | null {
 
   const firstSentence = trimmed.split(/(?<=[.!?])\s+/)[0]?.trim() || trimmed;
 
-  const softened = firstSentence
-    .replace(/^A gentle next step\s*/i, "")
-    .replace(/^Try\s*/i, "")
-    .replace(/^Start\s*/i, "")
-    .replace(/^You should\s*/i, "")
-    .replace(/^You need to\s*/i, "")
-    .trim();
+  const softened = firstSentence.trim();
 
   if (!softened) return null;
 
@@ -149,6 +144,21 @@ export function formatNaturalReply(
 ): string {
 
   const childName = context.child.nickname || context.child.first_name;
+
+  const llmComposed = [
+    response.emotional_interpretation,
+    response.behaviour_explanation,
+    response.suggested_response,
+    response.tomorrow_plan,
+  ]
+    .map((t) => sanitizeForNaturalConversation(warmTone(t || "")))
+    .filter(Boolean)
+    .slice(0, 4)
+    .join("\n\n");
+
+  if (isExternalLLMConfigured() && llmComposed.trim()) {
+    return humanizeParentText(llmComposed);
+  }
 
 
 

@@ -1,0 +1,698 @@
+{
+  "label": "sprint13_after_v3",
+  "timestamp": "2026-06-29T22:09:21.053Z",
+  "total": 500,
+  "averages": {
+    "presence": 9,
+    "recognition": 8.008,
+    "understanding": 7.678,
+    "agency": 5.188,
+    "hope": 5.946,
+    "naturalness": 9.014,
+    "emotionalTiming": 9,
+    "conversationFlow": 8.256,
+    "trust": 8.998,
+    "overall": 7.923
+  },
+  "hardFailRate": 0,
+  "byCategory": [
+    {
+      "category": "Everyday parenting",
+      "count": 50,
+      "overall": 7.897,
+      "trust": 8.934,
+      "hope": 5.74,
+      "hardFails": 0
+    },
+    {
+      "category": "PDA",
+      "count": 20,
+      "overall": 7.884,
+      "trust": 9.06,
+      "hope": 6,
+      "hardFails": 0
+    },
+    {
+      "category": "Autism",
+      "count": 30,
+      "overall": 7.866,
+      "trust": 8.92,
+      "hope": 6.2,
+      "hardFails": 0
+    },
+    {
+      "category": "ADHD",
+      "count": 25,
+      "overall": 8.018,
+      "trust": 8.92,
+      "hope": 6.6,
+      "hardFails": 0
+    },
+    {
+      "category": "Meltdowns",
+      "count": 30,
+      "overall": 7.904,
+      "trust": 9.06,
+      "hope": 6,
+      "hardFails": 0
+    },
+    {
+      "category": "Shutdowns",
+      "count": 20,
+      "overall": 7.854,
+      "trust": 9.06,
+      "hope": 5.8,
+      "hardFails": 0
+    },
+    {
+      "category": "School",
+      "count": 30,
+      "overall": 7.919,
+      "trust": 9.153,
+      "hope": 5.2,
+      "hardFails": 0
+    },
+    {
+      "category": "Sleep",
+      "count": 25,
+      "overall": 7.91,
+      "trust": 9.032,
+      "hope": 5.72,
+      "hardFails": 0
+    },
+    {
+      "category": "Food",
+      "count": 15,
+      "overall": 8.008,
+      "trust": 8.92,
+      "hope": 6.6,
+      "hardFails": 0
+    },
+    {
+      "category": "Haircuts",
+      "count": 8,
+      "overall": 7.923,
+      "trust": 9.025,
+      "hope": 6.25,
+      "hardFails": 0
+    },
+    {
+      "category": "Dentist",
+      "count": 8,
+      "overall": 7.73,
+      "trust": 9.2,
+      "hope": 5,
+      "hardFails": 0
+    },
+    {
+      "category": "Grandparents",
+      "count": 15,
+      "overall": 7.998,
+      "trust": 8.92,
+      "hope": 6.2,
+      "hardFails": 0
+    },
+    {
+      "category": "Marriage",
+      "count": 18,
+      "overall": 7.744,
+      "trust": 9.2,
+      "hope": 5.278,
+      "hardFails": 0
+    },
+    {
+      "category": "Sibling conflict",
+      "count": 20,
+      "overall": 7.874,
+      "trust": 9.06,
+      "hope": 5.8,
+      "hardFails": 0
+    },
+    {
+      "category": "Burnout",
+      "count": 25,
+      "overall": 8.4,
+      "trust": 8.5,
+      "hope": 8,
+      "hardFails": 0
+    },
+    {
+      "category": "Celebrations",
+      "count": 18,
+      "overall": 7.919,
+      "trust": 9.044,
+      "hope": 5.444,
+      "hardFails": 0
+    },
+    {
+      "category": "Success",
+      "count": 18,
+      "overall": 8.028,
+      "trust": 8.889,
+      "hope": 6.333,
+      "hardFails": 0
+    },
+    {
+      "category": "Grief",
+      "count": 15,
+      "overall": 7.733,
+      "trust": 9.2,
+      "hope": 5.067,
+      "hardFails": 0
+    },
+    {
+      "category": "Medication",
+      "count": 10,
+      "overall": 7.894,
+      "trust": 9.06,
+      "hope": 6.2,
+      "hardFails": 0
+    },
+    {
+      "category": "Therapy",
+      "count": 10,
+      "overall": 7.968,
+      "trust": 8.92,
+      "hope": 6.2,
+      "hardFails": 0
+    },
+    {
+      "category": "Transitions",
+      "count": 20,
+      "overall": 7.864,
+      "trust": 9.06,
+      "hope": 5.6,
+      "hardFails": 0
+    },
+    {
+      "category": "Anxiety",
+      "count": 20,
+      "overall": 7.73,
+      "trust": 9.2,
+      "hope": 5,
+      "hardFails": 0
+    },
+    {
+      "category": "Shopping",
+      "count": 10,
+      "overall": 7.998,
+      "trust": 8.92,
+      "hope": 6.2,
+      "hardFails": 0
+    },
+    {
+      "category": "Travel",
+      "count": 10,
+      "overall": 7.75,
+      "trust": 9.2,
+      "hope": 5.2,
+      "hardFails": 0
+    },
+    {
+      "category": "Public outings",
+      "count": 18,
+      "overall": 7.993,
+      "trust": 8.928,
+      "hope": 6.222,
+      "hardFails": 0
+    },
+    {
+      "category": "Unexpected wins",
+      "count": 6,
+      "overall": 7.962,
+      "trust": 8.967,
+      "hope": 6.167,
+      "hardFails": 0
+    },
+    {
+      "category": "Unexpected setbacks",
+      "count": 6,
+      "overall": 8.073,
+      "trust": 8.85,
+      "hope": 6.667,
+      "hardFails": 0
+    }
+  ],
+  "lowest20": [
+    {
+      "id": "everyday_parenting_004",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.54,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nI'm here. There's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_009",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.54,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nI'm here. There's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_014",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.54,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nTake your time — I'm not going anywhere.. There's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_019",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.54,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nI'm here. There's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_024",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.54,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nI'm here. There's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_029",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.54,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nTake your time — I'm not going anywhere.. There's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_034",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.54,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nI'm here. There's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_039",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.54,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nI'm here. There's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_044",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.54,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nTake your time — I'm not going anywhere.. There's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "everyday_parenting_049",
+      "category": "Everyday parenting",
+      "message": "I don't need perfection, I just need today to feel less hard. Please keep this simple.",
+      "overall": 7.54,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds worrying. You're not alone in this.\n\nIt makes sense that this is weighing on you.\n\nI'm here. There's no pressure to fix anything right now.\n\nThat's a lot to carry."
+    },
+    {
+      "id": "shutdowns_014",
+      "category": "Shutdowns",
+      "message": "We hit a wall and everything went quiet. Please keep this simple.",
+      "overall": 7.58,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I'm curious if Amy's nervous system was already under strain before today's events. Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion."
+    },
+    {
+      "id": "shutdowns_019",
+      "category": "Shutdowns",
+      "message": "We hit a wall and everything went quiet. Please keep this simple.",
+      "overall": 7.58,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I'm curious if Amy's nervous system was already under strain before today's events. Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion."
+    },
+    {
+      "id": "therapy_003",
+      "category": "Therapy",
+      "message": "I'm exhausted by appointments. I need this to be realistic for today.",
+      "overall": 7.63,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\nI'm here. There's no pressure to fix anything right now.\n\nThere may be more than one explanation — You're carrying a lot. That exhaustion is real."
+    },
+    {
+      "id": "therapy_008",
+      "category": "Therapy",
+      "message": "I'm exhausted by appointments. I need this to be realistic for today.",
+      "overall": 7.63,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          5
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\nI'm here. There's no pressure to fix anything right now.\n\nThere may be more than one explanation — You're carrying a lot. That exhaustion is real."
+    },
+    {
+      "id": "autism_003",
+      "category": "Autism",
+      "message": "Noise at school was too much. I need this to be realistic for today.",
+      "overall": 7.64,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          6
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\n. Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder if a factor is hard mornings often follow poor sleep and rushed transitions for Amy. Amy's brain was filtering more input than it could handle. With Amy's PDA profile, perceived demands can trigger an automatic threat response."
+    },
+    {
+      "id": "autism_008",
+      "category": "Autism",
+      "message": "Noise at school was too much. I need this to be realistic for today.",
+      "overall": 7.64,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          6
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\n. Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder if a factor is hard mornings often follow poor sleep and rushed transitions for Amy. Amy's brain was filtering more input than it could handle. With Amy's PDA profile, perceived demands can trigger an automatic threat response."
+    },
+    {
+      "id": "autism_013",
+      "category": "Autism",
+      "message": "Noise at school was too much. I need this to be realistic for today.",
+      "overall": 7.64,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          6
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\n. Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder if a factor is hard mornings often follow poor sleep and rushed transitions for Amy. Amy's brain was filtering more input than it could handle. With Amy's PDA profile, perceived demands can trigger an automatic threat response."
+    },
+    {
+      "id": "autism_018",
+      "category": "Autism",
+      "message": "Noise at school was too much. I need this to be realistic for today.",
+      "overall": 7.64,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          6
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\n. Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder if a factor is hard mornings often follow poor sleep and rushed transitions for Amy. Amy's brain was filtering more input than it could handle. With Amy's PDA profile, perceived demands can trigger an automatic threat response."
+    },
+    {
+      "id": "autism_023",
+      "category": "Autism",
+      "message": "Noise at school was too much. I need this to be realistic for today.",
+      "overall": 7.64,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          6
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\n. Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder if a factor is hard mornings often follow poor sleep and rushed transitions for Amy. Amy's brain was filtering more input than it could handle. With Amy's PDA profile, perceived demands can trigger an automatic threat response."
+    },
+    {
+      "id": "autism_028",
+      "category": "Autism",
+      "message": "Noise at school was too much. I need this to be realistic for today.",
+      "overall": 7.64,
+      "weakest": [
+        [
+          "agency",
+          4
+        ],
+        [
+          "hope",
+          6
+        ],
+        [
+          "understanding",
+          7
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_agency+hope",
+      "response": "That sounds exhausting. You're not alone in this.\n\nYou're carrying a lot right now.\n\n. Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder if a factor is hard mornings often follow poor sleep and rushed transitions for Amy. Amy's brain was filtering more input than it could handle. With Amy's PDA profile, perceived demands can trigger an automatic threat response."
+    }
+  ]
+}

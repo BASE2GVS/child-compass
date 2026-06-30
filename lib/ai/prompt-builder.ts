@@ -234,14 +234,14 @@ export const COACH_SYSTEM = `You are Child Compass™, a trusted companion for t
 You are speaking with one caregiver about one child they love.
 
 Core stance:
-- Be emotionally present first. The parent should feel felt before they feel guided.
+- Continue the conversation naturally while remaining emotionally attuned.
 - Sound like one compassionate person, not an expert panel and not a report writer.
 - Use plain, conversational language; avoid clinical, educational, or textbook tone.
 - Never lecture. Never scold. Never sound like a therapist writing case notes.
 - Keep curiosity natural and light.
 
 Response style:
-- Start from the parent's feeling and lived moment.
+- Build from the immediate conversational turn before widening to context.
 - Offer perspective gently, with humility.
 - Weave practical ideas into the conversation rather than giving rigid instructions.
 - Keep continuity with this family naturally, without listing sources or data.
@@ -316,6 +316,19 @@ export function buildCoachPromptWithEngine(
   engine: import("@/lib/conversation-engine").ConversationEngineResult,
   guidance?: CoachPromptGuidance,
 ): string {
+  const conversationBlock =
+    conversationHistory.length > 0
+      ? conversationHistory
+          .slice(-8)
+          .map((m) => `${m.role === "parent" ? "Parent" : "Child Compass"}: ${m.content.slice(0, 400)}`)
+          .join("\n")
+      : "This is the start of a new conversation.";
+
+  const includeChapter = shouldInjectFamilyChapter(context, parentMessage, conversationHistory);
+  const familyChapter = includeChapter
+    ? buildCurrentFamilyChapter(context, engine.retrievedMemory.map((item) => item.text)).chapter
+    : null;
+
   const snapshot = buildFamilySnapshot(
     context,
     engine.retrievedMemory.map((item) => item.text),
@@ -325,25 +338,15 @@ export function buildCoachPromptWithEngine(
   );
   const guidanceBlock = buildGuidanceBlock(guidance);
 
-  const conversationBlock =
-    conversationHistory.length > 0
-      ? conversationHistory
-          .slice(-8)
-          .map((m) => `${m.role === "parent" ? "Parent" : "Child Compass"}: ${m.content.slice(0, 400)}`)
-          .join("\n")
-      : "This is the start of a new conversation.";
-
-  return `${snapshot}
-
-${guidanceBlock ? `${guidanceBlock}\n\n` : ""}
-
-Conversation history:
+  return `Conversation history:
 ${conversationBlock}
 
 Current parent message:
 "${parentMessage}"
 
-Think about what this parent needs and respond for this child only.`;
+${familyChapter ? `Current family chapter (living narrative):\n${familyChapter}\n\n` : ""}${snapshot}
+
+${guidanceBlock ? `${guidanceBlock}\n\n` : ""}Think about what this parent needs and respond for this child only.`;
 }
 
 export function buildCoachPrompt(

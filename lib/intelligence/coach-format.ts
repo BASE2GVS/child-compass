@@ -7,6 +7,7 @@ import { formatNaturalReply } from "@/lib/conversation/natural-reply";
 import { needsProfessionalHelp } from "@/lib/conversation/safety";
 import { extractPriorAdviceTopics } from "@/lib/companion/conversation-memory";
 import { applyCompanionVoice } from "@/lib/voice";
+import { isExternalLLMConfigured } from "@/lib/ai/future-provider";
 
 function hasAny(text: string, re: RegExp): boolean {
   return re.test(text);
@@ -123,11 +124,11 @@ export function formatCoachResponse(
     styleWithSafety,
     enrichment,
   );
-  const sequenced = ensureCompanionSequence(raw, need);
+  const output = isExternalLLMConfigured() ? raw : ensureCompanionSequence(raw, need);
 
   const childName = context.child.nickname || context.child.first_name;
 
-  return applyCompanionVoice(sequenced, {
+  return applyCompanionVoice(output, {
     childName,
     parentMessage,
     conversationHistory,

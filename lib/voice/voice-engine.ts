@@ -1,10 +1,5 @@
 import type { ParentFeeling } from "@/lib/conversation/parent-emotion";
-import {
-  pickCompanionOpening,
-  isGenericOpening,
-  isCelebrationOpening,
-  type OpeningMood,
-} from "@/lib/voice/openings";
+import type { OpeningMood } from "@/lib/voice/openings";
 
 const AI_LANGUAGE_PATTERNS: RegExp[] = [
   /I've noticed that[^.!?]*[.!?]?\s*/gi,
@@ -73,14 +68,6 @@ const AI_LANGUAGE_PATTERNS: RegExp[] = [
 ];
 
 const PHRASE_REPLACEMENTS: [RegExp, string][] = [
-  [/One thought —/gi, "One thing that might be worth trying —"],
-  [/Something you could try/gi, "One thing that might be worth trying"],
-  [/Suggested strategy/gi, "One thing that might be worth trying"],
-  [/Strategy:/gi, "Something worth trying:"],
-  [/Recommendation:/gi, "Something families often find helpful:"],
-  [/Based on previous observations/gi, "From what you've shared before"],
-  [/The data suggests/gi, "I wonder if"],
-  [/Known trigger/gi, "something that tends to set things off"],
   [/your child\b/gi, "__CHILD__"],
   [/Your child\b/g, "__CHILD__"],
   [/Do not /g, "Don't "],
@@ -90,10 +77,6 @@ const PHRASE_REPLACEMENTS: [RegExp, string][] = [
   [/I am /g, "I'm "],
   [/We are /g, "We're "],
   [/Let us /g, "Let's "],
-  [
-    /Thank you for telling me that — it helps me understand we may need to think about this differently\./gi,
-    "Thank you — that helps me see we might need a different angle.",
-  ],
 ];
 
 const BANNED_SENTENCE_RE =
@@ -207,23 +190,6 @@ function applyPhraseReplacements(text: string, childName: string): string {
   return result.replace(/__CHILD__/g, childName);
 }
 
-function varyOpening(
-  text: string,
-  seed: string,
-  priorAssistant: string[],
-  mood: OpeningMood,
-): string {
-  const paragraphs = text.split(/\n\n+/).filter((p) => p.trim());
-  if (!paragraphs.length) return text;
-
-  const first = paragraphs[0].trim();
-  if (isCelebrationOpening(first)) return text;
-  if (!isGenericOpening(first)) return text;
-
-  paragraphs[0] = pickCompanionOpening(seed, priorAssistant, mood);
-  return paragraphs.join("\n\n");
-}
-
 function trimToWordLimit(text: string, maxWords: number): string {
   if (wordCount(text) <= maxWords) return text;
 
@@ -272,17 +238,13 @@ export function applyCompanionVoice(text: string, options: VoiceOptions): string
   const priorAssistant = (options.conversationHistory ?? [])
     .filter((m) => m.role === "assistant")
     .map((m) => m.content);
-
-  const seed =
-    options.parentMessage + priorAssistant.map((t) => t.slice(0, 20)).join("") + text.length;
-  const mood = feelingToMood(options.parentFeeling, options.parentMessage);
+  void priorAssistant;
+  void options.parentMessage;
+  void options.parentFeeling;
   const maxWords = options.maxWords ?? 220;
 
-  let result = stripAiLanguage(text);
-  result = applyPhraseReplacements(result, options.childName);
-  result = polishParagraphs(result, options.childName);
+  let result = applyPhraseReplacements(text, options.childName);
   result = dedupeParagraphs(result);
-  result = varyOpening(result, seed, priorAssistant, mood);
   result = trimToWordLimit(result, maxWords);
   result = cleanWhitespace(result);
 

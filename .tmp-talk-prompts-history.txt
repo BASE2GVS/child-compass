@@ -1,0 +1,113 @@
+=== TURN 1 PROMPT ===
+Family Snapshot:
+Child: Lienke
+Diagnosis: Autism
+Support needs: Sleep, Anxiety
+School: Local School
+Interests: Drawing
+Known triggers: bedtime transitions
+Calming strategies: quiet corner, visual countdown
+Successful strategies: predictable bedtime routine
+Strengths: Warm, Curious
+
+Recent check-ins:
+- 2026-06-29: sleep 2/5, mood 2/5, anxiety 4/5, school 3/5
+- 2026-06-28: sleep 2/5, mood 2/5, anxiety 4/5, school 3/5
+- 2026-06-27: sleep 2/5, mood 2/5, anxiety 4/5, school 3/5
+
+Detected patterns:
+- Bedtime anxiety pattern: Falling asleep is harder when Lienke is anxious before bed.
+
+Family insights:
+- Lienke falling asleep is harder when Lienke is anxious before bed.
+- this family responds well when there's visual preparation GÇö visual countdown has come up before
+- Child Compass is mapping relationships as more check-ins arrive.
+
+
+
+Family memories:
+- None selected
+
+Recent debriefs:
+- No recent debriefs
+
+
+
+
+Conversation history:
+This is the start of a new conversation.
+
+Current parent message:
+"Lienke is struggling to fall asleep. She seems anxious."
+
+Think about what this parent needs and respond for this child only.
+
+=== TURN 2 PROMPT ===
+Family Snapshot:
+Child: Lienke
+Diagnosis: Autism
+Support needs: Sleep, Anxiety
+School: Local School
+Interests: Drawing
+Known triggers: bedtime transitions
+Calming strategies: quiet corner, visual countdown
+Successful strategies: predictable bedtime routine
+Strengths: Warm, Curious
+
+Recent check-ins:
+- 2026-06-29: sleep 2/5, mood 2/5, anxiety 4/5, school 3/5
+- 2026-06-28: sleep 2/5, mood 2/5, anxiety 4/5, school 3/5
+- 2026-06-27: sleep 2/5, mood 2/5, anxiety 4/5, school 3/5
+
+Detected patterns:
+- Bedtime anxiety pattern: Falling asleep is harder when Lienke is anxious before bed.
+
+Family insights:
+- Lienke falling asleep is harder when Lienke is anxious before bed.
+- this family responds well when there's visual preparation GÇö visual countdown has come up before
+- Child Compass is mapping relationships as more check-ins arrive.
+
+
+
+Family memories:
+- Falling asleep is harder when Lienke is anxious before bed.
+- bedtime transitions
+- quiet corner
+
+Recent debriefs:
+- No recent debriefs
+
+
+Routing guidance:
+- Ask one natural clarifying question before offering guidance. Keep it easy and human.
+
+
+
+Conversation history:
+Parent: Lienke is struggling to fall asleep. She seems anxious.
+Child Compass: That sounds worrying. You're not alone in this.
+
+What may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.
+
+It makes sense that this is weighing on you.
+
+One small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow could be a littl
+
+Current parent message:
+"What can I do to help her be less anxious and fall asleep?"
+
+Think about what this parent needs and respond for this child only.
+
+=== API REQUEST HISTORY (TURN 1) ===
+
+=== API REQUEST HISTORY (TURN 2) ===
+[
+    {
+        "role":  "parent",
+        "content":  "Lienke is struggling to fall asleep. She seems anxious."
+    },
+    {
+        "role":  "assistant",
+        "content":  "That sounds worrying. You\u0027re not alone in this.\n\nWhat may be happening right now is that everyone is running on low capacity, so even small demands can feel much bigger. What matters now is one steadier moment, not a perfect fix.\n\nIt makes sense that this is weighing on you.\n\nOne small thing for tonight might be to lower pressure around one moment that usually gets stuck. Tomorrow could be a little steadier, and we can build from that."
+    }
+]

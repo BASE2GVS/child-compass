@@ -1,0 +1,85 @@
+{
+  "scenarios": [
+    {
+      "id": "sleep-continuity",
+      "title": "Sleep: multi-turn continuity",
+      "objective": "Verify Talk V2 carries bedtime context across multiple turns without restarting.",
+      "turns": [
+        "Bedtime is taking over an hour every night. What should I change first?",
+        "We tried earlier bedtime and it got worse. What should we do instead?",
+        "Can you summarize a 3-night experiment based on what I already told you?"
+      ]
+    },
+    {
+      "id": "anxiety-continuity",
+      "title": "Anxiety: multi-turn continuity",
+      "objective": "Verify continuity and calm tone across repeated anxiety concerns.",
+      "turns": [
+        "My child wakes up anxious about school most mornings.",
+        "The breathing script worked once but now she refuses. Next step?",
+        "How do I talk to school tomorrow using the same plan?"
+      ]
+    },
+    {
+      "id": "school-follow-up",
+      "title": "School: follow-up conversations",
+      "objective": "Verify follow-up behavior references prior school details.",
+      "turns": [
+        "School says he is masking all day and crashing at home.",
+        "I need one short email to teacher and one home adjustment.",
+        "Update: teacher agreed to the break card. What should I track this week?"
+      ]
+    },
+    {
+      "id": "meltdown-recovery",
+      "title": "Meltdown: escalation then recovery",
+      "objective": "Verify support through escalation and debrief recovery.",
+      "turns": [
+        "We had a major meltdown after homework and everyone is exhausted.",
+        "He started yelling and throwing things. What is the immediate reset plan?",
+        "Now that he is calm, how do I repair without making it worse next time?"
+      ]
+    },
+    {
+      "id": "parent-exhaustion",
+      "title": "Parent exhaustion: emotional support",
+      "objective": "Verify tone warmth and practical support without generic reset replies.",
+      "turns": [
+        "I am so tired and I feel like I am failing every day.",
+        "Please do not give me a long list. I can do one thing tonight.",
+        "Can you help me plan tomorrow morning with low energy?"
+      ]
+    },
+    {
+      "id": "pda-followups",
+      "title": "PDA demand avoidance: several follow-ups",
+      "objective": "Verify continuity over several follow-up turns on demand language and autonomy.",
+      "turns": [
+        "Every request becomes a battle. I think demand avoidance is driving this.",
+        "When I say 'put shoes on' it escalates instantly. Rephrase options?",
+        "He rejected both options. What is a third path that keeps autonomy?",
+        "Can you give me a one-minute script I can use before school?"
+      ]
+    },
+    {
+      "id": "medication-info",
+      "title": "Medication: information seeking",
+      "objective": "Verify balanced informational support and safe boundaries.",
+      "turns": [
+        "We started ADHD medication this week and afternoons are rough.",
+        "What patterns should I log before our clinician follow-up?",
+        "How do I describe side effects clearly without overreacting?"
+      ]
+    },
+    {
+      "id": "general-parenting",
+      "title": "General parenting: normal conversation",
+      "objective": "Verify normal, practical, non-scripted conversational flow.",
+      "turns": [
+        "We are trying to build a calmer evening routine for the whole family.",
+        "Can you help me choose between visual checklist or timer-first approach?",
+        "Great, now give me a short version my partner can follow too."
+      ]
+    }
+  ]
+}

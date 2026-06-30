@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import Link from "next/link";
 import {
   exportDiagnosticsJson,
   runDemoReset,
@@ -89,6 +90,21 @@ export default function PilotSettingsPanel({
         <p className="mt-4 text-xs text-[#94A3B8]">
           Admin access: {envAdmin ? "enabled via PILOT_ADMIN_ENABLED" : "disabled — set PILOT_ADMIN_ENABLED=true"}
         </p>
+      </GlassCard>
+
+      <GlassCard padding="lg">
+        <SectionHeader
+          title="Talk V2 founder acceptance"
+          description="Open the internal Talk V2 harness for real founder-only conversations with telemetry."
+        />
+        <div className="mt-4">
+          <Link
+            href="/pilot-settings/talk-v2"
+            className="inline-flex items-center rounded-xl bg-[#0F172A] px-4 py-2 text-sm font-semibold text-white"
+          >
+            Open Talk V2 founder harness
+          </Link>
+        </div>
       </GlassCard>
 
       <GlassCard padding="lg">

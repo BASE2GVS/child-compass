@@ -1,0 +1,718 @@
+{
+  "label": "sprint13_after_v2",
+  "timestamp": "2026-06-29T22:06:16.081Z",
+  "total": 500,
+  "averages": {
+    "presence": 5.496,
+    "recognition": 5.402,
+    "understanding": 6.456,
+    "agency": 7.022,
+    "hope": 5.828,
+    "naturalness": 8.24,
+    "emotionalTiming": 6.46,
+    "conversationFlow": 8.092,
+    "trust": 8.559,
+    "overall": 6.765
+  },
+  "hardFailRate": 0.02,
+  "byCategory": [
+    {
+      "category": "Everyday parenting",
+      "count": 50,
+      "overall": 6.656,
+      "trust": 8.63,
+      "hope": 5.8,
+      "hardFails": 10
+    },
+    {
+      "category": "PDA",
+      "count": 20,
+      "overall": 6.498,
+      "trust": 8.42,
+      "hope": 5.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Autism",
+      "count": 30,
+      "overall": 6.57,
+      "trust": 8.56,
+      "hope": 5.4,
+      "hardFails": 0
+    },
+    {
+      "category": "ADHD",
+      "count": 25,
+      "overall": 6.744,
+      "trust": 8.56,
+      "hope": 6.2,
+      "hardFails": 0
+    },
+    {
+      "category": "Meltdowns",
+      "count": 30,
+      "overall": 6.848,
+      "trust": 8.7,
+      "hope": 6.2,
+      "hardFails": 0
+    },
+    {
+      "category": "Shutdowns",
+      "count": 20,
+      "overall": 6.666,
+      "trust": 8.7,
+      "hope": 5.4,
+      "hardFails": 0
+    },
+    {
+      "category": "School",
+      "count": 30,
+      "overall": 7.368,
+      "trust": 8.397,
+      "hope": 5.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Sleep",
+      "count": 25,
+      "overall": 6.806,
+      "trust": 8.42,
+      "hope": 7,
+      "hardFails": 0
+    },
+    {
+      "category": "Food",
+      "count": 15,
+      "overall": 6.692,
+      "trust": 8.7,
+      "hope": 6.2,
+      "hardFails": 0
+    },
+    {
+      "category": "Haircuts",
+      "count": 8,
+      "overall": 6.533,
+      "trust": 8.525,
+      "hope": 5.5,
+      "hardFails": 0
+    },
+    {
+      "category": "Dentist",
+      "count": 8,
+      "overall": 6.885,
+      "trust": 8.7,
+      "hope": 5.5,
+      "hardFails": 0
+    },
+    {
+      "category": "Grandparents",
+      "count": 15,
+      "overall": 6.72,
+      "trust": 8.56,
+      "hope": 6.6,
+      "hardFails": 0
+    },
+    {
+      "category": "Marriage",
+      "count": 18,
+      "overall": 6.754,
+      "trust": 8.544,
+      "hope": 5.444,
+      "hardFails": 0
+    },
+    {
+      "category": "Sibling conflict",
+      "count": 20,
+      "overall": 6.588,
+      "trust": 8.7,
+      "hope": 5.8,
+      "hardFails": 0
+    },
+    {
+      "category": "Burnout",
+      "count": 25,
+      "overall": 6.962,
+      "trust": 8.08,
+      "hope": 7,
+      "hardFails": 0
+    },
+    {
+      "category": "Celebrations",
+      "count": 18,
+      "overall": 6.869,
+      "trust": 8.583,
+      "hope": 5.778,
+      "hardFails": 0
+    },
+    {
+      "category": "Success",
+      "count": 18,
+      "overall": 6.54,
+      "trust": 8.544,
+      "hope": 5.444,
+      "hardFails": 0
+    },
+    {
+      "category": "Grief",
+      "count": 15,
+      "overall": 6.716,
+      "trust": 8.56,
+      "hope": 5.8,
+      "hardFails": 0
+    },
+    {
+      "category": "Medication",
+      "count": 10,
+      "overall": 6.612,
+      "trust": 8.7,
+      "hope": 5.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Therapy",
+      "count": 10,
+      "overall": 6.838,
+      "trust": 8.66,
+      "hope": 6.2,
+      "hardFails": 0
+    },
+    {
+      "category": "Transitions",
+      "count": 20,
+      "overall": 7.056,
+      "trust": 8.7,
+      "hope": 5.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Anxiety",
+      "count": 20,
+      "overall": 6.78,
+      "trust": 8.7,
+      "hope": 5.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Shopping",
+      "count": 10,
+      "overall": 6.576,
+      "trust": 8.7,
+      "hope": 5.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Travel",
+      "count": 10,
+      "overall": 6.78,
+      "trust": 8.56,
+      "hope": 5.4,
+      "hardFails": 0
+    },
+    {
+      "category": "Public outings",
+      "count": 18,
+      "overall": 6.748,
+      "trust": 8.311,
+      "hope": 5.778,
+      "hardFails": 0
+    },
+    {
+      "category": "Unexpected wins",
+      "count": 6,
+      "overall": 6.69,
+      "trust": 8.7,
+      "hope": 5.333,
+      "hardFails": 0
+    },
+    {
+      "category": "Unexpected setbacks",
+      "count": 6,
+      "overall": 6.593,
+      "trust": 8.7,
+      "hope": 5.667,
+      "hardFails": 0
+    }
+  ],
+  "lowest20": [
+    {
+      "id": "everyday_parenting_003",
+      "category": "Everyday parenting",
+      "message": "I need help with ordinary days that keep going wrong. I need this to be realistic for today.",
+      "overall": 5.9,
+      "weakest": [
+        [
+          "presence",
+          3
+        ],
+        [
+          "emotionalTiming",
+          3.5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [
+        "starts_with_advice_before_empathy"
+      ],
+      "rootCause": "starts_with_advice_before_empathy",
+      "response": "Tonight f…\" — Knowing your family a little better each time we talk, Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder whether Amy's nervous system was already under strain before today's events. Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion.\n\nPrepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "everyday_parenting_008",
+      "category": "Everyday parenting",
+      "message": "I need help with ordinary days that keep going wrong. I need this to be realistic for today.",
+      "overall": 5.9,
+      "weakest": [
+        [
+          "presence",
+          3
+        ],
+        [
+          "emotionalTiming",
+          3.5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [
+        "starts_with_advice_before_empathy"
+      ],
+      "rootCause": "starts_with_advice_before_empathy",
+      "response": "Tonight f…\" — The more we talk, the more I understand what helps Amy and what helps you Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder whether Amy's nervous system was already under strain before today's events. Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion.\n\nPrepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "everyday_parenting_013",
+      "category": "Everyday parenting",
+      "message": "I need help with ordinary days that keep going wrong. I need this to be realistic for today.",
+      "overall": 5.9,
+      "weakest": [
+        [
+          "presence",
+          3
+        ],
+        [
+          "emotionalTiming",
+          3.5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [
+        "starts_with_advice_before_empathy"
+      ],
+      "rootCause": "starts_with_advice_before_empathy",
+      "response": "Tonight f…\" — The more we talk, the more I understand what helps Amy and what helps you Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder whether Amy's nervous system was already under strain before today's events. Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion.\n\nPrepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "everyday_parenting_018",
+      "category": "Everyday parenting",
+      "message": "I need help with ordinary days that keep going wrong. I need this to be realistic for today.",
+      "overall": 5.9,
+      "weakest": [
+        [
+          "presence",
+          3
+        ],
+        [
+          "emotionalTiming",
+          3.5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [
+        "starts_with_advice_before_empathy"
+      ],
+      "rootCause": "starts_with_advice_before_empathy",
+      "response": "Tonight f…\" — The more we talk, the more I understand what helps Amy and what helps you Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder whether Amy's nervous system was already under strain before today's events. Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion.\n\nPrepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "everyday_parenting_023",
+      "category": "Everyday parenting",
+      "message": "I need help with ordinary days that keep going wrong. I need this to be realistic for today.",
+      "overall": 5.9,
+      "weakest": [
+        [
+          "presence",
+          3
+        ],
+        [
+          "emotionalTiming",
+          3.5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [
+        "starts_with_advice_before_empathy"
+      ],
+      "rootCause": "starts_with_advice_before_empathy",
+      "response": "Tonight f…\" — The more we talk, the more I understand what helps Amy and what helps you Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder whether Amy's nervous system was already under strain before today's events. Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion.\n\nPrepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "everyday_parenting_028",
+      "category": "Everyday parenting",
+      "message": "I need help with ordinary days that keep going wrong. I need this to be realistic for today.",
+      "overall": 5.9,
+      "weakest": [
+        [
+          "presence",
+          3
+        ],
+        [
+          "emotionalTiming",
+          3.5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [
+        "starts_with_advice_before_empathy"
+      ],
+      "rootCause": "starts_with_advice_before_empathy",
+      "response": "Tonight f…\" — The more we talk, the more I understand what helps Amy and what helps you Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder whether Amy's nervous system was already under strain before today's events. Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion.\n\nPrepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "everyday_parenting_033",
+      "category": "Everyday parenting",
+      "message": "I need help with ordinary days that keep going wrong. I need this to be realistic for today.",
+      "overall": 5.9,
+      "weakest": [
+        [
+          "presence",
+          3
+        ],
+        [
+          "emotionalTiming",
+          3.5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [
+        "starts_with_advice_before_empathy"
+      ],
+      "rootCause": "starts_with_advice_before_empathy",
+      "response": "Tonight f…\" — The more we talk, the more I understand what helps Amy and what helps you Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder whether Amy's nervous system was already under strain before today's events. Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion.\n\nPrepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "everyday_parenting_038",
+      "category": "Everyday parenting",
+      "message": "I need help with ordinary days that keep going wrong. I need this to be realistic for today.",
+      "overall": 5.9,
+      "weakest": [
+        [
+          "presence",
+          3
+        ],
+        [
+          "emotionalTiming",
+          3.5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [
+        "starts_with_advice_before_empathy"
+      ],
+      "rootCause": "starts_with_advice_before_empathy",
+      "response": "Tonight f…\" — The more we talk, the more I understand what helps Amy and what helps you Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder whether Amy's nervous system was already under strain before today's events. Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion.\n\nPrepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "everyday_parenting_043",
+      "category": "Everyday parenting",
+      "message": "I need help with ordinary days that keep going wrong. I need this to be realistic for today.",
+      "overall": 5.9,
+      "weakest": [
+        [
+          "presence",
+          3
+        ],
+        [
+          "emotionalTiming",
+          3.5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [
+        "starts_with_advice_before_empathy"
+      ],
+      "rootCause": "starts_with_advice_before_empathy",
+      "response": "Tonight f…\" — The more we talk, the more I understand what helps Amy and what helps you Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder whether Amy's nervous system was already under strain before today's events. Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion.\n\nPrepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "everyday_parenting_048",
+      "category": "Everyday parenting",
+      "message": "I need help with ordinary days that keep going wrong. I need this to be realistic for today.",
+      "overall": 5.9,
+      "weakest": [
+        [
+          "presence",
+          3
+        ],
+        [
+          "emotionalTiming",
+          3.5
+        ],
+        [
+          "recognition",
+          5
+        ]
+      ],
+      "failureFlags": [
+        "starts_with_advice_before_empathy"
+      ],
+      "rootCause": "starts_with_advice_before_empathy",
+      "response": "Tonight f…\" — The more we talk, the more I understand what helps Amy and what helps you Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — school mornings can ask a lot of Amy — we'll take it gently. I wonder whether Amy's nervous system was already under strain before today's events. Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion.\n\nPrepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "pda_003",
+      "category": "PDA",
+      "message": "How do I ask without triggering panic? I need this to be realistic for today.",
+      "overall": 6.36,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "You shouldn't have to learn complicated software. Ask me about any page, button, or feature — I'll explain plainly.\n\nToday: Today is your daily home — briefing, what to do next, and a quick way to ask Child Compass anything.\n\nOpen Today here: /today — or tell me what you're trying to do and I'll guide you step by step.\n\nTry opening Today when you have a quiet moment. No rush."
+    },
+    {
+      "id": "pda_008",
+      "category": "PDA",
+      "message": "How do I ask without triggering panic? I need this to be realistic for today.",
+      "overall": 6.36,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "You shouldn't have to learn complicated software. Ask me about any page, button, or feature — I'll explain plainly.\n\nToday: Today is your daily home — briefing, what to do next, and a quick way to ask Child Compass anything.\n\nOpen Today here: /today — or tell me what you're trying to do and I'll guide you step by step.\n\nTry opening Today when you have a quiet moment. No rush."
+    },
+    {
+      "id": "pda_013",
+      "category": "PDA",
+      "message": "How do I ask without triggering panic? I need this to be realistic for today.",
+      "overall": 6.36,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "You shouldn't have to learn complicated software. Ask me about any page, button, or feature — I'll explain plainly.\n\nToday: Today is your daily home — briefing, what to do next, and a quick way to ask Child Compass anything.\n\nOpen Today here: /today — or tell me what you're trying to do and I'll guide you step by step.\n\nTry opening Today when you have a quiet moment. No rush."
+    },
+    {
+      "id": "pda_018",
+      "category": "PDA",
+      "message": "How do I ask without triggering panic? I need this to be realistic for today.",
+      "overall": 6.36,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "You shouldn't have to learn complicated software. Ask me about any page, button, or feature — I'll explain plainly.\n\nToday: Today is your daily home — briefing, what to do next, and a quick way to ask Child Compass anything.\n\nOpen Today here: /today — or tell me what you're trying to do and I'll guide you step by step.\n\nTry opening Today when you have a quiet moment. No rush."
+    },
+    {
+      "id": "public_outings_004",
+      "category": "Public outings",
+      "message": "How do I try again after what happened? Please keep this simple.",
+      "overall": 6.36,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "You shouldn't have to learn complicated software. Ask me about any page, button, or feature — I'll explain plainly.\n\nIt helps you and Child Compass see patterns over time.\n\nOpen Timeline here: /timeline — or tell me what you're trying to do and I'll guide you step by step.\n\nTry opening Timeline when you have a quiet moment. No rush."
+    },
+    {
+      "id": "public_outings_009",
+      "category": "Public outings",
+      "message": "How do I try again after what happened? Please keep this simple.",
+      "overall": 6.36,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "You shouldn't have to learn complicated software. Ask me about any page, button, or feature — I'll explain plainly.\n\nIt helps you and Child Compass see patterns over time.\n\nOpen Timeline here: /timeline — or tell me what you're trying to do and I'll guide you step by step.\n\nTry opening Timeline when you have a quiet moment. No rush."
+    },
+    {
+      "id": "public_outings_014",
+      "category": "Public outings",
+      "message": "How do I try again after what happened? Please keep this simple.",
+      "overall": 6.36,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "You shouldn't have to learn complicated software. Ask me about any page, button, or feature — I'll explain plainly.\n\nIt helps you and Child Compass see patterns over time.\n\nOpen Timeline here: /timeline — or tell me what you're trying to do and I'll guide you step by step.\n\nTry opening Timeline when you have a quiet moment. No rush."
+    },
+    {
+      "id": "everyday_parenting_006",
+      "category": "Everyday parenting",
+      "message": "Today felt chaotic from breakfast onward.",
+      "overall": 6.38,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion.\n\nPrepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "everyday_parenting_011",
+      "category": "Everyday parenting",
+      "message": "Today felt chaotic from breakfast onward.",
+      "overall": 6.38,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion.\n\nPrepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    },
+    {
+      "id": "everyday_parenting_016",
+      "category": "Everyday parenting",
+      "message": "Today felt chaotic from breakfast onward.",
+      "overall": 6.38,
+      "weakest": [
+        [
+          "presence",
+          5
+        ],
+        [
+          "recognition",
+          5
+        ],
+        [
+          "understanding",
+          5
+        ]
+      ],
+      "failureFlags": [],
+      "rootCause": "low_presence+recognition",
+      "response": "Amy's anxiety was already elevated (4/5\n\nI wonder whether a few factors overlapped — Amy may be communicating an unmet need — not necessarily defiance. With Amy's PDA profile, perceived demands can trigger an automatic threat response.\n\nUse declarative language instead of commands. For Amy specifically: Use declarative language instead of direct requests. Offer indirect choices. Allow recovery time without discussion.\n\nPrepare the environment calmly tonight. Review a visual schedule if that helps your family."
+    }
+  ]
+}
