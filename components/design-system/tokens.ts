@@ -13,9 +13,9 @@ export const space = layoutSpace;
 
 export const ds = {
   /* Surfaces */
-  card: `${radius.cardHero} border border-white/55 bg-white/62 ${shadows.raised} backdrop-blur-xl`,
-  glass: `${radius.cardHero} border border-white/50 bg-white/55 ${shadows.paper} backdrop-blur-xl`,
-  paper: `${radius.card} border border-white/45 bg-white/60 ${shadows.paper} backdrop-blur-lg`,
+  card: `${radius.cardHero} border border-white/80 bg-white/90 ${shadows.raised} backdrop-blur-xl`,
+  glass: `${radius.cardHero} border border-white/72 bg-white/86 ${shadows.paper} backdrop-blur-xl`,
+  paper: `${radius.card} border border-white/68 bg-white/88 ${shadows.paper} backdrop-blur-lg`,
   hero: `${radius.hero} bg-gradient-to-br from-[var(--cc-paper-elevated)] via-[var(--cc-paper)] to-[var(--cc-teal-wash)]/40 ${shadows.hero}`,
 
   /* Forms */

@@ -103,16 +103,16 @@ body {
 }
 
 .cc-auth-overlay {
-  background: linear-gradient(140deg, rgba(246, 251, 255, 0.86) 0%, rgba(244, 250, 255, 0.8) 48%, rgba(239, 248, 255, 0.77) 100%);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.18) 0%, rgba(250, 253, 255, 0.12) 48%, rgba(245, 251, 255, 0.08) 100%);
 }
 
 .cc-auth-card {
-  border: 1px solid rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.78);
   border-radius: 2rem;
-  background: rgba(255, 255, 255, 0.62);
-  box-shadow: 0 14px 48px rgba(16, 42, 67, 0.16), 0 6px 22px rgba(47, 128, 237, 0.09);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 48px rgba(16, 42, 67, 0.14), 0 6px 22px rgba(47, 128, 237, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 /* ─── App shell ─── */
@@ -122,20 +122,20 @@ body {
 }
 
 .cc-shell-sidebar {
-  border-right: 1px solid rgba(255, 255, 255, 0.55);
-  background: rgba(255, 253, 249, 0.55);
-  box-shadow: 2px 0 28px rgba(45, 42, 38, 0.06);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.42);
+  background: rgba(255, 253, 249, 0.68);
+  box-shadow: 2px 0 28px rgba(45, 42, 38, 0.05);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .cc-shell-topnav {
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.42);
   border-radius: 1.25rem;
-  background: rgba(255, 253, 249, 0.62);
-  box-shadow: 0 8px 32px rgba(45, 42, 38, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 253, 249, 0.7);
+  box-shadow: 0 8px 32px rgba(45, 42, 38, 0.07);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .cc-shell-content {
@@ -155,7 +155,7 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(246, 251, 255, 0.42) 0%, rgba(248, 252, 255, 0.25) 45%, rgba(246, 252, 250, 0.3) 100%);
+  background: linear-gradient(180deg, rgba(246, 251, 255, 0.12) 0%, rgba(248, 252, 255, 0.08) 45%, rgba(246, 252, 250, 0.08) 100%);
 }
 
 /* ─── Application Framework (Sprint 2) ─── */
