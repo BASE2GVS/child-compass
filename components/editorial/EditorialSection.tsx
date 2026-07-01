@@ -20,7 +20,7 @@ export function EditorialTitle({
   return (
     <h1
       id={id}
-      className="font-display text-[clamp(2rem,5vw,3.75rem)] font-semibold leading-[1.08] tracking-tight text-[var(--cc-ink)]"
+      className="font-display text-[clamp(2rem,5vw,3.75rem)] font-semibold leading-[1.08] tracking-tight text-[var(--cc-ink)] [text-shadow:0_1px_2px_rgba(255,255,255,0.22)]"
     >
       {children}
     </h1>

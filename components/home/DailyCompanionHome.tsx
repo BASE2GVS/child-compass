@@ -76,18 +76,18 @@ export default function DailyCompanionHome({
     >
       <ExampleFamilySelector items={exampleFamilies} activeExampleId={exampleFamilyId} />
 
-      <section className="rounded-2xl bg-[#F6F1E7] p-6 ring-1 ring-[#E6DFD3]">
+      <section className="cc-premium-panel rounded-2xl p-6">
         <p className="text-3xl font-display text-[var(--cc-ink)]">{greetingLine(parentName)}</p>
         <p className="mt-2 text-base text-[var(--cc-ink-soft)]">Here&apos;s how {childName}&apos;s day is looking.</p>
       </section>
 
-      <section className="mt-8 rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+      <section className="cc-premium-panel mt-8 rounded-2xl p-5">
         <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Today&apos;s Snapshot</h2>
         <p className="mt-3 text-base leading-relaxed text-[var(--cc-ink-soft)]">{overview.todayJourneySummary}</p>
         <div className="mt-4 flex flex-wrap gap-2 text-xs">
-          <span className="rounded-full bg-[#F6F1E7] px-3 py-1 text-[#345B59]">Tone: {overview.emotionalTone}</span>
+          <span className="rounded-full bg-white/62 px-3 py-1 text-[#345B59] ring-1 ring-white/72">Tone: {overview.emotionalTone}</span>
           {overview.focusAreas.slice(0, 3).map((focus) => (
-            <span key={focus} className="rounded-full bg-[#EAF3FF] px-3 py-1 text-[#274C77]">
+            <span key={focus} className="rounded-full bg-white/56 px-3 py-1 text-[#274C77] ring-1 ring-white/68">
               Focus: {focus}
             </span>
           ))}
@@ -97,14 +97,14 @@ export default function DailyCompanionHome({
         ) : null}
       </section>
 
-      <section className="mt-8 rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+      <section className="cc-premium-panel mt-8 rounded-2xl p-5">
         <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Today Ahead</h2>
         {todayAhead.length === 0 ? (
           <p className="mt-3 text-sm text-[var(--cc-ink-soft)]">No events are visible for today from your current journey data.</p>
         ) : (
           <ul className="mt-4 space-y-3">
             {todayAhead.map((entry) => (
-              <li key={entry.id} className="rounded-xl bg-[#FAF8F4] p-3">
+              <li key={entry.id} className="cc-premium-panel-soft rounded-xl p-3">
                 <p className="text-sm font-semibold text-[var(--cc-ink)]">{entry.title}</p>
                 <p className="mt-1 text-sm text-[var(--cc-ink-soft)]">{entry.summary}</p>
                 <p className="mt-2 text-xs text-[var(--cc-ink-faint)]">{formatJourneyDate(entry.date)}</p>
@@ -115,11 +115,11 @@ export default function DailyCompanionHome({
       </section>
 
       {preparationItems.length > 0 ? (
-        <section className="mt-8 rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+        <section className="cc-premium-panel mt-8 rounded-2xl p-5">
           <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Preparation</h2>
           <div className="mt-4 space-y-3">
             {preparationItems.map(({ entry, prep }) => (
-              <article key={entry.id} className="rounded-xl bg-[#FAF8F4] p-3">
+              <article key={entry.id} className="cc-premium-panel-soft rounded-xl p-3">
                 <p className="text-sm font-semibold text-[var(--cc-ink)]">{entry.title}</p>
                 {prep.suggestions.length > 0 ? (
                   <ul className="mt-2 space-y-1 text-xs text-[#345B59]">
@@ -141,14 +141,14 @@ export default function DailyCompanionHome({
         </section>
       ) : null}
 
-      <section className="mt-8 rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+      <section className="cc-premium-panel mt-8 rounded-2xl p-5">
         <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Recent Wins</h2>
         {overview.recentWins.length === 0 ? (
           <p className="mt-3 text-sm text-[var(--cc-ink-soft)]">Positive moments will appear here as they are recorded.</p>
         ) : (
           <ul className="mt-4 space-y-2">
             {overview.recentWins.slice(0, 4).map((entry) => (
-              <li key={entry.id} className="rounded-lg bg-[#FAF8F4] px-3 py-2 text-sm text-[var(--cc-ink-soft)]">
+              <li key={entry.id} className="cc-premium-panel-soft rounded-lg px-3 py-2 text-sm text-[var(--cc-ink-soft)]">
                 <span className="font-semibold text-[var(--cc-ink)]">✓ {entry.title}</span>
               </li>
             ))}
@@ -156,23 +156,23 @@ export default function DailyCompanionHome({
         )}
       </section>
 
-      <section className="mt-8 rounded-2xl bg-[#F6F1E7] p-5 ring-1 ring-[#E6DFD3]">
+      <section className="cc-premium-panel mt-8 rounded-2xl p-5">
         <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Gentle Insight</h2>
         <p className="mt-3 text-sm leading-relaxed text-[var(--cc-ink-soft)]">{notes[0] || overview.helpfulInsights[0]}</p>
       </section>
 
-      <section className="mt-8 rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+      <section className="cc-premium-panel mt-8 rounded-2xl p-5">
         <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Continue Your Journey</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           {shortcuts.map((item) => (
-            <Link key={item.label} href={item.href} className="rounded-xl bg-[#FAF8F4] px-4 py-3 text-sm font-semibold text-[var(--cc-ink)] ring-1 ring-[#E6DFD3] hover:bg-[#F6F1E7]">
+            <Link key={item.label} href={item.href} className="cc-premium-panel-soft rounded-xl px-4 py-3 text-sm font-semibold text-[var(--cc-ink)] hover:bg-white/72">
               {item.label}
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="mt-8 rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+      <section className="cc-premium-panel mt-8 rounded-2xl p-5">
         <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Evening Reflection</h2>
         <p className="mt-2 text-sm text-[var(--cc-ink-soft)]">How did today go with {childName}?</p>
         <p className="mt-2 text-xs text-[var(--cc-ink-faint)]">
@@ -180,10 +180,10 @@ export default function DailyCompanionHome({
         </p>
 
         {reflectionSaved ? (
-          <p className="mt-3 rounded-lg bg-[#F6F1E7] px-3 py-2 text-xs text-[#345B59]">Reflection saved to your journey.</p>
+          <p className="cc-premium-panel-soft mt-3 rounded-lg px-3 py-2 text-xs text-[#345B59]">Reflection saved to your journey.</p>
         ) : null}
         {reflectionError ? (
-          <p className="mt-3 rounded-lg bg-[#FFF3F3] px-3 py-2 text-xs text-[#8A1F1F]">We could not save that reflection. Please try again.</p>
+          <p className="mt-3 rounded-lg border border-white/56 bg-[#FFF3F3]/72 px-3 py-2 text-xs text-[#8A1F1F] backdrop-blur-sm">We could not save that reflection. Please try again.</p>
         ) : null}
 
         <form action={saveEveningReflection} className="mt-4 space-y-3">
@@ -193,7 +193,7 @@ export default function DailyCompanionHome({
               type="submit"
               name="response"
               value="better"
-              className="rounded-full bg-[#EAF3FF] px-4 py-2 text-xs font-semibold text-[#274C77]"
+              className="rounded-full border border-white/66 bg-white/58 px-4 py-2 text-xs font-semibold text-[#274C77] backdrop-blur-sm"
             >
               Better than expected
             </button>
@@ -201,7 +201,7 @@ export default function DailyCompanionHome({
               type="submit"
               name="response"
               value="same"
-              className="rounded-full bg-[#F6F1E7] px-4 py-2 text-xs font-semibold text-[#345B59]"
+              className="rounded-full border border-white/66 bg-white/56 px-4 py-2 text-xs font-semibold text-[#345B59] backdrop-blur-sm"
             >
               About the same
             </button>
@@ -209,7 +209,7 @@ export default function DailyCompanionHome({
               type="submit"
               name="response"
               value="harder"
-              className="rounded-full bg-[#FFF3F3] px-4 py-2 text-xs font-semibold text-[#8A1F1F]"
+              className="rounded-full border border-white/66 bg-[#FFF3F3]/74 px-4 py-2 text-xs font-semibold text-[#8A1F1F] backdrop-blur-sm"
             >
               More difficult than expected
             </button>
@@ -224,13 +224,13 @@ export default function DailyCompanionHome({
             maxLength={240}
             rows={3}
             placeholder="Add a short reflection (optional)"
-            className="w-full rounded-xl border border-[#D8D2C8] bg-[#FAF8F4] px-3 py-2 text-sm text-[var(--cc-ink-soft)]"
+            className="w-full rounded-xl border border-white/66 bg-white/62 px-3 py-2 text-sm text-[var(--cc-ink-soft)] backdrop-blur-sm"
           />
           <p className="text-xs text-[var(--cc-ink-faint)]">Takes less than 30 seconds and is completely optional.</p>
         </form>
       </section>
 
-      <section className="mt-8 rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3]">
+      <section className="cc-premium-panel mt-8 rounded-2xl p-5">
         <h2 className="text-base font-semibold text-[var(--cc-ink)]">Companion Stories (Coming Later)</h2>
         <p className="mt-2 text-sm text-[var(--cc-ink-soft)]">
           Morning Brief, Evening Reflection, Weekly Story, Monthly Story and Family Story modules will appear here in future stages.

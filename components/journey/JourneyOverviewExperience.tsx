@@ -42,7 +42,7 @@ export default function JourneyOverviewExperience({
     >
       <ExampleFamilySelector items={exampleFamilies} activeExampleId={exampleFamilyId} />
 
-      <div className="mb-8 space-y-3 rounded-2xl bg-[#F6F1E7] p-6 ring-1 ring-[#E6DFD3]">
+      <div className="cc-premium-panel mb-8 space-y-3 rounded-2xl p-6">
         <p className="text-sm font-semibold uppercase tracking-wide text-[#52706F]">Good Morning</p>
         <h2 className="font-display text-3xl text-[var(--cc-ink)]">{overview.greeting}</h2>
         <p className="text-sm text-[var(--cc-ink-soft)]">How is my child doing today?</p>
@@ -51,17 +51,17 @@ export default function JourneyOverviewExperience({
       <JourneySectionTabs active="overview" childId={child.id} exampleFamilyId={exampleFamilyId} />
 
       <section className="grid gap-4">
-        <article className="rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+        <article className="cc-premium-panel rounded-2xl p-5">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-[#52706F]">Today&apos;s Journey</h2>
           <p className="mt-3 text-xl leading-relaxed text-[var(--cc-ink)]">{overview.todayJourneySummary}</p>
-          <div className="mt-4 inline-flex rounded-full bg-[#F6F1E7] px-3 py-1 text-xs font-semibold text-[#345B59]">
+          <div className="mt-4 inline-flex rounded-full bg-white/62 px-3 py-1 text-xs font-semibold text-[#345B59] ring-1 ring-white/72">
             Emotional tone: {overview.emotionalTone}
           </div>
         </article>
       </section>
 
       <section className="mt-8 grid gap-4 lg:grid-cols-2">
-        <article className="rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+        <article className="cc-premium-panel rounded-2xl p-5">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-[#52706F]">Current Focus</h2>
           {overview.focusAreas.length === 0 ? (
             <p className="mt-3 text-sm text-[var(--cc-ink-soft)]">Focus areas will appear as more moments are recorded.</p>
@@ -77,14 +77,14 @@ export default function JourneyOverviewExperience({
           <p className="mt-3 text-xs text-[var(--cc-ink-faint)]">Logged moments this week: {overview.thisWeekCount}</p>
         </article>
 
-        <article className="rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+        <article className="cc-premium-panel rounded-2xl p-5">
           <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Recent Wins</h2>
           {overview.recentWins.length === 0 ? (
             <p className="mt-3 text-sm text-[var(--cc-ink-soft)]">Wins from your timeline will show here as they are captured.</p>
           ) : (
             <ul className="mt-4 space-y-3">
               {overview.recentWins.map((entry) => (
-                <li key={entry.id} className="rounded-xl bg-[#FAF8F4] p-3">
+                <li key={entry.id} className="cc-premium-panel-soft rounded-xl p-3">
                   <p className="text-sm font-semibold text-[var(--cc-ink)]">✓ {entry.title}</p>
                   <p className="mt-1 text-sm text-[var(--cc-ink-soft)]">{entry.summary}</p>
                   <div className="mt-2 flex items-center justify-between gap-2 text-xs text-[var(--cc-ink-faint)]">
@@ -99,14 +99,14 @@ export default function JourneyOverviewExperience({
           )}
         </article>
 
-        <article className="rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+        <article className="cc-premium-panel rounded-2xl p-5">
           <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Upcoming Events</h2>
           {overview.upcomingEvents.length === 0 ? (
             <p className="mt-3 text-sm text-[var(--cc-ink-soft)]">No upcoming events are currently visible from your existing data.</p>
           ) : (
             <ul className="mt-4 space-y-3">
               {overview.upcomingEvents.map((entry) => (
-                <li key={entry.id} className="rounded-xl bg-[#FAF8F4] p-3">
+                <li key={entry.id} className="cc-premium-panel-soft rounded-xl p-3">
                   <p className="text-sm font-semibold text-[var(--cc-ink)]">{entry.title}</p>
                   <p className="mt-1 text-sm text-[var(--cc-ink-soft)]">{formatJourneyDate(entry.date)}</p>
                   <div className="mt-2 text-xs text-[var(--cc-ink-faint)]">
@@ -121,7 +121,7 @@ export default function JourneyOverviewExperience({
         </article>
       </section>
 
-      <section className="mt-8 rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+      <section className="cc-premium-panel mt-8 rounded-2xl p-5">
         <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Looking Ahead</h2>
         {overview.upcomingEvents.length === 0 ? (
           <p className="mt-3 text-sm text-[var(--cc-ink-soft)]">No upcoming events are currently visible from your existing data.</p>
@@ -130,7 +130,7 @@ export default function JourneyOverviewExperience({
             {overview.upcomingEvents.map((entry) => {
               const suggestion = buildPreparationSuggestion(entry, child);
               return (
-                <li key={entry.id} className="rounded-xl bg-[#FAF8F4] p-3">
+                <li key={entry.id} className="cc-premium-panel-soft rounded-xl p-3">
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <p className="text-sm font-semibold text-[var(--cc-ink)]">{entry.title}</p>
@@ -148,7 +148,7 @@ export default function JourneyOverviewExperience({
         )}
       </section>
 
-      <section className="mt-8 rounded-2xl bg-[#F6F1E7] p-5 ring-1 ring-[#E6DFD3]">
+      <section className="cc-premium-panel mt-8 rounded-2xl p-5">
         <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Gentle Insights</h2>
         <ul className="mt-3 space-y-2 text-sm leading-relaxed text-[var(--cc-ink-soft)]">
           {overview.helpfulInsights.map((insight) => (
@@ -157,14 +157,14 @@ export default function JourneyOverviewExperience({
         </ul>
 
         {overview.recentChallenges.length > 0 ? (
-          <div className="mt-5 rounded-xl bg-white/80 p-3 text-sm text-[var(--cc-ink-soft)]">
+          <div className="cc-premium-panel-soft mt-5 rounded-xl p-3 text-sm text-[var(--cc-ink-soft)]">
             <p className="font-semibold text-[var(--cc-ink)]">Recent challenges to hold gently</p>
             <p className="mt-1">{overview.recentChallenges[0].title}</p>
           </div>
         ) : null}
       </section>
 
-      <section className="mt-8 rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+      <section className="cc-premium-panel mt-8 rounded-2xl p-5">
         <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Journey History</h2>
         <p className="mt-2 text-sm text-[var(--cc-ink-soft)]">
           Period-based chapters built from your existing journey data.
@@ -178,7 +178,7 @@ export default function JourneyOverviewExperience({
             ) : (
               <div className="mt-3 space-y-3">
                 {overview.recentWeeks.map((period) => (
-                  <details key={period.id} className="rounded-xl bg-[#FAF8F4] p-4" name="recent-weeks">
+                  <details key={period.id} className="cc-premium-panel-soft rounded-xl p-4" name="recent-weeks">
                     <summary className="cursor-pointer list-none">
                       <div className="flex items-center justify-between gap-3">
                         <p className="text-sm font-semibold text-[var(--cc-ink)]">{period.label}</p>
@@ -220,7 +220,7 @@ export default function JourneyOverviewExperience({
             ) : (
               <div className="mt-3 space-y-3">
                 {overview.recentMonths.map((period) => (
-                  <details key={period.id} className="rounded-xl bg-[#FAF8F4] p-4" name="recent-months">
+                  <details key={period.id} className="cc-premium-panel-soft rounded-xl p-4" name="recent-months">
                     <summary className="cursor-pointer list-none">
                       <div className="flex items-center justify-between gap-3">
                         <p className="text-sm font-semibold text-[var(--cc-ink)]">{period.label}</p>
@@ -255,13 +255,13 @@ export default function JourneyOverviewExperience({
         </div>
       </section>
 
-      <section className="mt-8 rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+      <section className="cc-premium-panel mt-8 rounded-2xl p-5">
         <h2 className="text-base font-semibold text-[var(--cc-ink)]">Journey Stories</h2>
         <div className="mt-3 flex flex-wrap gap-2 text-xs">
-          <Link href={`/journey/story/annual${query}`} className="rounded-full bg-[#F6F1E7] px-3 py-1 font-semibold text-[#345B59] ring-1 ring-[#E6DFD3]">
+          <Link href={`/journey/story/annual${query}`} className="rounded-full bg-white/62 px-3 py-1 font-semibold text-[#345B59] ring-1 ring-white/70">
             Annual Story
           </Link>
-          <Link href={`/journey/story/family${query}`} className="rounded-full bg-[#F6F1E7] px-3 py-1 font-semibold text-[#345B59] ring-1 ring-[#E6DFD3]">
+          <Link href={`/journey/story/family${query}`} className="rounded-full bg-white/62 px-3 py-1 font-semibold text-[#345B59] ring-1 ring-white/70">
             Family Story
           </Link>
         </div>

@@ -30,8 +30,8 @@ export default function JourneySectionTabs({
             href={href}
             className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
               isActive
-                ? "bg-[#1D3B3A] text-white"
-                : "bg-white text-[var(--cc-ink-muted)] ring-1 ring-[#D8D2C8] hover:bg-[#F6F1E7]"
+                ? "bg-[rgba(29,59,58,0.9)] text-white shadow-[0_6px_16px_rgba(45,42,38,0.14)]"
+                : "bg-white/58 text-[var(--cc-ink-muted)] ring-1 ring-white/72 backdrop-blur-md hover:bg-white/72"
             }`}
             aria-current={isActive ? "page" : undefined}
           >

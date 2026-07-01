@@ -48,7 +48,7 @@ function IconButton({
 
       aria-label={label}
 
-      className="cc-focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/50 bg-white/45 text-[var(--cc-ink-muted)] transition-colors hover:border-[var(--cc-teal)]/30 hover:text-[var(--cc-teal-deep)]"
+      className="cc-focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/58 bg-white/38 text-[var(--cc-ink-muted)] backdrop-blur-md transition-colors hover:border-[var(--cc-teal)]/35 hover:bg-white/46 hover:text-[var(--cc-teal-deep)]"
 
     >
 
@@ -92,7 +92,7 @@ export default function AppTopNav({ profileName, profileAvatar }: AppTopNavProps
 
             href="/profile"
 
-            className="cc-focus-ring flex min-h-10 min-w-0 items-center gap-2.5 rounded-full border border-transparent py-1 pr-2 transition-colors hover:border-white/60 hover:bg-white/40 sm:pr-3"
+            className="cc-focus-ring flex min-h-10 min-w-0 items-center gap-2.5 rounded-full border border-transparent py-1 pr-2 transition-colors hover:border-white/62 hover:bg-white/32 sm:pr-3"
 
           >
 
@@ -154,7 +154,7 @@ export default function AppTopNav({ profileName, profileAvatar }: AppTopNavProps
 
               type="submit"
 
-              className="cc-focus-ring inline-flex min-h-10 items-center justify-center rounded-full px-3 text-sm font-medium text-[var(--cc-ink-muted)] transition-colors hover:bg-white/50 hover:text-[var(--cc-ink)]"
+              className="cc-focus-ring inline-flex min-h-10 items-center justify-center rounded-full px-3 text-sm font-medium text-[var(--cc-ink-muted)] transition-colors hover:bg-white/42 hover:text-[var(--cc-ink)]"
 
             >
 

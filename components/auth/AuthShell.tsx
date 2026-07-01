@@ -24,11 +24,11 @@ export default function AuthShell({ children }: { children: ReactNode }) {
       <div className="relative grid w-full max-w-4xl gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-14">
         <div className="hidden text-center lg:block lg:text-left">
           <Link href="/" className="inline-block">
-            <p className="font-display text-2xl font-semibold text-[var(--cc-ink)]">Child Compass™</p>
-            <p className="mt-1 text-sm text-[var(--cc-ink-muted)]">Your daily companion</p>
+            <p className="font-display text-2xl font-semibold text-[var(--cc-ink)] [text-shadow:0_1px_2px_rgba(255,255,255,0.28)]">Child Compass™</p>
+            <p className="mt-1 text-sm text-[var(--cc-ink-muted)] [text-shadow:0_1px_1px_rgba(255,255,255,0.2)]">Your daily companion</p>
           </Link>
-          <div className="mt-10 animate-cc-float motion-reduce:animate-none">
-            <HopeArt />
+          <div className="mt-8 animate-cc-float motion-reduce:animate-none">
+            <HopeArt className="opacity-90" />
           </div>
           <p className="mt-8 max-w-sm font-display text-3xl font-semibold leading-snug text-[var(--cc-ink)]">
             Understand your child. Without feeling alone.

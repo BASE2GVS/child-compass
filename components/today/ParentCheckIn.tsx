@@ -57,7 +57,7 @@ export default function ParentCheckIn({ parentName, childName, onMoodSelected }:
   if (mood) {
     const ack = parentMoodAcknowledgement(mood, parentName, childName);
     return (
-      <div className="rounded-[1.75rem] border border-[var(--cc-border-soft)] bg-gradient-to-br from-[#F3EFFA]/50 to-[var(--cc-paper-elevated)] p-8 shadow-[0_2px_12px_rgba(45,42,38,0.04)]">
+      <div className="rounded-[1.75rem] border border-white/58 bg-gradient-to-br from-[#F3EFFA]/42 to-white/52 p-8 shadow-[0_8px_24px_rgba(45,42,38,0.07)] backdrop-blur-xl">
         <p className="font-display text-xl font-medium leading-relaxed text-[var(--cc-ink-soft)]">
           {ack}
         </p>
@@ -74,7 +74,7 @@ export default function ParentCheckIn({ parentName, childName, onMoodSelected }:
 
   return (
     <section
-      className="rounded-[1.75rem] border border-[var(--cc-border-soft)] bg-[var(--cc-paper-elevated)] p-8 shadow-[0_2px_12px_rgba(45,42,38,0.04)] sm:p-10"
+      className="rounded-[1.75rem] border border-white/58 bg-white/56 p-8 shadow-[0_8px_24px_rgba(45,42,38,0.07)] backdrop-blur-xl sm:p-10"
       aria-labelledby="parent-checkin-heading"
     >
       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--cc-teal)]">

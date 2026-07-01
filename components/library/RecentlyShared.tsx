@@ -34,7 +34,7 @@ export default function RecentlyShared({ reports }: RecentlySharedProps) {
           return (
             <article
               key={report.id}
-              className="relative ml-10 rounded-[1.25rem] border border-[var(--cc-border-soft)] bg-[var(--cc-paper-elevated)] px-5 py-4 shadow-[0_2px_12px_rgba(45,42,38,0.04)]"
+              className="relative ml-10 rounded-[1.25rem] border border-white/58 bg-white/54 px-5 py-4 shadow-[0_6px_18px_rgba(45,42,38,0.07)] backdrop-blur-sm"
             >
               <div
                 className="absolute -left-10 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--cc-teal-wash)] text-sm"

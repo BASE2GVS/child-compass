@@ -6,11 +6,13 @@ function ArtCanvas({
   className = "",
   label,
   gradientStops,
+  showFrame = true,
   children,
 }: {
   className?: string;
   label: string;
   gradientStops: [string, string, string];
+  showFrame?: boolean;
   children: ReactNode;
 }) {
   const gradId = `cc-art-${label.replace(/\s/g, "-").toLowerCase()}`;
@@ -29,7 +31,7 @@ function ArtCanvas({
           <stop offset="100%" stopColor={gradientStops[2]} />
         </linearGradient>
       </defs>
-      <rect width="380" height="280" rx="28" fill={`url(#${gradId})`} />
+      {showFrame ? <rect width="380" height="280" rx="28" fill={`url(#${gradId})`} /> : null}
       {children}
     </svg>
   );
@@ -151,7 +153,7 @@ export function JourneyArt({ className = "" }: { className?: string }) {
 
 export function HopeArt({ className = "" }: { className?: string }) {
   return (
-    <ArtCanvas className={className} label="Hope ahead" gradientStops={calm}>
+    <ArtCanvas className={className} label="Hope ahead" gradientStops={calm} showFrame={false}>
       <path d="M190 220 L190 90" stroke={palette.amber.DEFAULT} strokeWidth="4" strokeLinecap="round" opacity="0.45" />
       <circle cx="190" cy="75" r="20" fill={palette.amber.soft} opacity="0.6" />
       <circle cx="190" cy="75" r="10" fill={palette.amber.DEFAULT} opacity="0.5" />

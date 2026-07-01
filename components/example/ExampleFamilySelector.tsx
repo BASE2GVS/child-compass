@@ -22,7 +22,7 @@ export default function ExampleFamilySelector({
   if (!items.length) return null;
 
   return (
-    <section className="mb-6 rounded-2xl bg-white p-4 ring-1 ring-[#E6DFD3]">
+    <section className="cc-premium-panel mb-6 rounded-2xl p-4">
       <p className="text-xs font-semibold uppercase tracking-wide text-[#52706F]">Example Families</p>
       <div className="mt-3 flex flex-wrap gap-2">
         {items.map((item) => {
@@ -36,7 +36,9 @@ export default function ExampleFamilySelector({
               key={item.id}
               href={href}
               className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
-                active ? "bg-[#1D3B3A] text-white" : "bg-[#FAF8F4] text-[var(--cc-ink-soft)] ring-1 ring-[#E6DFD3]"
+                active
+                  ? "bg-[rgba(29,59,58,0.9)] text-white shadow-[0_6px_14px_rgba(45,42,38,0.14)]"
+                  : "bg-white/58 text-[var(--cc-ink-soft)] ring-1 ring-white/72 backdrop-blur-sm hover:bg-white/72"
               }`}
             >
               {item.label}

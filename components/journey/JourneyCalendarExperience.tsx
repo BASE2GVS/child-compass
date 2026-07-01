@@ -41,22 +41,22 @@ export default function JourneyCalendarExperience({ child, familyChildren, entri
 
       <JourneySectionTabs active="calendar" childId={child.id} exampleFamilyId={exampleFamilyId} />
 
-      <section className="mb-6 rounded-2xl bg-[#F6F1E7] p-5 ring-1 ring-[#E6DFD3]">
+      <section className="cc-premium-panel mb-6 rounded-2xl p-5">
         <h2 className="text-lg font-semibold text-[var(--cc-ink)]">This Week Ahead</h2>
         {weekAhead.items.length === 0 ? (
           <p className="mt-3 text-sm text-[var(--cc-ink-soft)]">No upcoming moments are visible in the next 7 days.</p>
         ) : (
           <>
             <div className="mt-3 flex flex-wrap gap-2 text-xs">
-              <span className="rounded-full bg-white px-3 py-1 text-[#345B59] ring-1 ring-[#E6DFD3]">Appointments: {weekAhead.appointments}</span>
-              <span className="rounded-full bg-white px-3 py-1 text-[#345B59] ring-1 ring-[#E6DFD3]">School events: {weekAhead.schoolEvents}</span>
-              <span className="rounded-full bg-white px-3 py-1 text-[#345B59] ring-1 ring-[#E6DFD3]">Birthdays: {weekAhead.birthdays}</span>
-              <span className="rounded-full bg-white px-3 py-1 text-[#345B59] ring-1 ring-[#E6DFD3]">Therapy: {weekAhead.therapy}</span>
-              <span className="rounded-full bg-white px-3 py-1 text-[#345B59] ring-1 ring-[#E6DFD3]">Reminders: {weekAhead.reminders}</span>
+              <span className="rounded-full bg-white/62 px-3 py-1 text-[#345B59] ring-1 ring-white/70">Appointments: {weekAhead.appointments}</span>
+              <span className="rounded-full bg-white/62 px-3 py-1 text-[#345B59] ring-1 ring-white/70">School events: {weekAhead.schoolEvents}</span>
+              <span className="rounded-full bg-white/62 px-3 py-1 text-[#345B59] ring-1 ring-white/70">Birthdays: {weekAhead.birthdays}</span>
+              <span className="rounded-full bg-white/62 px-3 py-1 text-[#345B59] ring-1 ring-white/70">Therapy: {weekAhead.therapy}</span>
+              <span className="rounded-full bg-white/62 px-3 py-1 text-[#345B59] ring-1 ring-white/70">Reminders: {weekAhead.reminders}</span>
             </div>
             <ul className="mt-4 space-y-2 text-sm text-[var(--cc-ink-soft)]">
               {weekAhead.items.map((entry) => (
-                <li key={entry.id} className="rounded-lg bg-white px-3 py-2 ring-1 ring-[#E6DFD3]">
+                <li key={entry.id} className="cc-premium-panel-soft rounded-lg px-3 py-2">
                   <span className="font-semibold text-[var(--cc-ink)]">{entry.title}</span>
                   <span className="ml-2 text-xs text-[var(--cc-ink-faint)]">{formatJourneyDate(entry.date)}</span>
                 </li>
@@ -67,7 +67,7 @@ export default function JourneyCalendarExperience({ child, familyChildren, entri
       </section>
 
       {helpfulNotes.length > 0 ? (
-        <section className="mb-6 rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+        <section className="cc-premium-panel mb-6 rounded-2xl p-5">
           <h2 className="text-base font-semibold text-[var(--cc-ink)]">Helpful Notes</h2>
           <ul className="mt-3 space-y-2 text-sm text-[var(--cc-ink-soft)]">
             {helpfulNotes.map((note) => (
@@ -77,7 +77,7 @@ export default function JourneyCalendarExperience({ child, familyChildren, entri
         </section>
       ) : null}
 
-      <section className="rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+      <section className="cc-premium-panel rounded-2xl p-5">
         <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Upcoming</h2>
         {calendar.upcoming.length === 0 ? (
           <p className="mt-3 text-sm text-[var(--cc-ink-soft)]">No upcoming calendar moments are currently visible.</p>
@@ -86,7 +86,7 @@ export default function JourneyCalendarExperience({ child, familyChildren, entri
             {calendar.upcoming.map((entry) => {
               const preparation = buildPreparationDetails(entry, child, memory);
               return (
-                <li key={entry.id} className="rounded-xl bg-[#FAF8F4] p-4">
+                <li key={entry.id} className="cc-premium-panel-soft rounded-xl p-4">
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <p className="text-sm font-semibold text-[var(--cc-ink)]">{entry.title}</p>
@@ -100,7 +100,7 @@ export default function JourneyCalendarExperience({ child, familyChildren, entri
                   </div>
 
                   {preparation.suggestions.length > 0 ? (
-                    <div className="mt-3 rounded-lg bg-[#F6F1E7] px-3 py-3">
+                    <div className="cc-premium-panel mt-3 rounded-lg px-3 py-3">
                       <p className="text-xs font-semibold uppercase tracking-wide text-[#52706F]">Preparation</p>
                       <ul className="mt-2 space-y-1 text-xs text-[#345B59]">
                         {preparation.suggestions.map((item) => (
@@ -111,7 +111,7 @@ export default function JourneyCalendarExperience({ child, familyChildren, entri
                   ) : null}
 
                   {preparation.checklist.length > 0 ? (
-                    <div className="mt-3 rounded-lg bg-white px-3 py-3 ring-1 ring-[#E6DFD3]">
+                    <div className="cc-premium-panel-soft mt-3 rounded-lg px-3 py-3">
                       <p className="text-xs font-semibold uppercase tracking-wide text-[#52706F]">Checklist</p>
                       <ul className="mt-2 space-y-1 text-xs text-[var(--cc-ink-soft)]">
                         {preparation.checklist.map((item) => (
@@ -127,14 +127,14 @@ export default function JourneyCalendarExperience({ child, familyChildren, entri
         )}
       </section>
 
-      <section className="mt-6 rounded-2xl bg-white p-5 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+      <section className="cc-premium-panel mt-6 rounded-2xl p-5">
         <h2 className="text-lg font-semibold text-[var(--cc-ink)]">Recently Completed</h2>
         {calendar.recent.length === 0 ? (
           <p className="mt-3 text-sm text-[var(--cc-ink-soft)]">Completed moments will appear here automatically.</p>
         ) : (
           <ul className="mt-4 space-y-2 text-sm text-[var(--cc-ink-soft)]">
             {calendar.recent.map((entry) => (
-              <li key={entry.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg bg-[#FAF8F4] px-3 py-2">
+              <li key={entry.id} className="cc-premium-panel-soft flex flex-wrap items-center justify-between gap-2 rounded-lg px-3 py-2">
                 <span>{entry.title}</span>
                 <span className="text-xs text-[var(--cc-ink-faint)]">{formatJourneyDate(entry.date)}</span>
               </li>

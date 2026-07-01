@@ -52,7 +52,7 @@ export default function JourneyMilestonesExperience({ child, familyChildren, ent
               <h2 className="font-display text-2xl text-[var(--cc-ink)]">{year}</h2>
               <div className="space-y-3">
                 {grouped[year].map((entry) => (
-                  <article key={entry.id} className="rounded-2xl bg-white p-4 ring-1 ring-[#E6DFD3] shadow-[0_2px_14px_rgba(45,42,38,0.06)]">
+                  <article key={entry.id} className="cc-premium-panel rounded-2xl p-4">
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <p className="text-sm font-semibold text-[var(--cc-ink)]">{entry.title}</p>

@@ -14,7 +14,7 @@ export default function DayJourney({ steps }: { steps: JourneyStep[] }) {
 
   return (
     <section
-      className="rounded-[1.75rem] border border-[var(--cc-border-soft)] bg-gradient-to-b from-[var(--cc-paper-elevated)] to-[#F0F5EE]/50 p-8 shadow-[0_2px_16px_rgba(45,42,38,0.04)] sm:p-10"
+      className="rounded-[1.75rem] border border-white/58 bg-gradient-to-b from-white/62 to-[#F0F5EE]/40 p-8 shadow-[0_8px_28px_rgba(45,42,38,0.07)] backdrop-blur-xl sm:p-10"
       aria-label="Today's journey"
     >
       <div className="flex flex-wrap items-end justify-between gap-4">

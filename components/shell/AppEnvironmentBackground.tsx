@@ -9,7 +9,7 @@ export default function AppEnvironmentBackground() {
         className="absolute inset-0 h-full w-full object-cover object-center"
         decoding="async"
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-white/6 to-[#F3FAF8]/5" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white/7 via-white/4 to-[#F3FAF8]/3" />
     </div>
   );
 }

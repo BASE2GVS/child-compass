@@ -35,7 +35,7 @@ export default function ChildTodayCard({
 
   return (
     <article
-      className="overflow-hidden rounded-[1.75rem] border border-white/55 bg-white/58 shadow-[0_4px_24px_rgba(45,42,38,0.06)] backdrop-blur-xl"
+      className="overflow-hidden rounded-[1.75rem] border border-white/62 bg-white/52 shadow-[0_8px_28px_rgba(45,42,38,0.08)] backdrop-blur-xl"
       aria-labelledby="child-today-heading"
     >
       <div className="flex flex-col gap-6 p-8 sm:flex-row sm:items-start sm:p-10">
@@ -70,7 +70,7 @@ export default function ChildTodayCard({
           </div>
 
           {insight && (
-            <div className="rounded-2xl bg-[#F3EFFA]/50 px-5 py-4">
+            <div className="cc-premium-panel-soft rounded-2xl px-5 py-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-[var(--cc-ink-faint)]">
                 One insight
               </p>
@@ -79,7 +79,7 @@ export default function ChildTodayCard({
           )}
 
           {recommendation && (
-            <div className="rounded-2xl bg-[#FBF4E6]/60 px-5 py-4">
+            <div className="cc-premium-panel-soft rounded-2xl px-5 py-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-[var(--cc-ink-faint)]">
                 Gentle suggestion
               </p>

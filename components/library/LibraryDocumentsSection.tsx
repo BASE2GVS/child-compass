@@ -133,7 +133,7 @@ export default function LibraryDocumentsSection({
           {folders.map((folder) => (
             <SecondaryCard key={folder.category} padding="md" className="overflow-hidden">
               <div className="flex items-center gap-3">
-                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-2xl shadow-sm">
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/62 bg-white/58 text-2xl shadow-sm backdrop-blur-sm">
                   {folder.icon}
                 </span>
                 <div>
@@ -147,7 +147,7 @@ export default function LibraryDocumentsSection({
                 {folder.docs.slice(0, 4).map((doc) => (
                   <li
                     key={doc.id}
-                    className="rounded-xl bg-white/70 px-4 py-3 shadow-sm"
+                    className="rounded-xl border border-white/58 bg-white/56 px-4 py-3 shadow-sm backdrop-blur-sm"
                   >
                     <p className="font-medium text-[var(--cc-ink)]">{doc.title}</p>
                     <p className="mt-1 text-xs text-[var(--cc-ink-faint)]">

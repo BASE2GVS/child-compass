@@ -105,7 +105,7 @@ export default function EditableReportDocument({
       </div>
 
       {isEditing ? (
-        <div className="mx-auto max-w-3xl space-y-8 rounded-[1.25rem] border border-[var(--cc-border-soft)] bg-white/60 p-6 sm:p-8">
+        <div className="mx-auto max-w-3xl space-y-8 rounded-[1.25rem] border border-white/58 bg-white/56 p-6 shadow-[0_8px_24px_rgba(45,42,38,0.07)] backdrop-blur-xl sm:p-8">
           <p className="text-sm text-[var(--cc-ink-muted)]">
             Prepared from your family&apos;s profile, check-ins, and notes. Edit anything before sharing — you own the
             final document.
@@ -119,7 +119,7 @@ export default function EditableReportDocument({
                 value={section.body}
                 onChange={(e) => updateSection(index, e.target.value)}
                 rows={Math.max(3, section.body.split("\n").length + 1)}
-                className="w-full rounded-xl border border-[var(--cc-border-soft)] bg-white px-4 py-3 text-sm leading-relaxed text-[var(--cc-ink)] focus:border-[var(--cc-teal)] focus:outline-none focus:ring-2 focus:ring-[var(--cc-teal)]/20"
+                className="w-full rounded-xl border border-white/66 bg-white/78 px-4 py-3 text-sm leading-relaxed text-[var(--cc-ink)] backdrop-blur-sm focus:border-[var(--cc-teal)] focus:outline-none focus:ring-2 focus:ring-[var(--cc-teal)]/20"
               />
             </div>
           ))}
