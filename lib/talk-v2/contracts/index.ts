@@ -153,6 +153,67 @@ export type FamilyContextSelectionMetadata = {
   retrievalLimitsApplied: Record<string, number>;
 };
 
+export type ClinicalContextSectionName =
+  | "childProfile"
+  | "currentSituation"
+  | "parentGoal"
+  | "relevantJourney"
+  | "previousAttempts"
+  | "knownSuccesses"
+  | "knownFailures"
+  | "recentChanges"
+  | "openQuestions";
+
+export type ClinicalContextFactSource = {
+  kind:
+    | "child_profile"
+    | "parent_message"
+    | "coach_message"
+    | "checkin"
+    | "timeline"
+    | "debrief"
+    | "pattern";
+  sourceId?: string;
+  occurredAt?: string;
+};
+
+export type ClinicalContextFact = {
+  id: string;
+  section: ClinicalContextSectionName;
+  label: string;
+  text: string;
+  source: ClinicalContextFactSource;
+};
+
+export type ClinicalContext = {
+  version: TalkV2ContractVersion;
+  childId: string;
+  sessionId: string;
+  childProfile: FamilyContextChildProfile | null;
+  currentSituation: ClinicalContextFact[];
+  parentGoal: string | null;
+  relevantJourney: ClinicalContextFact[];
+  previousAttempts: ClinicalContextFact[];
+  knownSuccesses: ClinicalContextFact[];
+  knownFailures: ClinicalContextFact[];
+  recentChanges: ClinicalContextFact[];
+  openQuestions: ClinicalContextFact[];
+  sourceSummary: string[];
+};
+
+export type ClinicalContextBudget = {
+  maxFacts: number;
+  sectionLimits: Record<ClinicalContextSectionName, number>;
+};
+
+export type ClinicalContextBudgetResult = {
+  context: ClinicalContext;
+  selectedFactCount: number;
+  omittedFactCount: number;
+  selectedSections: ClinicalContextSectionName[];
+  omittedSections: ClinicalContextSectionName[];
+};
+
 export type FamilyContext = {
   version: TalkV2ContractVersion;
   childId: string;
@@ -168,6 +229,8 @@ export type FamilyContext = {
   safetyRules: FamilyContextSafetyRule[];
   completeness: FamilyContextCompleteness;
   selectionMetadata: FamilyContextSelectionMetadata;
+  clinicalContext?: ClinicalContext;
+  clinicalContextBudget?: ClinicalContextBudgetResult;
 };
 
 export type PromptModelConfiguration = {

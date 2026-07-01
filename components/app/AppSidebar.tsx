@@ -26,10 +26,10 @@ export default function AppSidebar({
           href={HOME_ROUTE}
           className="block rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cc-teal)]/40"
         >
-          <p className="font-display text-xl font-semibold tracking-tight text-[var(--cc-ink)]">
+          <p className="font-display text-xl font-semibold tracking-tight text-[var(--cc-ink)] [text-shadow:0_1px_0_rgba(255,255,255,0.28)]">
             Child Compass™
           </p>
-          <p className="mt-0.5 text-xs font-medium tracking-wide text-[var(--cc-ink-faint)]">
+          <p className="mt-0.5 text-xs font-semibold tracking-[0.12em] text-[rgba(58,67,78,0.72)]">
             Your daily companion
           </p>
         </Link>
@@ -43,22 +43,30 @@ export default function AppSidebar({
             <Link
               key={item.href}
               href={item.href}
-              className={`relative flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[0.9375rem] font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cc-teal)]/40 ${
+              className={`relative flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[0.9375rem] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cc-teal)]/40 ${
                 active
                   ? "bg-gradient-to-r from-white/58 to-white/34 text-[var(--cc-teal-deep)] ring-1 ring-white/66 shadow-[inset_2px_0_0_0_var(--cc-teal),0_6px_16px_rgba(45,42,38,0.06)]"
                   : isAsk
-                    ? "text-[var(--cc-ink)] hover:bg-white/44"
-                    : "text-[var(--cc-ink-muted)] hover:bg-white/34 hover:text-[var(--cc-ink)]"
+                    ? "text-[rgba(34,46,58,0.92)] hover:bg-white/44 hover:text-[rgba(23,34,45,0.98)]"
+                    : "text-[rgba(52,62,74,0.84)] hover:bg-white/34 hover:text-[rgba(26,37,48,0.95)]"
               }`}
             >
-              <NavIcon d={item.icon} />
-              <span>{item.label}</span>
+              <span className={`flex shrink-0 items-center justify-center ${active ? "opacity-100" : "opacity-90"}`}>
+                <NavIcon d={item.icon} />
+              </span>
+              <span
+                className={`truncate tracking-[0.01em] [text-shadow:0_1px_0_rgba(255,255,255,0.24)] ${
+                  active ? "font-semibold" : isAsk ? "font-semibold" : "font-medium"
+                }`}
+              >
+                {item.label}
+              </span>
             </Link>
           );
         })}
 
         <div className="pt-5">
-          <p className="mb-1.5 px-3.5 text-xs font-semibold tracking-wide text-[var(--cc-ink-faint)]">
+          <p className="mb-1.5 px-3.5 text-xs font-semibold tracking-[0.12em] text-[rgba(61,70,81,0.7)]">
             More
           </p>
           <div className="space-y-0.5">
@@ -70,12 +78,16 @@ export default function AppSidebar({
                   href={item.href}
                   className={`flex items-center gap-3 rounded-lg px-3.5 py-2 text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cc-teal)]/40 ${
                     active
-                      ? "font-medium text-[var(--cc-teal-deep)]"
-                      : "text-[var(--cc-ink-faint)] hover:bg-white/35 hover:text-[var(--cc-ink-muted)]"
+                      ? "font-semibold text-[var(--cc-teal-deep)]"
+                      : "text-[rgba(60,69,80,0.76)] hover:bg-white/35 hover:text-[rgba(31,42,53,0.9)]"
                   }`}
                 >
-                  <NavIcon d={item.icon} />
-                  {item.label}
+                  <span className={`flex shrink-0 items-center justify-center ${active ? "opacity-100" : "opacity-85"}`}>
+                    <NavIcon d={item.icon} />
+                  </span>
+                  <span className={`truncate tracking-[0.01em] [text-shadow:0_1px_0_rgba(255,255,255,0.2)] ${active ? "font-semibold" : "font-medium"}`}>
+                    {item.label}
+                  </span>
                 </Link>
               );
             })}

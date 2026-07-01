@@ -5,6 +5,8 @@ import {
   type FamilyContextRequest,
 } from "@/lib/talk-v2/contracts";
 import { fetchContextData } from "@/lib/talk-v2/context/context-repository";
+import { applyClinicalContextBudget } from "@/lib/talk-v2/context/context-budget-manager";
+import { buildClinicalContext } from "@/lib/talk-v2/context/clinical-context-engine";
 import { rankRelevantMemories } from "@/lib/talk-v2/context/memory-ranking";
 import { buildFamilyStory } from "@/lib/talk-v2/context/family-story";
 import { detectContextIntents } from "@/lib/talk-v2/context/intent-detection";
@@ -53,6 +55,14 @@ export async function buildFamilyContext(input: BuildFamilyContextInput): Promis
     childId: input.childId,
     sessionId: input.sessionId,
   });
+
+  const clinicalContext = buildClinicalContext({
+    childId: input.childId,
+    sessionId: input.sessionId,
+    parentMessage: input.parentMessage,
+    data: fetched,
+  });
+  const clinicalContextBudget = applyClinicalContextBudget(clinicalContext);
 
   const childProfile = fetched.child
     ? {
@@ -150,6 +160,8 @@ export async function buildFamilyContext(input: BuildFamilyContextInput): Promis
     conversationState,
     safetyRules: TALK_V2_SAFETY_RULES,
     selectionMetadata: selected.metadata,
+    clinicalContext,
+    clinicalContextBudget,
   };
 
   return {
